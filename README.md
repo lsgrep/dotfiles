@@ -1,2 +1,2 @@
-# dotfiles
-my assets, mainly Clojure,Python
+# dotfiles based on Prelude
+ mainly for  Clojure,Python
