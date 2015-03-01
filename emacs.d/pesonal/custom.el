@@ -39,10 +39,13 @@
  '(custom-safe-themes
    (quote
     ("4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
+ '(git-gutter:added-sign "++")
+ '(git-gutter:deleted-sign "--")
+ '(git-gutter:modified-sign "##")
  '(magit-use-overlays nil)
  '(package-selected-packages
    (quote
-    (web-mode geiser company-anaconda anaconda-mode company-auctex cdlatex auctex json-mode js2-mode haskell-mode rainbow-mode elisp-slime-nav slime coffee-mode cider clojure-mode rainbow-delimiters mediawiki key-chord company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido zop-to-char zenburn-theme volatile-highlights vkill undo-tree smartrep smartparens projectile ov operate-on-number move-text markdown-mode magit guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region exec-path-from-shell easy-kill discover-my-major diminish diff-hl browse-kill-ring anzu ace-window ace-jump-buffer))))
+    (dockerfile-mode web-mode geiser company-anaconda anaconda-mode company-auctex cdlatex auctex json-mode js2-mode haskell-mode rainbow-mode elisp-slime-nav slime coffee-mode cider clojure-mode rainbow-delimiters mediawiki key-chord company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido zop-to-char zenburn-theme volatile-highlights vkill undo-tree smartrep smartparens projectile ov operate-on-number move-text markdown-mode magit guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region exec-path-from-shell easy-kill discover-my-major diminish diff-hl browse-kill-ring anzu ace-window ace-jump-buffer))))
 
 
 ;;ui tweaks
@@ -232,10 +235,7 @@
 (set-face-foreground 'git-gutter:modified "#282828") ;; background color
 (set-face-foreground 'git-gutter:added "#282828")
 (set-face-foreground 'git-gutter:deleted "#282828")
-(custom-set-variables
- '(git-gutter:modified-sign "##") ;; two space
- '(git-gutter:added-sign "++")    ;; multiple character is OK
- '(git-gutter:deleted-sign "--"))
+
 
 
 
@@ -458,3 +458,9 @@ want to use in the modeline *in lieu of* the original.")
 (setq prelude-whitespace nil)
 (setq prelude-clean-whitespace-on-save nil)
 (setq prelude-flyspell nil)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
