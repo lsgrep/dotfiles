@@ -1,10 +1,8 @@
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t) ; Org-mode's repository
-(defun ensure-package-installed (&rest packages)
-  "Assure every package is installed, ask for installation if it’s not.
 
-Return a list of installed packages or nil for every skipped package."
+(defun ensure-package-installed (&rest packages)
   (mapcar
    (lambda (package)
      ;; (package-installed-p 'evil)
@@ -15,33 +13,45 @@ Return a list of installed packages or nil for every skipped package."
          package)))
    packages))
 
-
-
-
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 
-(ensure-package-installed 'htmlize 'smart-mode-line 'git-gutter
+;;add your packages here
+(ensure-package-installed 'htmlize
+                          'smart-mode-line
+                          'git-gutter
                           'project-explorer
                           'niflheim-theme
                           'paredit 'speed-type
                           'magit-gitflow
-                          )
+                          'monokai-theme)
+
+;;init
 (package-initialize)
 
 
+;;this has to be on top. or modications require confirmation
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
+ '(magit-use-overlays nil)
+ '(package-selected-packages
+   (quote
+    (web-mode geiser company-anaconda anaconda-mode company-auctex cdlatex auctex json-mode js2-mode haskell-mode rainbow-mode elisp-slime-nav slime coffee-mode cider clojure-mode rainbow-delimiters mediawiki key-chord company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido zop-to-char zenburn-theme volatile-highlights vkill undo-tree smartrep smartparens projectile ov operate-on-number move-text markdown-mode magit guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region exec-path-from-shell easy-kill discover-my-major diminish diff-hl browse-kill-ring anzu ace-window ace-jump-buffer))))
+
+
+;;ui tweaks
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; No splash screen please ... jeez
 (setq inhibit-startup-message t)
-
-;; repos
-
-
-
-
 
 (require 'clojure-mode)
 (require 'cider)
@@ -74,7 +84,6 @@ Return a list of installed packages or nil for every skipped package."
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 
 
-
 ;; personal styling
 (set-default-font "Input Mono 16")
 ;(set-face-attribute 'default nil :height 140)
@@ -82,8 +91,6 @@ Return a list of installed packages or nil for every skipped package."
 
 ;; show line numbers
 (global-linum-mode +1)
-
-
 
 ;; change command and option key
 (setq mac-command-modifier 'meta)
@@ -111,7 +118,7 @@ Return a list of installed packages or nil for every skipped package."
 ;;let's add real shortcut for eshell
 (global-set-key [f1] 'eshell)
 ;; load a fine theme
-(load-theme 'niflheim t)
+(load-theme 'monokai t)
 (global-hl-line-mode -1)
 ;;
 ;; Custom blog related stuff
@@ -153,8 +160,6 @@ Return a list of installed packages or nil for every skipped package."
 (setq org-src-fontify-natively t)
 ;(set-input-mode t nil t)
 
-
-
 (defun set-exec-path-from-shell-PATH ()
   "Set up Emacs' `exec-path' and PATH environment variable to match that used by the user's shell."
   (interactive)
@@ -162,10 +167,6 @@ Return a list of installed packages or nil for every skipped package."
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 
-
-
-
-(whitespace-mode -1)
 
 ;; I always wanted one line
 ;; add magit related stuff
@@ -227,11 +228,15 @@ Return a list of installed packages or nil for every skipped package."
 (global-git-gutter-mode +1)
 
 
+;; background color ,modified for monokai
+(set-face-foreground 'git-gutter:modified "#282828") ;; background color
+(set-face-foreground 'git-gutter:added "#282828")
+(set-face-foreground 'git-gutter:deleted "#282828")
+(custom-set-variables
+ '(git-gutter:modified-sign "##") ;; two space
+ '(git-gutter:added-sign "++")    ;; multiple character is OK
+ '(git-gutter:deleted-sign "--"))
 
-;; background color
-(set-face-foreground 'git-gutter:modified "#586e75") ;; background color
-(set-face-foreground 'git-gutter:added "#586e75")
-(set-face-foreground 'git-gutter:deleted "#586e75")
 
 
 ;; line management
@@ -282,7 +287,7 @@ Return a list of installed packages or nil for every skipped package."
 (sml/setup)
 
 
-
+;; you know mac
 (keyboard-translate ?\C-x ?\C-u)
 (keyboard-translate ?\C-u ?\C-x)
 
@@ -312,12 +317,7 @@ Return a list of installed packages or nil for every skipped package."
 
 (global-set-key (kbd "M-.") 'backward-kill-word)
 (global-set-key (kbd "M-p") 'kill-word)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
 
 
 (key-chord-define-global "''" 'other-window)
@@ -413,8 +413,7 @@ want to use in the modeline *in lieu of* the original.")
 (add-hook 'after-change-major-mode-hook 'clean-mode-line)
 
 
-;;
-
+;;refresh all namespaces
 (defun nrepl-refresh ()
   (interactive)
   (call-interactively 'cider-switch-to-relevant-repl-buffer)
@@ -422,6 +421,7 @@ want to use in the modeline *in lieu of* the original.")
   (insert "(clojure.tools.namespace.repl/refresh)")
   (cider-repl-return))
 
+;; reset your system
 (defun nrepl-reset ()
   (interactive)
   (call-interactively 'cider-switch-to-relevant-repl-buffer)
@@ -445,25 +445,16 @@ want to use in the modeline *in lieu of* the original.")
   (detabify-buffer)
   (delete-trailing-whitespace))
 
-
-
 (defun mbp-clojure-mode-keybindings ()
   (local-set-key (kbd "<f1>") 'nrepl-reset)
-  (local-set-key (kbd "<f2>") 'nrepl-refresh)
-  (local-set-key (kbd "C-x t") 'temp-buffer))
+  (local-set-key (kbd "<f2>") 'nrepl-refresh))
+
+(global-set-key (kbd "C-x t") 'temp-buffer)
+;;awesome buffer
 
 (add-hook 'clojure-mode-hook 'mbp-clojure-mode-keybindings)
 
-
-(sml/apply-theme 'dark)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
- '(package-selected-packages
-   (quote
-    (web-mode geiser company-anaconda anaconda-mode company-auctex cdlatex auctex json-mode js2-mode haskell-mode rainbow-mode elisp-slime-nav slime coffee-mode cider clojure-mode rainbow-delimiters mediawiki key-chord company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido zop-to-char zenburn-theme volatile-highlights vkill undo-tree smartrep smartparens projectile ov operate-on-number move-text markdown-mode magit guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region exec-path-from-shell easy-kill discover-my-major diminish diff-hl browse-kill-ring anzu ace-window ace-jump-buffer))))
+;; this whitespace is kinda killing me
+(setq prelude-whitespace nil)
+(setq prelude-clean-whitespace-on-save nil)
+(setq prelude-flyspell nil)
