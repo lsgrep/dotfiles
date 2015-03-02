@@ -24,6 +24,7 @@
                           'niflheim-theme
                           'paredit 'speed-type
                           'magit-gitflow
+                          'yesql-ghosts
                           'monokai-theme)
 
 ;;init
@@ -41,11 +42,11 @@
     ("4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
  '(git-gutter:added-sign "++")
  '(git-gutter:deleted-sign "--")
- '(git-gutter:modified-sign "##")
+ '(git-gutter:modified-sign "**")
  '(magit-use-overlays nil)
  '(package-selected-packages
    (quote
-    (dockerfile-mode web-mode geiser company-anaconda anaconda-mode company-auctex cdlatex auctex json-mode js2-mode haskell-mode rainbow-mode elisp-slime-nav slime coffee-mode cider clojure-mode rainbow-delimiters mediawiki key-chord company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido zop-to-char zenburn-theme volatile-highlights vkill undo-tree smartrep smartparens projectile ov operate-on-number move-text markdown-mode magit guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region exec-path-from-shell easy-kill discover-my-major diminish diff-hl browse-kill-ring anzu ace-window ace-jump-buffer))))
+    (yesql-ghosts web-mode geiser company-anaconda anaconda-mode company-auctex cdlatex auctex json-mode js2-mode haskell-mode rainbow-mode elisp-slime-nav slime coffee-mode cider clojure-mode rainbow-delimiters mediawiki key-chord company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido zop-to-char zenburn-theme volatile-highlights vkill undo-tree smartrep smartparens projectile ov operate-on-number move-text markdown-mode magit guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region exec-path-from-shell easy-kill discover-my-major diminish diff-hl browse-kill-ring anzu ace-window ace-jump-buffer))))
 
 
 ;;ui tweaks
@@ -184,13 +185,11 @@
 (require 'erc-join)
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 (erc-autojoin-mode 1)
+(setq erc-max-buffer-size 700000)
 (setq erc-autojoin-channels-alist
       '(("freenode.net" "#emacs"  "#statistics"
-         "#R" "#clojure" "#machinelearning" "#ai" "#lisp" "#python" "#git"
-          "#networking" "#reactjs" "#startups"
-          "#nlp"
-          )
-        ))
+         "#R" "#clojure" "#machinelearning"  "#lisp"  "#git"
+         "#networking" "#reactjs")))
 
 
 ;; full screen magit-status
@@ -323,10 +322,10 @@
 (key-chord-define-global "''" 'other-window)
 (key-chord-define-global ",," 'prelude-switch-to-previous-buffer)
 (key-chord-define-global "aa" 'helm-mini)
-(key-chord-define-global "gg" 'magit-status)
+(key-chord-define-global "ww" 'magit-status)
 (key-chord-define-global "!!" 'cider-jack-in)
 (key-chord-define-global "@@" 'cider-restart)
-(key-chord-define-global "$$" 'project-explorer-open)
+(key-chord-define-global "$$" 'project-explorer-toggle)
 (key-chord-define-global "zz" 'cider-connect)
 (key-chord-define-global "&&" 'shell)
 
@@ -464,3 +463,10 @@ want to use in the modeline *in lieu of* the original.")
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;sql ghosts
+(require 'yesql-ghosts)
+
+;;yay 
+;;(setq linum-format " %3d\u2502 ")
+(setq linum-format "%3d \u2502")
