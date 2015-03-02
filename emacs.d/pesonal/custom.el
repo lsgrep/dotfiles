@@ -89,7 +89,8 @@
 
 
 ;; personal styling
-(set-default-font "Input Mono 16")
+(set-default-font "Fira Code 16")
+;;https://github.com/tonsky/FiraCode
 ;(set-face-attribute 'default nil :height 140)
 (scroll-bar-mode -1)
 
@@ -467,6 +468,6 @@ want to use in the modeline *in lieu of* the original.")
 ;;sql ghosts
 (require 'yesql-ghosts)
 
-;;yay 
+;;yay
 ;;(setq linum-format " %3d\u2502 ")
 (setq linum-format "%3d \u2502")
