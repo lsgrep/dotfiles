@@ -24,9 +24,7 @@
                           'niflheim-theme
                           'paredit 'speed-type
                           'magit-gitflow
-                          'yesql-ghosts
                           'monokai-theme)
-
 ;;init
 (package-initialize)
 
@@ -46,7 +44,9 @@
  '(magit-use-overlays nil)
  '(package-selected-packages
    (quote
-    (yesql-ghosts web-mode geiser company-anaconda anaconda-mode company-auctex cdlatex auctex json-mode js2-mode haskell-mode rainbow-mode elisp-slime-nav slime coffee-mode cider clojure-mode rainbow-delimiters mediawiki key-chord company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido zop-to-char zenburn-theme volatile-highlights vkill undo-tree smartrep smartparens projectile ov operate-on-number move-text markdown-mode magit guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region exec-path-from-shell easy-kill discover-my-major diminish diff-hl browse-kill-ring anzu ace-window ace-jump-buffer))))
+    (dockerfile-mode yesql-ghosts web-mode geiser company-anaconda anaconda-mode company-auctex cdlatex auctex json-mode js2-mode haskell-mode rainbow-mode elisp-slime-nav slime coffee-mode cider clojure-mode rainbow-delimiters mediawiki key-chord company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido zop-to-char zenburn-theme volatile-highlights vkill undo-tree smartrep smartparens projectile ov operate-on-number move-text markdown-mode magit guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region exec-path-from-shell easy-kill discover-my-major diminish diff-hl browse-kill-ring anzu ace-window ace-jump-buffer))))
+
+
 
 
 ;;ui tweaks
@@ -123,8 +123,10 @@
 ;;let's add real shortcut for eshell
 (global-set-key [f1] 'eshell)
 ;; load a fine theme
+
 (load-theme 'monokai t)
 (global-hl-line-mode -1)
+
 ;;
 ;; Custom blog related stuff
 (require 'htmlize)
@@ -326,7 +328,7 @@
 (key-chord-define-global "ww" 'magit-status)
 (key-chord-define-global "!!" 'cider-jack-in)
 (key-chord-define-global "@@" 'cider-restart)
-(key-chord-define-global "$$" 'project-explorer-toggle)
+(key-chord-define-global "$$" 'project-explorer-open)
 (key-chord-define-global "zz" 'cider-connect)
 (key-chord-define-global "&&" 'shell)
 
@@ -465,9 +467,19 @@ want to use in the modeline *in lieu of* the original.")
  ;; If there is more than one, they won't work right.
  )
 
-;;sql ghosts
-(require 'yesql-ghosts)
 
-;;yay
-;;(setq linum-format " %3d\u2502 ")
+;;yay;
+
 (setq linum-format "%3d \u2502")
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+;; backwards compatibility as default-buffer-file-coding-system
+;; is deprecated in 23.2.
+(if (boundp 'buffer-file-coding-system)
+    (setq-default buffer-file-coding-system 'utf-8)
+  (setq default-buffer-file-coding-system 'utf-8))
+
+;; Treat clipboard input as UTF-8 string first; compound text next, etc.
+(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
