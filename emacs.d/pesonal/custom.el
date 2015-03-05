@@ -1,7 +1,6 @@
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t) ; Org-mode's repository
-
 (defun ensure-package-installed (&rest packages)
   (mapcar
    (lambda (package)
@@ -27,8 +26,6 @@
                           'monokai-theme)
 ;;init
 (package-initialize)
-
-
 ;;this has to be on top. or modications require confirmation
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -37,7 +34,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
+    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
  '(git-gutter:added-sign "++")
  '(git-gutter:deleted-sign "--")
  '(git-gutter:modified-sign "**")
@@ -53,6 +50,45 @@
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+
+(load-theme 'monokai t)
+(global-hl-line-mode -1)
+
+;; personal styling
+(set-default-font "Fira Code 16")
+;;https://github.com/tonsky/FiraCode
+                                        ;(set-face-attribute 'default nil :height 140)
+(scroll-bar-mode -1)
+
+;; show line numbers
+(global-linum-mode +1)
+
+(setq linum-format "%4d\u2502")
+
+;; change command and option key
+(setq mac-command-modifier 'meta)
+(setq mac-option-modifier 'super)
+
+;; you know mac
+(keyboard-translate ?\C-x ?\C-u)
+(keyboard-translate ?\C-u ?\C-x)
+
+;; smart mode line.
+(require 'smart-mode-line)
+(sml/setup)
+
+
+
+(setenv "PATH"
+        (concat
+         "/usr/local/bin/" ":"
+         (getenv "PATH") ; inherited from OS
+         ))
+
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+(setq exec-path (append exec-path '("/usr/local/bin")))
+;;let's add real shortcut for eshell
+
 
 ;; No splash screen please ... jeez
 (setq inhibit-startup-message t)
@@ -87,47 +123,16 @@
 (add-hook 'cider-repl-mode-hook 'smartparens-strict-mode)
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 
-
-;; personal styling
-(set-default-font "Fira Code 16")
-;;https://github.com/tonsky/FiraCode
-;(set-face-attribute 'default nil :height 140)
-(scroll-bar-mode -1)
-
-;; show line numbers
-(global-linum-mode +1)
-
-;; change command and option key
-(setq mac-command-modifier 'meta)
-(setq mac-option-modifier 'super)
-
 ;; tramp , remote file manipulation
 (setq tramp-chunksize 500)
-;;(eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
-;;(setq tramp-debug-buffer t)
-;;(setq tramp-verbose 10)
+(eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
+(setq tramp-debug-buffer t)
+(setq tramp-verbose 10)
 
 
 ;;changing default temp dir
 (put 'temporary-file-directory 'standard-value '((file-name-as-directory "/tmp")))
-
-
 ;; snippets , this is working quite nice now.
-
-;; PATH variable for eshell
-(setenv "PATH"
-        (concat
-         "/usr/local/bin/" ":"
-         (getenv "PATH") ; inherited from OS
-         ))
-;;let's add real shortcut for eshell
-(global-set-key [f1] 'eshell)
-;; load a fine theme
-
-(load-theme 'monokai t)
-(global-hl-line-mode -1)
-
-;;
 ;; Custom blog related stuff
 (require 'htmlize)
 (setq org-html-htmlize-output-type 'inline-css)
@@ -167,23 +172,6 @@
 (setq org-src-fontify-natively t)
 ;(set-input-mode t nil t)
 
-(defun set-exec-path-from-shell-PATH ()
-  "Set up Emacs' `exec-path' and PATH environment variable to match that used by the user's shell."
-  (interactive)
-  (let ((path-from-shell (get-shell-output "$SHELL --login -i -c 'echo $PATH'")))
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator))))
-
-
-;; I always wanted one line
-;; add magit related stuff
-(require 'magit-gitflow)
-(add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
-
-
-;; path problem
-(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-(setq exec-path (append exec-path '("/usr/local/bin")))
 
 (require 'erc-join)
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
@@ -194,6 +182,9 @@
          "#R" "#clojure" "#machinelearning"  "#lisp"  "#git"
          "#networking" "#reactjs")))
 
+
+(require 'magit-gitflow)
+(add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
 
 ;; full screen magit-status
 (defun magit-toggle-whitespace ()
@@ -239,8 +230,6 @@
 (set-face-foreground 'git-gutter:deleted "#282828")
 
 
-
-
 ;; line management
 (defun open-line-below ()
   (interactive)
@@ -257,9 +246,6 @@
 
 (global-set-key (kbd "<C-return>") 'open-line-below)
 (global-set-key (kbd "<C-S-return>") 'open-line-above)
-
-
-
 
 ;; jumping made a little bit easier
 ;; Move more quickly
@@ -284,14 +270,7 @@
                   (ignore-errors (backward-char 5))))
 
 
-;; smart mode line.
-(require 'smart-mode-line)
-(sml/setup)
 
-
-;; you know mac
-(keyboard-translate ?\C-x ?\C-u)
-(keyboard-translate ?\C-u ?\C-x)
 
 ;; basic movement
 ;;(global-set-key (kbd "M-c") 'previous-line)
@@ -347,8 +326,7 @@
 (define-key helm-find-files-map (kbd "<tab>") 'helm-execute-persistent-action)
 
 
-(require 'whitespace)
-(setq whitespace-line-column 80000) ;; limit line length
+
 
 
 (defun yui-compress ()
@@ -457,9 +435,11 @@ want to use in the modeline *in lieu of* the original.")
 (add-hook 'clojure-mode-hook 'mbp-clojure-mode-keybindings)
 
 ;; this whitespace is kinda killing me
-(setq prelude-whitespace nil)
-(setq prelude-clean-whitespace-on-save nil)
+;(setq prelude-whitespace nil)
+;(setq prelude-clean-whitespace-on-save nil)
 (setq prelude-flyspell nil)
+(require 'whitespace)
+(setq whitespace-line-column 80000) ;; limit line length
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -468,9 +448,7 @@ want to use in the modeline *in lieu of* the original.")
  )
 
 
-;;yay;
-
-(setq linum-format "%3d \u2502")
+;;encoding;
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -483,3 +461,19 @@ want to use in the modeline *in lieu of* the original.")
 
 ;; Treat clipboard input as UTF-8 string first; compound text next, etc.
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+(require 'exec-path-from-shell)
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
+;;annoying whitespace
+(setq whitespace-style (quote (spaces tabs newline space-mark tab-mark newline-mark)))
+
+
+
+(setq whitespace-display-mappings
+      ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
+      '(
+        ;;(space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
+        ;;(newline-mark 10 [182 10]) ; 10 LINE FEED
+        (tab-mark 9 [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
+        ))
