@@ -34,14 +34,11 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
- '(git-gutter:added-sign "++")
- '(git-gutter:deleted-sign "--")
- '(git-gutter:modified-sign "**")
+    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(magit-use-overlays nil)
  '(package-selected-packages
    (quote
-    (dockerfile-mode yesql-ghosts web-mode geiser company-anaconda anaconda-mode company-auctex cdlatex auctex json-mode js2-mode haskell-mode rainbow-mode elisp-slime-nav slime coffee-mode cider clojure-mode rainbow-delimiters mediawiki key-chord company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido zop-to-char zenburn-theme volatile-highlights vkill undo-tree smartrep smartparens projectile ov operate-on-number move-text markdown-mode magit guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region exec-path-from-shell easy-kill discover-my-major diminish diff-hl browse-kill-ring anzu ace-window ace-jump-buffer))))
+    (monokai-theme magit-gitflow speed-type paredit niflheim-theme project-explorer git-gutter smart-mode-line htmlize zop-to-char zenburn-theme yesql-ghosts web-mode volatile-highlights vkill undo-tree smex smartrep smartparens slime rainbow-mode rainbow-delimiters ov operate-on-number move-text mediawiki markdown-mode magit key-chord json-mode js2-mode ido-ubiquitous helm-projectile helm-descbinds helm-ag haskell-mode guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist geiser flycheck flx-ido expand-region exec-path-from-shell elisp-slime-nav easy-kill dockerfile-mode discover-my-major diminish diff-hl company-auctex company-anaconda coffee-mode cdlatex browse-kill-ring anzu ace-window ace-jump-buffer))))
 
 
 
@@ -179,8 +176,8 @@
 (setq erc-max-buffer-size 700000)
 (setq erc-autojoin-channels-alist
       '(("freenode.net" "#emacs"  "#statistics"
-         "#R" "#clojure" "#machinelearning"  "#lisp"  "#git"
-         "#networking" "#reactjs")))
+         "#R"  "#machinelearning"  "#lisp"  "#git"
+         "#networking" "#reactjs" "#clojure")))
 
 
 (require 'magit-gitflow)
@@ -467,9 +464,6 @@ want to use in the modeline *in lieu of* the original.")
 
 ;;annoying whitespace
 (setq whitespace-style (quote (spaces tabs newline space-mark tab-mark newline-mark)))
-
-
-
 (setq whitespace-display-mappings
       ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
       '(
