@@ -34,25 +34,22 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
- '(magit-use-overlays nil)
+    ("4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(package-selected-packages
    (quote
-    (monokai-theme magit-gitflow speed-type paredit niflheim-theme project-explorer git-gutter smart-mode-line htmlize zop-to-char zenburn-theme yesql-ghosts web-mode volatile-highlights vkill undo-tree smex smartrep smartparens slime rainbow-mode rainbow-delimiters ov operate-on-number move-text mediawiki markdown-mode magit key-chord json-mode js2-mode ido-ubiquitous helm-projectile helm-descbinds helm-ag haskell-mode guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist geiser flycheck flx-ido expand-region exec-path-from-shell elisp-slime-nav easy-kill dockerfile-mode discover-my-major diminish diff-hl company-auctex company-anaconda coffee-mode cdlatex browse-kill-ring anzu ace-window ace-jump-buffer))))
-
-
-
+    (web-mode geiser company-anaconda anaconda-mode company-auctex cdlatex auctex json-mode js2-mode haskell-mode rainbow-mode elisp-slime-nav slime coffee-mode cider clojure-mode rainbow-delimiters mediawiki key-chord company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido vkill exec-path-from-shell zop-to-char zenburn-theme volatile-highlights undo-tree smartrep smartparens operate-on-number move-text magit projectile ov guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major browse-kill-ring anzu ace-window ace-jump-buffer ace-jump-mode))))
 
 ;;ui tweaks
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
-(load-theme 'monokai t)
+
 (global-hl-line-mode -1)
 
 ;; personal styling
-(set-default-font "Fira Code 16")
+(set-default-font "Fira Code 18")
+(load-theme 'monokai)
 ;;https://github.com/tonsky/FiraCode
                                         ;(set-face-attribute 'default nil :height 140)
 (scroll-bar-mode -1)
@@ -73,8 +70,6 @@
 ;; smart mode line.
 (require 'smart-mode-line)
 (sml/setup)
-
-
 
 (setenv "PATH"
         (concat
@@ -437,13 +432,6 @@ want to use in the modeline *in lieu of* the original.")
 (setq prelude-flyspell nil)
 (require 'whitespace)
 (setq whitespace-line-column 80000) ;; limit line length
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
 
 ;;encoding;
 (prefer-coding-system 'utf-8)
@@ -471,3 +459,12 @@ want to use in the modeline *in lieu of* the original.")
         ;;(newline-mark 10 [182 10]) ; 10 LINE FEED
         (tab-mark 9 [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
         ))
+
+(setenv "PATH"
+        (concat (getenv "PATH") ":/usr/local/bin")) 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
