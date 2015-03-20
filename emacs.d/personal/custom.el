@@ -34,10 +34,11 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+    ("a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" "4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+ '(magit-use-overlays nil)
  '(package-selected-packages
    (quote
-    (web-mode geiser company-anaconda anaconda-mode company-auctex cdlatex auctex json-mode js2-mode haskell-mode rainbow-mode elisp-slime-nav slime coffee-mode cider clojure-mode rainbow-delimiters mediawiki key-chord company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido vkill exec-path-from-shell zop-to-char zenburn-theme volatile-highlights undo-tree smartrep smartparens operate-on-number move-text magit projectile ov guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major browse-kill-ring anzu ace-window ace-jump-buffer ace-jump-mode))))
+    (markdown-mode web-mode geiser company-anaconda anaconda-mode company-auctex cdlatex auctex json-mode js2-mode haskell-mode rainbow-mode elisp-slime-nav slime coffee-mode cider clojure-mode rainbow-delimiters mediawiki key-chord company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido vkill exec-path-from-shell zop-to-char zenburn-theme volatile-highlights undo-tree smartrep smartparens operate-on-number move-text magit projectile ov guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major browse-kill-ring anzu ace-window ace-jump-buffer ace-jump-mode))))
 
 ;;ui tweaks
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -45,10 +46,10 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 
-(global-hl-line-mode -1)
+(global-hl-line-mode +1)
 
 ;; personal styling
-(set-default-font "Fira Code 18")
+(set-default-font "Fira Code 16")
 (load-theme 'monokai)
 ;;https://github.com/tonsky/FiraCode
                                         ;(set-face-attribute 'default nil :height 140)
@@ -461,10 +462,43 @@ want to use in the modeline *in lieu of* the original.")
         ))
 
 (setenv "PATH"
-        (concat (getenv "PATH") ":/usr/local/bin")) 
+        (concat (getenv "PATH") ":/usr/local/bin"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+;; fullscreen 
+(toggle-frame-fullscreen)
+
+;;all I want is working cursor
+(setq-default cursor-type 'box) 
+(set-cursor-color "#D25252")
+(blink-cursor-mode t)
+
+;; Show errors in this file:
+(setq debug-on-error t)
+(setq stack-trace-on-error t)
+
+;; Automatically uncompress .gz files
+(auto-compression-mode t)
+(global-set-key "\M-z" 'redo)
+
+
+;; Get rid of keys I hit accidentally:
+(global-unset-key "\M-c")    ; don't want the capitalize thing
+
+
+;; which screw up my directory listings.  Make it put them
+;; somewhere else:
+(setq auto-save-list-file-prefix "~/.emacs-saves/.saves-")
+
+(setq-default indent-tabs-mode nil)
+(setq tabify nil)
+
+(setq fill-column 75)
+
+(setq  cursor-in-non-selected-windows nil)
+;;set the background-color of selected region
+(set-face-attribute 'region nil :background "#cccccc")
