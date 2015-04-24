@@ -1,6 +1,7 @@
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t) ; Org-mode's repository
+
 (defun ensure-package-installed (&rest packages)
   (mapcar
    (lambda (package)
@@ -32,13 +33,41 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
  '(custom-safe-themes
    (quote
-    ("a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" "4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+    ("a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "e80932ca56b0f109f8545576531d3fc79487ca35a9a9693b62bf30d6d08c9aaf" "b2d5f5ef7fd031e602a5fa9715a3e9b7c024852b7002538a47610dcbc41aada8" "987b709680284a5858d5fe7e4e428463a20dfabe0a6f2a6146b3b8c7c529f08b" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "0c29db826418061b40564e3351194a3d4a125d182c6ee5178c237a7364f0ff12" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "96998f6f11ef9f551b427b8853d947a7857ea5a578c75aa9c4e7c73fe04d10b4" "9b5b8562882c5393daa590bef170ff0b200ce11684cb95674f3f1857456b5d05" "0251780e8e79d2a5e75eec7ee3b6c646b882495cb884d9dd32f30c60f9d65db6" "b2449984e24368015629ff7a3c9e5108849bff2e34d592c7f480c73ad89351eb" "a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" "4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+ '(fci-rule-color "#383838")
+ '(git-gutter:added-sign "++")
+ '(git-gutter:deleted-sign "--")
+ '(git-gutter:modified-sign "**")
  '(magit-use-overlays nil)
  '(package-selected-packages
    (quote
-    (markdown-mode web-mode geiser company-anaconda anaconda-mode company-auctex cdlatex auctex json-mode js2-mode haskell-mode rainbow-mode elisp-slime-nav slime coffee-mode cider clojure-mode rainbow-delimiters mediawiki key-chord company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido vkill exec-path-from-shell zop-to-char zenburn-theme volatile-highlights undo-tree smartrep smartparens operate-on-number move-text magit projectile ov guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major browse-kill-ring anzu ace-window ace-jump-buffer ace-jump-mode))))
+    (markdown-mode web-mode geiser company-anaconda anaconda-mode company-auctex cdlatex auctex json-mode js2-mode haskell-mode rainbow-mode elisp-slime-nav slime coffee-mode cider clojure-mode rainbow-delimiters mediawiki key-chord company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido vkill exec-path-from-shell zop-to-char zenburn-theme volatile-highlights undo-tree smartrep smartparens operate-on-number move-text magit projectile ov guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major browse-kill-ring anzu ace-window ace-jump-buffer ace-jump-mode)))
+ '(vc-annotate-background "#2B2B2B")
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#BC8383")
+     (40 . "#CC9393")
+     (60 . "#DFAF8F")
+     (80 . "#D0BF8F")
+     (100 . "#E0CF9F")
+     (120 . "#F0DFAF")
+     (140 . "#5F7F5F")
+     (160 . "#7F9F7F")
+     (180 . "#8FB28F")
+     (200 . "#9FC59F")
+     (220 . "#AFD8AF")
+     (240 . "#BFEBBF")
+     (260 . "#93E0E3")
+     (280 . "#6CA0A3")
+     (300 . "#7CB8BB")
+     (320 . "#8CD0D3")
+     (340 . "#94BFF3")
+     (360 . "#DC8CC3"))))
+ '(vc-annotate-very-old-color "#DC8CC3"))
 
 ;;ui tweaks
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -46,12 +75,13 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 
-(global-hl-line-mode +1)
+(global-hl-line-mode -1)
+(global-linum-mode +1)
 
 ;; personal styling
-(set-default-font "Fira Code 16")
-(load-theme 'monokai)
-;;https://github.com/tonsky/FiraCode
+(set-default-font "Source Code Pro 18")
+(load-theme 'solarized-dark);;https://github.com/tonsky/FiraCode
+
                                         ;(set-face-attribute 'default nil :height 140)
 (scroll-bar-mode -1)
 
@@ -59,6 +89,7 @@
 (global-linum-mode +1)
 
 (setq linum-format "%4d\u2502")
+;(setq linum-format "%4d ")
 
 ;; change command and option key
 (setq mac-command-modifier 'meta)
@@ -127,45 +158,9 @@
 (put 'temporary-file-directory 'standard-value '((file-name-as-directory "/tmp")))
 ;; snippets , this is working quite nice now.
 ;; Custom blog related stuff
-(require 'htmlize)
-(setq org-html-htmlize-output-type 'inline-css)
-(setq org-html-validation-link nil)
-(setq org-publish-project-alist
-      '(("org-notes"
-         ;; Directory for source files in org format
-         :base-directory "~/Blogs/"
-         :base-extension "org"
-         ;; HTML directory
-         :publishing-directory "~/public_htmls/"
-         :publishing-function org-html-publish-to-html
-         :recursive t
-         :headline-levels 4
-         :section-numbers nil
-         :auto-preamble t
-         :html-postamble-format "%a %d" ;write author and date at end
-         :auto-sitemap t
-         :sitemap-title "rodin"
-         :sitemap-filename "index"
-         :sitemap-sort-files anti-chronologically
-         :sitemap-file-entry-format "%t (%d)" ;write title and date in sm
-         )
-
-        ;; where static files (images, pdfs) are stored
-        ("org-static"
-         :base-directory "~/Blogs/statics/"
-         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-         :publishing-directory "~/public_htmls/statics/"
-         :recursive t
-         :publishing-function org-publish-attachment
-         )
-
-        ("blog" :components ("org-notes"
-                             "org-static"))))
 
 (setq org-src-fontify-natively t)
 ;(set-input-mode t nil t)
-
-
 (require 'erc-join)
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 (erc-autojoin-mode 1)
@@ -218,9 +213,9 @@
 
 
 ;; background color ,modified for monokai
-(set-face-foreground 'git-gutter:modified "#282828") ;; background color
-(set-face-foreground 'git-gutter:added "#282828")
-(set-face-foreground 'git-gutter:deleted "#282828")
+(set-face-foreground 'git-gutter:modified "#586e75")
+(set-face-foreground 'git-gutter:added "#586e75")
+(set-face-foreground 'git-gutter:deleted "#586e75")
 
 
 ;; line management
@@ -297,8 +292,6 @@
 (key-chord-define-global "''" 'other-window)
 (key-chord-define-global ",," 'prelude-switch-to-previous-buffer)
 (key-chord-define-global "aa" 'helm-mini)
-(key-chord-define-global "ww" 'magit-status)
-(key-chord-define-global "!!" 'cider-jack-in)
 (key-chord-define-global "@@" 'cider-restart)
 (key-chord-define-global "$$" 'project-explorer-open)
 (key-chord-define-global "zz" 'cider-connect)
@@ -317,10 +310,6 @@
 
 
 (define-key helm-find-files-map (kbd "<tab>") 'helm-execute-persistent-action)
-
-
-
-
 
 (defun yui-compress ()
   (interactive)
@@ -468,18 +457,18 @@ want to use in the modeline *in lieu of* the original.")
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
-;; fullscreen 
+ '(window-numbering-face ((t (:foreground "DeepPink" :underline "DeepPink" :weight bold))) t))
+;; fullscreen
 (toggle-frame-fullscreen)
 
 ;;all I want is working cursor
-(setq-default cursor-type 'box) 
-(set-cursor-color "#D25252")
+(setq-default cursor-type 'box)
+(set-cursor-color "#FABD2F")
 (blink-cursor-mode t)
 
 ;; Show errors in this file:
-(setq debug-on-error t)
-(setq stack-trace-on-error t)
+;;(setq debug-on-error t)
+;(setq stack-trace-on-error t)
 
 ;; Automatically uncompress .gz files
 (auto-compression-mode t)
@@ -496,9 +485,14 @@ want to use in the modeline *in lieu of* the original.")
 
 (setq-default indent-tabs-mode nil)
 (setq tabify nil)
-
 (setq fill-column 75)
-
 (setq  cursor-in-non-selected-windows nil)
 ;;set the background-color of selected region
 (set-face-attribute 'region nil :background "#cccccc")
+;;window management
+(require 'window-numbering)
+;; highlight the window number in pink color
+(window-numbering-mode 1)
+
+(setq magit-auto-revert-mode nil)
+(setq magit-last-seen-setup-instructions "1.4.0")
