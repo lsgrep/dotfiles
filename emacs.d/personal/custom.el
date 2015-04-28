@@ -18,6 +18,8 @@
 
 ;;add your packages here
 (ensure-package-installed 'htmlize
+                          'molokai-theme
+                          'window-numbering
                           'smart-mode-line
                           'git-gutter
                           'project-explorer
@@ -37,7 +39,7 @@
    ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
  '(custom-safe-themes
    (quote
-    ("a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "e80932ca56b0f109f8545576531d3fc79487ca35a9a9693b62bf30d6d08c9aaf" "b2d5f5ef7fd031e602a5fa9715a3e9b7c024852b7002538a47610dcbc41aada8" "987b709680284a5858d5fe7e4e428463a20dfabe0a6f2a6146b3b8c7c529f08b" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "0c29db826418061b40564e3351194a3d4a125d182c6ee5178c237a7364f0ff12" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "96998f6f11ef9f551b427b8853d947a7857ea5a578c75aa9c4e7c73fe04d10b4" "9b5b8562882c5393daa590bef170ff0b200ce11684cb95674f3f1857456b5d05" "0251780e8e79d2a5e75eec7ee3b6c646b882495cb884d9dd32f30c60f9d65db6" "b2449984e24368015629ff7a3c9e5108849bff2e34d592c7f480c73ad89351eb" "a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" "4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+    ("08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" "7bde52fdac7ac54d00f3d4c559f2f7aa899311655e7eb20ec5491f3b5c533fe8" "3d2dcf491da01e04b00941036fa9e6828f9ebc2bdac41f06458ac2ccaa66eb52" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "e80932ca56b0f109f8545576531d3fc79487ca35a9a9693b62bf30d6d08c9aaf" "b2d5f5ef7fd031e602a5fa9715a3e9b7c024852b7002538a47610dcbc41aada8" "987b709680284a5858d5fe7e4e428463a20dfabe0a6f2a6146b3b8c7c529f08b" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "0c29db826418061b40564e3351194a3d4a125d182c6ee5178c237a7364f0ff12" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "96998f6f11ef9f551b427b8853d947a7857ea5a578c75aa9c4e7c73fe04d10b4" "9b5b8562882c5393daa590bef170ff0b200ce11684cb95674f3f1857456b5d05" "0251780e8e79d2a5e75eec7ee3b6c646b882495cb884d9dd32f30c60f9d65db6" "b2449984e24368015629ff7a3c9e5108849bff2e34d592c7f480c73ad89351eb" "a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" "4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(fci-rule-color "#383838")
  '(git-gutter:added-sign "++")
  '(git-gutter:deleted-sign "--")
@@ -80,7 +82,7 @@
 
 ;; personal styling
 (set-default-font "Source Code Pro 18")
-(load-theme 'solarized-dark);;https://github.com/tonsky/FiraCode
+(load-theme 'molokai);;https://github.com/tonsky/FiraCode
 
                                         ;(set-face-attribute 'default nil :height 140)
 (scroll-bar-mode -1)
@@ -88,8 +90,8 @@
 ;; show line numbers
 (global-linum-mode +1)
 
-(setq linum-format "%4d\u2502")
-;(setq linum-format "%4d ")
+;(setq linum-format "%4d\u2502")
+(setq linum-format "%4d ")
 
 ;; change command and option key
 (setq mac-command-modifier 'meta)
@@ -213,9 +215,10 @@
 
 
 ;; background color ,modified for monokai
-(set-face-foreground 'git-gutter:modified "#586e75")
-(set-face-foreground 'git-gutter:added "#586e75")
-(set-face-foreground 'git-gutter:deleted "#586e75")
+(set-face-foreground 'git-gutter:modified "#777777")
+(set-face-foreground 'git-gutter:added "#777777")
+(set-face-foreground 'git-gutter:deleted "#777777")
+
 
 
 ;; line management
@@ -316,6 +319,8 @@
   (call-process-region
    (point-min) (point-max) "yuicompressor" t t nil (buffer-file-name)))
 
+
+(require 'project-explorer)
 ;; avoid pe from blowing up
 (defcustom pe/omit-regex "^\\.\\|^#\\|~\\|node_modules\\|target$"
   "Specify which files to omit.
@@ -324,6 +329,9 @@ Directories matching this regular expression won't be traversed."
   :type '(choice
           (const :tag "Show all files" nil)
           (string :tag "Files matching this regex won't be shown")))
+
+(setq pe/omit-gitignore t)
+(setq pe/width 35)
 
 ;;(setq cider-known-endpoints '(("nlp" "nlp@xjunlp" "55555" )
 ;;                              ("linode" "root@clj.me" "55555")
@@ -486,13 +494,15 @@ want to use in the modeline *in lieu of* the original.")
 (setq-default indent-tabs-mode nil)
 (setq tabify nil)
 (setq fill-column 75)
-(setq  cursor-in-non-selected-windows nil)
+(setq  cursor-in-non-selected-windows nil) 
 ;;set the background-color of selected region
-(set-face-attribute 'region nil :background "#cccccc")
+(set-face-attribute 'region nil :background "#565656")
 ;;window management
 (require 'window-numbering)
 ;; highlight the window number in pink color
 (window-numbering-mode 1)
-
 (setq magit-auto-revert-mode nil)
 (setq magit-last-seen-setup-instructions "1.4.0")
+
+(custom-set-faces '(linum ((t (:foreground "#555555" :background "#1b1d1e" :box nil)))))
+
