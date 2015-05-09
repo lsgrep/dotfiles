@@ -20,7 +20,6 @@
 (ensure-package-installed 'htmlize
                           'molokai-theme
                           'window-numbering
-                          'smart-mode-line
                           'git-gutter
                           'project-explorer
                           'niflheim-theme
@@ -39,11 +38,8 @@
    ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
  '(custom-safe-themes
    (quote
-    ("08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" "7bde52fdac7ac54d00f3d4c559f2f7aa899311655e7eb20ec5491f3b5c533fe8" "3d2dcf491da01e04b00941036fa9e6828f9ebc2bdac41f06458ac2ccaa66eb52" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "e80932ca56b0f109f8545576531d3fc79487ca35a9a9693b62bf30d6d08c9aaf" "b2d5f5ef7fd031e602a5fa9715a3e9b7c024852b7002538a47610dcbc41aada8" "987b709680284a5858d5fe7e4e428463a20dfabe0a6f2a6146b3b8c7c529f08b" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "0c29db826418061b40564e3351194a3d4a125d182c6ee5178c237a7364f0ff12" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "96998f6f11ef9f551b427b8853d947a7857ea5a578c75aa9c4e7c73fe04d10b4" "9b5b8562882c5393daa590bef170ff0b200ce11684cb95674f3f1857456b5d05" "0251780e8e79d2a5e75eec7ee3b6c646b882495cb884d9dd32f30c60f9d65db6" "b2449984e24368015629ff7a3c9e5108849bff2e34d592c7f480c73ad89351eb" "a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" "4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+    ("33bb2c9b6e965f9c3366c57f8d08a94152954d4e2124dc621953f5a8d7e9ca41" "3cd28471e80be3bd2657ca3f03fbb2884ab669662271794360866ab60b6cb6e6" "2d7e4feac4eeef3f0610bf6b155f613f372b056a2caae30a361947eab5074716" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" "7bde52fdac7ac54d00f3d4c559f2f7aa899311655e7eb20ec5491f3b5c533fe8" "3d2dcf491da01e04b00941036fa9e6828f9ebc2bdac41f06458ac2ccaa66eb52" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "e80932ca56b0f109f8545576531d3fc79487ca35a9a9693b62bf30d6d08c9aaf" "b2d5f5ef7fd031e602a5fa9715a3e9b7c024852b7002538a47610dcbc41aada8" "987b709680284a5858d5fe7e4e428463a20dfabe0a6f2a6146b3b8c7c529f08b" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "0c29db826418061b40564e3351194a3d4a125d182c6ee5178c237a7364f0ff12" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "96998f6f11ef9f551b427b8853d947a7857ea5a578c75aa9c4e7c73fe04d10b4" "9b5b8562882c5393daa590bef170ff0b200ce11684cb95674f3f1857456b5d05" "0251780e8e79d2a5e75eec7ee3b6c646b882495cb884d9dd32f30c60f9d65db6" "b2449984e24368015629ff7a3c9e5108849bff2e34d592c7f480c73ad89351eb" "a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" "4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(fci-rule-color "#383838")
- '(git-gutter:added-sign "++")
- '(git-gutter:deleted-sign "--")
- '(git-gutter:modified-sign "**")
  '(magit-use-overlays nil)
  '(package-selected-packages
    (quote
@@ -77,12 +73,11 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 
-(global-hl-line-mode -1)
-(global-linum-mode +1)
+(global-hl-line-mode +1)
 
 ;; personal styling
-(set-default-font "Source Code Pro 18")
-(load-theme 'molokai);;https://github.com/tonsky/FiraCode
+(set-default-font "Monaco 16")
+(load-theme 'monokai);;https://github.com/tonsky/FiraCode
 
                                         ;(set-face-attribute 'default nil :height 140)
 (scroll-bar-mode -1)
@@ -90,8 +85,9 @@
 ;; show line numbers
 (global-linum-mode +1)
 
-;(setq linum-format "%4d\u2502")
-(setq linum-format "%4d ")
+;(setq linum-format " ")
+                                        ;(setq linum-format " \u2442 ")
+(setq linum-format "  ")
 
 ;; change command and option key
 (setq mac-command-modifier 'meta)
@@ -101,9 +97,6 @@
 (keyboard-translate ?\C-x ?\C-u)
 (keyboard-translate ?\C-u ?\C-x)
 
-;; smart mode line.
-(require 'smart-mode-line)
-(sml/setup)
 
 (setenv "PATH"
         (concat
@@ -213,13 +206,12 @@
 (require 'git-gutter)
 (global-git-gutter-mode +1)
 
-
+;;1B1D1E
 ;; background color ,modified for monokai
-(set-face-foreground 'git-gutter:modified "#777777")
-(set-face-foreground 'git-gutter:added "#777777")
-(set-face-foreground 'git-gutter:deleted "#777777")
-
-
+;(set-face-foreground 'git-gutter:modified "#282828") monokai default color
+(set-face-foreground 'git-gutter:modified "#1B1D1E")
+(set-face-foreground 'git-gutter:added "#1B1D1E")
+(set-face-foreground 'git-gutter:deleted "#1B1D1E")
 
 ;; line management
 (defun open-line-below ()
@@ -260,9 +252,6 @@
                   (interactive)
                   (ignore-errors (backward-char 5))))
 
-
-
-
 ;; basic movement
 ;;(global-set-key (kbd "M-c") 'previous-line)
 ;;(global-set-key (kbd "M-t") 'next-line)
@@ -277,28 +266,23 @@
 ;;(global-set-key (kbd "M-H") 'scroll-down-command)
 ;;(global-set-key (kbd "M-N") 'scroll-up-command)
 
-(global-set-key (kbd "M-g") 'backward-word)
-(global-set-key (kbd "M-r") 'forward-word)
+;(global-set-key (kbd "M-g") 'backward-word)
+;(global-set-key (kbd "M-r") 'forward-word)
 
 (global-set-key (kbd "M-G") 'beginning-of-buffer)
 (global-set-key (kbd "M-R") 'end-of-buffer)
 
 
-(global-set-key (kbd "M-e") 'delete-forward-char)
-(global-set-key (kbd "M-u") 'delete-backward-char)
+;(global-set-key (kbd "M-e") 'delete-forward-char)
+;(global-set-key (kbd "M-u") 'delete-backward-char)
 
-(global-set-key (kbd "M-.") 'backward-kill-word)
-(global-set-key (kbd "M-p") 'kill-word)
-
-
-
-(key-chord-define-global "''" 'other-window)
+;(key-chord-define-global "''" 'other-window)
 (key-chord-define-global ",," 'prelude-switch-to-previous-buffer)
 (key-chord-define-global "aa" 'helm-mini)
-(key-chord-define-global "@@" 'cider-restart)
+;(key-chord-define-global "@@" 'cider-restart)
 (key-chord-define-global "$$" 'project-explorer-open)
 (key-chord-define-global "zz" 'cider-connect)
-(key-chord-define-global "&&" 'shell)
+
 
 
 
@@ -306,10 +290,11 @@
 
 (require 'cider-mode)
 (require 'clojure-mode)
-(define-key clojure-mode-map (kbd "C-x y") 'cider-eval-last-sexp-and-append)
+(define-key clojure-mode-map (kbd "C-x c") 'cider-eval-last-sexp-to-repl)
 (define-key clojure-mode-map (kbd "C-x j") 'cider-jack-in)
 (define-key clojure-mode-map (kbd "C-x J") 'cider-restart)
 (define-key clojure-mode-map (kbd "C-x F") 'cider-format-buffer)
+
 
 
 (define-key helm-find-files-map (kbd "<tab>") 'helm-execute-persistent-action)
@@ -321,15 +306,6 @@
 
 
 (require 'project-explorer)
-;; avoid pe from blowing up
-(defcustom pe/omit-regex "^\\.\\|^#\\|~\\|node_modules\\|target$"
-  "Specify which files to omit.
-Directories matching this regular expression won't be traversed."
-  :group 'project-explorer
-  :type '(choice
-          (const :tag "Show all files" nil)
-          (string :tag "Files matching this regex won't be shown")))
-
 (setq pe/omit-gitignore t)
 (setq pe/width 35)
 
@@ -340,48 +316,6 @@ Directories matching this regular expression won't be traversed."
 
 ;;; Greek letters - C-u C-\ greek ;; C-\ to revert to default
 ;;; ς ε ρ τ υ θ ι ο π α σ δ φ γ η ξ κ λ ζ χ ψ ω β ν μ
-(defvar mode-line-cleaner-alist
-  `((auto-complete-mode . " α")
-    (yas-minor-mode . " γ")
-    (paredit-mode . " Φ")
-    (eldoc-mode . "")
-    (abbrev-mode . "")
-    (undo-tree-mode . " τ")
-    (volatile-highlights-mode . " υ")
-    (elisp-slime-nav-mode . " δ")
-    (nrepl-mode . " ηζ")
-    (nrepl-interaction-mode . " ηζ")
-    ;; Major modes
-    (clojure-mode . " λ")
-    (hi-lock-mode . "")
-    (python-mode . " Py")
-    (git-gutter-mode . " gg")
-    (helm-mode . " h")
-    (company-mode . " c")
-    (projectile-mode . " pt")
-    (flycheck-mode . " fc")
-    (guru-mode . " g")
-    (emacs-lisp-mode . " el")
-    (markdown-mode . " md"))
-  "Alist for `clean-mode-line'.
-
-When you add a new element to the alist, keep in mind that you
-must pass the correct minor/major mode symbol and a string you
-want to use in the modeline *in lieu of* the original.")
-(defun clean-mode-line ()
-  (interactive)
-  (loop for cleaner in mode-line-cleaner-alist
-        do (let* ((mode (car cleaner))
-                 (mode-str (cdr cleaner))
-                 (old-mode-str (cdr (assq mode minor-mode-alist))))
-             (when old-mode-str
-                 (setcar old-mode-str mode-str))
-               ;; major mode
-             (when (eq mode major-mode)
-               (setq mode-name mode-str)))))
-
-(add-hook 'after-change-major-mode-hook 'clean-mode-line)
-
 
 ;;refresh all namespaces
 (defun nrepl-refresh ()
@@ -466,6 +400,7 @@ want to use in the modeline *in lieu of* the original.")
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(window-numbering-face ((t (:foreground "DeepPink" :underline "DeepPink" :weight bold))) t))
+
 ;; fullscreen
 (toggle-frame-fullscreen)
 
@@ -479,9 +414,7 @@ want to use in the modeline *in lieu of* the original.")
 ;(setq stack-trace-on-error t)
 
 ;; Automatically uncompress .gz files
-(auto-compression-mode t)
 (global-set-key "\M-z" 'redo)
-
 
 ;; Get rid of keys I hit accidentally:
 (global-unset-key "\M-c")    ; don't want the capitalize thing
@@ -496,13 +429,22 @@ want to use in the modeline *in lieu of* the original.")
 (setq fill-column 75)
 (setq  cursor-in-non-selected-windows nil) 
 ;;set the background-color of selected region
-(set-face-attribute 'region nil :background "#565656")
+;(set-face-attribute 'region nil :background "#565656")
 ;;window management
 (require 'window-numbering)
 ;; highlight the window number in pink color
 (window-numbering-mode 1)
 (setq magit-auto-revert-mode nil)
-(setq magit-last-seen-setup-instructions "1.4.0")
+(setq magit-last-seen-setup-instructions "1.4.")
 
-(custom-set-faces '(linum ((t (:foreground "#555555" :background "#1b1d1e" :box nil)))))
+;;ui performance improvement
+(setq redisplay-dont-pause t)
 
+;;I like darkep background
+(set-background-color "#1B1D1E")
+
+;; keep a smooth look of it
+(set-face-background 'fringe "#1B1D1E")
+
+;;linum colors , hide distracting information , focus on the most important things
+(custom-set-faces '(linum ((t (:foreground "#343E31" :background "#1B1D1E" :box nil)))))
