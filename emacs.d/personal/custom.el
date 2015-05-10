@@ -2,6 +2,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t) ; Org-mode's repository
 
+;; there are necessary
 (defun ensure-package-installed (&rest packages)
   (mapcar
    (lambda (package)
@@ -76,7 +77,7 @@
 (global-hl-line-mode +1)
 
 ;; personal styling
-(set-default-font "Monaco 16")
+(set-default-font "Source Code Pro 16")
 (load-theme 'monokai);;https://github.com/tonsky/FiraCode
 
                                         ;(set-face-attribute 'default nil :height 140)
@@ -87,7 +88,7 @@
 
 ;(setq linum-format " ")
                                         ;(setq linum-format " \u2442 ")
-(setq linum-format "  ")
+(setq linum-format "%4d  ")
 
 ;; change command and option key
 (setq mac-command-modifier 'meta)
@@ -448,3 +449,6 @@
 
 ;;linum colors , hide distracting information , focus on the most important things
 (custom-set-faces '(linum ((t (:foreground "#343E31" :background "#1B1D1E" :box nil)))))
+
+;; I want a snappy Emacs
+(global-flycheck-mode -1)
