@@ -19,12 +19,11 @@
 
 ;;add your packages here
 (ensure-package-installed 'htmlize
-                          'molokai-theme
                           'window-numbering
                           'git-gutter
                           'project-explorer
-                          'niflheim-theme
-                          'paredit 'speed-type
+                          'paredit
+                          'speed-type
                           'magit-gitflow
                           'monokai-theme)
 ;;init
@@ -74,10 +73,10 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 
-(global-hl-line-mode +1)
+(global-hl-line-mode -1)
 
 ;; personal styling
-(set-default-font "Source Code Pro 16")
+(set-default-font "Monaco 16")
 (load-theme 'monokai);;https://github.com/tonsky/FiraCode
 
                                         ;(set-face-attribute 'default nil :height 140)
@@ -88,7 +87,7 @@
 
 ;(setq linum-format " ")
                                         ;(setq linum-format " \u2442 ")
-(setq linum-format "%4d  ")
+(setq linum-format "  ")
 
 ;; change command and option key
 (setq mac-command-modifier 'meta)
@@ -430,7 +429,9 @@
 (setq fill-column 75)
 (setq  cursor-in-non-selected-windows nil) 
 ;;set the background-color of selected region
-;(set-face-attribute 'region nil :background "#565656")
+
+;; make a clear selection color
+(set-face-attribute 'region nil :background "#7F9F7F")
 ;;window management
 (require 'window-numbering)
 ;; highlight the window number in pink color
@@ -452,3 +453,44 @@
 
 ;; I want a snappy Emacs
 (global-flycheck-mode -1)
+
+(defvar mode-line-cleaner-alist
+  `((auto-complete-mode . " α")
+    (yas-minor-mode . " γ")
+    (paredit-mode . " Φ")
+    (eldoc-mode . " ed")
+    (abbrev-mode . " abbr")
+    (undo-tree-mode . " τ")
+    (volatile-highlights-mode . " υ")
+    (elisp-slime-nav-mode . " δ")
+    (nrepl-mode . " ηζ")
+    (nrepl-interaction-mode . " ηζ")
+    ;; Major modes
+    (clojure-mode . " λ")
+    (hi-lock-mode . " hi")
+    (python-mode . " py")
+    (git-gutter-mode . "")
+    (helm-mode . " h")
+    (company-mode . " c")
+    (projectile-mode . " pt")
+    (flycheck-mode . " fc")
+    (guru-mode . " gr")
+    (emacs-lisp-mode . " el")
+    (markdown-mode . " md"))
+  "Alist for `clean-mode-line'.
+When you add a new element to the alist, keep in mind that you
+must pass the correct minor/major mode symbol and a string you
+want to use in the modeline *in lieu of* the original.")
+(defun clean-mode-line ()
+  (interactive)
+  (loop for cleaner in mode-line-cleaner-alist
+        do (let* ((mode (car cleaner))
+                 (mode-str (cdr cleaner))
+                 (old-mode-str (cdr (assq mode minor-mode-alist))))
+             (when old-mode-str
+                 (setcar old-mode-str mode-str))
+               ;; major mode
+             (when (eq mode major-mode)
+               (setq mode-name mode-str)))))
+
+(add-hook 'after-change-major-mode-hook 'clean-mode-line)
