@@ -38,12 +38,12 @@
    ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
  '(custom-safe-themes
    (quote
-    ("33bb2c9b6e965f9c3366c57f8d08a94152954d4e2124dc621953f5a8d7e9ca41" "3cd28471e80be3bd2657ca3f03fbb2884ab669662271794360866ab60b6cb6e6" "2d7e4feac4eeef3f0610bf6b155f613f372b056a2caae30a361947eab5074716" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" "7bde52fdac7ac54d00f3d4c559f2f7aa899311655e7eb20ec5491f3b5c533fe8" "3d2dcf491da01e04b00941036fa9e6828f9ebc2bdac41f06458ac2ccaa66eb52" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "e80932ca56b0f109f8545576531d3fc79487ca35a9a9693b62bf30d6d08c9aaf" "b2d5f5ef7fd031e602a5fa9715a3e9b7c024852b7002538a47610dcbc41aada8" "987b709680284a5858d5fe7e4e428463a20dfabe0a6f2a6146b3b8c7c529f08b" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "0c29db826418061b40564e3351194a3d4a125d182c6ee5178c237a7364f0ff12" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "96998f6f11ef9f551b427b8853d947a7857ea5a578c75aa9c4e7c73fe04d10b4" "9b5b8562882c5393daa590bef170ff0b200ce11684cb95674f3f1857456b5d05" "0251780e8e79d2a5e75eec7ee3b6c646b882495cb884d9dd32f30c60f9d65db6" "b2449984e24368015629ff7a3c9e5108849bff2e34d592c7f480c73ad89351eb" "a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" "4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+    ("05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "33bb2c9b6e965f9c3366c57f8d08a94152954d4e2124dc621953f5a8d7e9ca41" "3cd28471e80be3bd2657ca3f03fbb2884ab669662271794360866ab60b6cb6e6" "2d7e4feac4eeef3f0610bf6b155f613f372b056a2caae30a361947eab5074716" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" "7bde52fdac7ac54d00f3d4c559f2f7aa899311655e7eb20ec5491f3b5c533fe8" "3d2dcf491da01e04b00941036fa9e6828f9ebc2bdac41f06458ac2ccaa66eb52" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "e80932ca56b0f109f8545576531d3fc79487ca35a9a9693b62bf30d6d08c9aaf" "b2d5f5ef7fd031e602a5fa9715a3e9b7c024852b7002538a47610dcbc41aada8" "987b709680284a5858d5fe7e4e428463a20dfabe0a6f2a6146b3b8c7c529f08b" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "0c29db826418061b40564e3351194a3d4a125d182c6ee5178c237a7364f0ff12" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "96998f6f11ef9f551b427b8853d947a7857ea5a578c75aa9c4e7c73fe04d10b4" "9b5b8562882c5393daa590bef170ff0b200ce11684cb95674f3f1857456b5d05" "0251780e8e79d2a5e75eec7ee3b6c646b882495cb884d9dd32f30c60f9d65db6" "b2449984e24368015629ff7a3c9e5108849bff2e34d592c7f480c73ad89351eb" "a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" "4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(fci-rule-color "#383838")
  '(magit-use-overlays nil)
  '(package-selected-packages
    (quote
-    (markdown-mode web-mode geiser company-anaconda anaconda-mode company-auctex cdlatex auctex json-mode js2-mode haskell-mode rainbow-mode elisp-slime-nav slime coffee-mode cider clojure-mode rainbow-delimiters mediawiki key-chord company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido vkill exec-path-from-shell zop-to-char zenburn-theme volatile-highlights undo-tree smartrep smartparens operate-on-number move-text magit projectile ov guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major browse-kill-ring anzu ace-window ace-jump-buffer ace-jump-mode)))
+    (go-mode markdown-mode web-mode geiser company-anaconda anaconda-mode company-auctex cdlatex auctex json-mode js2-mode haskell-mode rainbow-mode elisp-slime-nav slime coffee-mode cider clojure-mode rainbow-delimiters mediawiki key-chord company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido vkill exec-path-from-shell zop-to-char zenburn-theme volatile-highlights undo-tree smartrep smartparens operate-on-number move-text magit projectile ov guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major browse-kill-ring anzu ace-window ace-jump-buffer ace-jump-mode)))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
    (quote
@@ -87,7 +87,7 @@
 
 ;(setq linum-format " ")
                                         ;(setq linum-format " \u2442 ")
-(setq linum-format "  ")
+(setq linum-format "%4d  ")
 
 ;; change command and option key
 (setq mac-command-modifier 'meta)
@@ -283,16 +283,13 @@
 (key-chord-define-global "$$" 'project-explorer-open)
 (key-chord-define-global "zz" 'cider-connect)
 
-
-
-
 (setq cider-test-show-report-on-success t)
 
 (require 'cider-mode)
 (require 'clojure-mode)
 (define-key clojure-mode-map (kbd "C-x c") 'cider-eval-last-sexp-to-repl)
-(define-key clojure-mode-map (kbd "C-x j") 'cider-jack-in)
-(define-key clojure-mode-map (kbd "C-x J") 'cider-restart)
+;(define-key clojure-mode-map (kbd "C-x j") 'cider-jack-in)
+;(define-key clojure-mode-map (kbd "C-x J") 'cider-restart)
 (define-key clojure-mode-map (kbd "C-x F") 'cider-format-buffer)
 
 
@@ -308,14 +305,6 @@
 (require 'project-explorer)
 (setq pe/omit-gitignore t)
 (setq pe/width 35)
-
-;;(setq cider-known-endpoints '(("nlp" "nlp@xjunlp" "55555" )
-;;                              ("linode" "root@clj.me" "55555")
-;;                              ("localhost" "yusup@127.0.0.1" "55555")))
-
-
-;;; Greek letters - C-u C-\ greek ;; C-\ to revert to default
-;;; ς ε ρ τ υ θ ι ο π α σ δ φ γ η ξ κ λ ζ χ ψ ω β ν μ
 
 ;;refresh all namespaces
 (defun nrepl-refresh ()
@@ -350,6 +339,7 @@
   (delete-trailing-whitespace))
 
 (defun mbp-clojure-mode-keybindings ()
+  
   (local-set-key (kbd "<f1>") 'nrepl-reset)
   (local-set-key (kbd "<f2>") 'nrepl-refresh))
 
@@ -399,6 +389,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(linum ((t (:foreground "#343E31" :background "#1B1D1E" :box nil))))
  '(window-numbering-face ((t (:foreground "DeepPink" :underline "DeepPink" :weight bold))) t))
 
 ;; fullscreen
@@ -449,48 +440,23 @@
 (set-face-background 'fringe "#1B1D1E")
 
 ;;linum colors , hide distracting information , focus on the most important things
-(custom-set-faces '(linum ((t (:foreground "#343E31" :background "#1B1D1E" :box nil)))))
-
 ;; I want a snappy Emacs
 (global-flycheck-mode -1)
 
-(defvar mode-line-cleaner-alist
-  `((auto-complete-mode . " α")
-    (yas-minor-mode . " γ")
-    (paredit-mode . " Φ")
-    (eldoc-mode . " ed")
-    (abbrev-mode . " abbr")
-    (undo-tree-mode . " τ")
-    (volatile-highlights-mode . " υ")
-    (elisp-slime-nav-mode . " δ")
-    (nrepl-mode . " ηζ")
-    (nrepl-interaction-mode . " ηζ")
-    ;; Major modes
-    (clojure-mode . " λ")
-    (hi-lock-mode . " hi")
-    (python-mode . " py")
-    (git-gutter-mode . "")
-    (helm-mode . " h")
-    (company-mode . " c")
-    (projectile-mode . " pt")
-    (flycheck-mode . " fc")
-    (guru-mode . " gr")
-    (emacs-lisp-mode . " el")
-    (markdown-mode . " md"))
-  "Alist for `clean-mode-line'.
-When you add a new element to the alist, keep in mind that you
-must pass the correct minor/major mode symbol and a string you
-want to use in the modeline *in lieu of* the original.")
-(defun clean-mode-line ()
-  (interactive)
-  (loop for cleaner in mode-line-cleaner-alist
-        do (let* ((mode (car cleaner))
-                 (mode-str (cdr cleaner))
-                 (old-mode-str (cdr (assq mode minor-mode-alist))))
-             (when old-mode-str
-                 (setcar old-mode-str mode-str))
-               ;; major mode
-             (when (eq mode major-mode)
-               (setq mode-name mode-str)))))
+;(global-set-key [remap goto-line] 'goto-line-with-feedback)
+;; (defun goto-line-with-feedback ()
+;;   "Show line numbers temporarily, while prompting for the line number input"
+;;   (interactive)
+;;   (unwind-protect
+;;       (progn
+;;         (linum-mode 1)
+;;         (goto-line (read-number "Goto line: ")))
+;;     (linum-mode -1)))
 
-(add-hook 'after-change-major-mode-hook 'clean-mode-line)
+
+
+
+;;better mode line
+;(ocodo-svg-modelines-init)
+;(smt/set-theme 'ocodo-mesh-retro-aqua-smt)
+
