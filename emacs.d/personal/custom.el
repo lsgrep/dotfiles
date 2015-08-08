@@ -25,10 +25,12 @@
                           'paredit
                           'speed-type
                           'magit-gitflow
-                          'monokai-theme)
+                          'monokai-theme
+                          'clj-refactor)
 ;;init
 (package-initialize)
 ;;this has to be on top. or modications require confirmation
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -38,7 +40,7 @@
    ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
  '(custom-safe-themes
    (quote
-    ("05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "33bb2c9b6e965f9c3366c57f8d08a94152954d4e2124dc621953f5a8d7e9ca41" "3cd28471e80be3bd2657ca3f03fbb2884ab669662271794360866ab60b6cb6e6" "2d7e4feac4eeef3f0610bf6b155f613f372b056a2caae30a361947eab5074716" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" "7bde52fdac7ac54d00f3d4c559f2f7aa899311655e7eb20ec5491f3b5c533fe8" "3d2dcf491da01e04b00941036fa9e6828f9ebc2bdac41f06458ac2ccaa66eb52" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "e80932ca56b0f109f8545576531d3fc79487ca35a9a9693b62bf30d6d08c9aaf" "b2d5f5ef7fd031e602a5fa9715a3e9b7c024852b7002538a47610dcbc41aada8" "987b709680284a5858d5fe7e4e428463a20dfabe0a6f2a6146b3b8c7c529f08b" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "0c29db826418061b40564e3351194a3d4a125d182c6ee5178c237a7364f0ff12" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "96998f6f11ef9f551b427b8853d947a7857ea5a578c75aa9c4e7c73fe04d10b4" "9b5b8562882c5393daa590bef170ff0b200ce11684cb95674f3f1857456b5d05" "0251780e8e79d2a5e75eec7ee3b6c646b882495cb884d9dd32f30c60f9d65db6" "b2449984e24368015629ff7a3c9e5108849bff2e34d592c7f480c73ad89351eb" "a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" "4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+    ("83e584d74b0faea99a414a06dae12f11cd3176fdd4eba6674422539951bcfaa8" "c35c0effa648fd320300f3d45696c640a92bdc7cf0429d002a96bda2b42ce966" "49ad7c8d458074db7392f8b8a49235496e9228eb2fa6d3ca3a7aa9d23454efc6" "118717ce0a2645a0cf240b044999f964577ee10137b1f992b09a317d5073c02d" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "33bb2c9b6e965f9c3366c57f8d08a94152954d4e2124dc621953f5a8d7e9ca41" "3cd28471e80be3bd2657ca3f03fbb2884ab669662271794360866ab60b6cb6e6" "2d7e4feac4eeef3f0610bf6b155f613f372b056a2caae30a361947eab5074716" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" "7bde52fdac7ac54d00f3d4c559f2f7aa899311655e7eb20ec5491f3b5c533fe8" "3d2dcf491da01e04b00941036fa9e6828f9ebc2bdac41f06458ac2ccaa66eb52" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "e80932ca56b0f109f8545576531d3fc79487ca35a9a9693b62bf30d6d08c9aaf" "b2d5f5ef7fd031e602a5fa9715a3e9b7c024852b7002538a47610dcbc41aada8" "987b709680284a5858d5fe7e4e428463a20dfabe0a6f2a6146b3b8c7c529f08b" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "0c29db826418061b40564e3351194a3d4a125d182c6ee5178c237a7364f0ff12" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "96998f6f11ef9f551b427b8853d947a7857ea5a578c75aa9c4e7c73fe04d10b4" "9b5b8562882c5393daa590bef170ff0b200ce11684cb95674f3f1857456b5d05" "0251780e8e79d2a5e75eec7ee3b6c646b882495cb884d9dd32f30c60f9d65db6" "b2449984e24368015629ff7a3c9e5108849bff2e34d592c7f480c73ad89351eb" "a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" "4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(fci-rule-color "#383838")
  '(magit-use-overlays nil)
  '(package-selected-packages
@@ -76,8 +78,8 @@
 (global-hl-line-mode -1)
 
 ;; personal styling
-(set-default-font "Monaco 16")
-(load-theme 'monokai);;https://github.com/tonsky/FiraCode
+(set-default-font "Source Code Pro 16")
+(load-theme 'cyberpunk);;https://github.com/tonsky/FiraCode
 
                                         ;(set-face-attribute 'default nil :height 140)
 (scroll-bar-mode -1)
@@ -112,42 +114,70 @@
 ;; No splash screen please ... jeez
 (setq inhibit-startup-message t)
 
+;;;;;;;;;;;;;;;;; clojure start
+
 (require 'clojure-mode)
 (require 'cider)
- ;; clojure related stuff
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-(setq nrepl-log-messages t)
+;; clojure related stuff
+;; enable eldoc in clojure buffers
+(add-hook 'cider-mode-hook #'eldoc-mode)
+
+;; hide *nrepl* connection 
 (setq nrepl-hide-special-buffers t)
+
+(setq cider-repl-tab-command #'indent-for-tab-command)
+
+(setq cider-auto-mode nil)
+;;dont log communications with log server
+(setq nrepl-log-messages nil)
 (setq cider-prefer-local-resources t)
 (setq cider-repl-pop-to-buffer-on-connect nil)
 (setq cider-show-error-buffer nil)
+(setq cider-show-error-buffer 'only-in-repl)
 (setq cider-auto-select-error-buffer nil)
 (setq cider-stacktrace-default-filters '(tooling dup))
+
 (setq cider-stacktrace-fill-column 80)
 (setq nrepl-buffer-name-separator "-")
+
 (setq nrepl-buffer-name-show-port t)
 (setq cider-repl-display-in-current-window t)
 (setq cider-prompt-save-file-on-load nil)
 (setq cider-repl-result-prefix ";; => ")
 (setq cider-interactive-eval-result-prefix ";; => ")
 (setq cider-repl-use-clojure-font-lock t)
-(setq cider-switch-to-repl-command 'cider-switch-to-current-repl-buffer)
+
+(setq cider-switch-to-repl-command #'cider-switch-to-current-repl-buffer)
+
+(setq cider-test-show-report-on-success t)
+
+;(setq cider-refresh-before-fn "user/stop-system!" cider-refresh-after-fn "user/start-system!")
+;(setq cider-known-endpoints '(("host-a" "10.10.10.1" "7888") ("host-b" "7888")))
+
+
 (setq cider-repl-wrap-history t)
 (setq cider-repl-history-size 1000)
+(global-company-mode)
+(add-hook 'cider-repl-mode-hook #'company-mode)
+(add-hook 'cider-mode-hook #'company-mode)
 
-(add-hook 'cider-repl-mode-hook 'company-mode)
-(add-hook 'cider-mode-hook 'company-mode)
+(setq company-idle-delay 0.27) ; never start completions automatically
+(global-set-key (kbd "M-TAB") #'company-complete) ; use meta+tab, aka C-M-i, as manual trigger
+(global-set-key (kbd "TAB") #'company-indent-or-complete-common)
+
+(add-hook 'clojure-mode 'cider-mode)
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'cider-repl-mode-hook 'subword-mode)
 (add-hook 'cider-repl-mode-hook 'smartparens-strict-mode)
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 
+(require 'cider-eval-sexp-fu)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;clojure  end 
 ;; tramp , remote file manipulation
 (setq tramp-chunksize 500)
 (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
 (setq tramp-debug-buffer t)
 (setq tramp-verbose 10)
-
 
 ;;changing default temp dir
 (put 'temporary-file-directory 'standard-value '((file-name-as-directory "/tmp")))
@@ -209,9 +239,10 @@
 ;;1B1D1E
 ;; background color ,modified for monokai
 ;(set-face-foreground 'git-gutter:modified "#282828") monokai default color
-(set-face-foreground 'git-gutter:modified "#1B1D1E")
-(set-face-foreground 'git-gutter:added "#1B1D1E")
-(set-face-foreground 'git-gutter:deleted "#1B1D1E")
+(set-face-foreground 'git-gutter:modified "gray40")
+(set-face-foreground 'git-gutter:added "gray40")
+(set-face-foreground 'git-gutter:deleted "gray40")
+
 
 ;; line management
 (defun open-line-below ()
@@ -389,7 +420,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(linum ((t (:foreground "#343E31" :background "#1B1D1E" :box nil))))
+ '(linum ((t (:foreground "#222222" :background "#010101" :box nil))))
  '(window-numbering-face ((t (:foreground "DeepPink" :underline "DeepPink" :weight bold))) t))
 
 ;; fullscreen
@@ -434,10 +465,30 @@
 (setq redisplay-dont-pause t)
 
 ;;I like darkep background
-(set-background-color "#1B1D1E")
+;(set-background-color "#1B1D1E")
+
+
+(set-face-background 'fringe "#010101")
+(set-face-background 'mode-line "black")
+(set-face-foreground 'mode-line "cyan")
+(set-face-attribute 'mode-line nil
+                    :foreground "gray60" :background "gray10"
+                    :inverse-video nil
+                    :box '(:line-width 1 :color "gray20" :style nil))
+
+(set-face-attribute 'mode-line-inactive nil
+                    :foreground "gray60" :background "gray10"
+                    :inverse-video nil
+                    :box '(:line-width 1 :color "gray20" :style nil))
+
+
+
+
+
+
 
 ;; keep a smooth look of it
-(set-face-background 'fringe "#1B1D1E")
+;(set-face-background 'fringe "#1B1D1E")
 
 ;;linum colors , hide distracting information , focus on the most important things
 ;; I want a snappy Emacs
@@ -452,11 +503,14 @@
 ;;         (linum-mode 1)
 ;;         (goto-line (read-number "Goto line: ")))
 ;;     (linum-mode -1)))
-
-
-
-
 ;;better mode line
 ;(ocodo-svg-modelines-init)
 ;(smt/set-theme 'ocodo-mesh-retro-aqua-smt)
 
+
+;clear within the eshell to clear the entire buffer.
+(defun eshell/clear ()
+  "04Dec2001 - sailor, to clear the eshell buffer."
+  (interactive)
+  (let ((inhibit-read-only t))
+    (erase-buffer)))
