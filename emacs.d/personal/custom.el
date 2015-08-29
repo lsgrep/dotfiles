@@ -21,9 +21,13 @@
 (ensure-package-installed 'htmlize
                           'window-numbering
                           'git-gutter
+                          'window-number
                           'project-explorer
                           'paredit
+                          'cider
+                          'cider-eval-sexp-fu
                           'speed-type
+                          'cyberpunk-theme
                           'magit-gitflow
                           'monokai-theme
                           'clj-refactor)
@@ -36,60 +40,39 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
  '(custom-safe-themes
    (quote
-    ("83e584d74b0faea99a414a06dae12f11cd3176fdd4eba6674422539951bcfaa8" "c35c0effa648fd320300f3d45696c640a92bdc7cf0429d002a96bda2b42ce966" "49ad7c8d458074db7392f8b8a49235496e9228eb2fa6d3ca3a7aa9d23454efc6" "118717ce0a2645a0cf240b044999f964577ee10137b1f992b09a317d5073c02d" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "33bb2c9b6e965f9c3366c57f8d08a94152954d4e2124dc621953f5a8d7e9ca41" "3cd28471e80be3bd2657ca3f03fbb2884ab669662271794360866ab60b6cb6e6" "2d7e4feac4eeef3f0610bf6b155f613f372b056a2caae30a361947eab5074716" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" "7bde52fdac7ac54d00f3d4c559f2f7aa899311655e7eb20ec5491f3b5c533fe8" "3d2dcf491da01e04b00941036fa9e6828f9ebc2bdac41f06458ac2ccaa66eb52" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "e80932ca56b0f109f8545576531d3fc79487ca35a9a9693b62bf30d6d08c9aaf" "b2d5f5ef7fd031e602a5fa9715a3e9b7c024852b7002538a47610dcbc41aada8" "987b709680284a5858d5fe7e4e428463a20dfabe0a6f2a6146b3b8c7c529f08b" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "0c29db826418061b40564e3351194a3d4a125d182c6ee5178c237a7364f0ff12" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "96998f6f11ef9f551b427b8853d947a7857ea5a578c75aa9c4e7c73fe04d10b4" "9b5b8562882c5393daa590bef170ff0b200ce11684cb95674f3f1857456b5d05" "0251780e8e79d2a5e75eec7ee3b6c646b882495cb884d9dd32f30c60f9d65db6" "b2449984e24368015629ff7a3c9e5108849bff2e34d592c7f480c73ad89351eb" "a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" "4e262566c3d57706c70e403d440146a5440de056dfaeb3062f004da1711d83fc" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
- '(fci-rule-color "#383838")
- '(magit-use-overlays nil)
+    ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "a444b2e10bedc64e4c7f312a737271f9a2f2542c67caa13b04d525196562bf38" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "83e584d74b0faea99a414a06dae12f11cd3176fdd4eba6674422539951bcfaa8" default)))
+ '(git-gutter:added-sign " +")
+ '(git-gutter:deleted-sign " -")
+ '(git-gutter:modified-sign " *")
  '(package-selected-packages
    (quote
-    (go-mode markdown-mode web-mode geiser company-anaconda anaconda-mode company-auctex cdlatex auctex json-mode js2-mode haskell-mode rainbow-mode elisp-slime-nav slime coffee-mode cider clojure-mode rainbow-delimiters mediawiki key-chord company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido vkill exec-path-from-shell zop-to-char zenburn-theme volatile-highlights undo-tree smartrep smartparens operate-on-number move-text magit projectile ov guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major browse-kill-ring anzu ace-window ace-jump-buffer ace-jump-mode)))
- '(vc-annotate-background "#2B2B2B")
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#BC8383")
-     (40 . "#CC9393")
-     (60 . "#DFAF8F")
-     (80 . "#D0BF8F")
-     (100 . "#E0CF9F")
-     (120 . "#F0DFAF")
-     (140 . "#5F7F5F")
-     (160 . "#7F9F7F")
-     (180 . "#8FB28F")
-     (200 . "#9FC59F")
-     (220 . "#AFD8AF")
-     (240 . "#BFEBBF")
-     (260 . "#93E0E3")
-     (280 . "#6CA0A3")
-     (300 . "#7CB8BB")
-     (320 . "#8CD0D3")
-     (340 . "#94BFF3")
-     (360 . "#DC8CC3"))))
- '(vc-annotate-very-old-color "#DC8CC3"))
+    (window-number ipython elpy powerline color-theme-sanityinc-tomorrow zenburn rotate ac-cider cyberpunk-theme cyberpunk zop-to-char zenburn-theme window-numbering web-mode volatile-highlights vkill undo-tree speed-type smex smartrep smartparens slime rainbow-mode rainbow-delimiters project-explorer ov operate-on-number move-text monokai-theme mediawiki markdown-mode magit-gitflow key-chord json-mode js2-mode ido-ubiquitous htmlize helm-projectile helm-descbinds helm-ag haskell-mode guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine git-gutter gist geiser flycheck flx-ido expand-region exec-path-from-shell elisp-slime-nav easy-kill discover-my-major diminish company-auctex company-anaconda coffee-mode clj-refactor cdlatex browse-kill-ring anzu ace-window))))
 
 ;;ui tweaks
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
-
-(global-hl-line-mode -1)
+(global-hl-line-mode +1)
 
 ;; personal styling
-(set-default-font "Source Code Pro 16")
-(load-theme 'cyberpunk);;https://github.com/tonsky/FiraCode
+(set-default-font "Hermit 16")
+(load-theme 'cyberpunk);;https://github.com/tonsky/FiraCodex
 
-                                        ;(set-face-attribute 'default nil :height 140)
+;(set-face-attribute 'default nil :height 140)
 (scroll-bar-mode -1)
-
 ;; show line numbers
-(global-linum-mode +1)
+
+;(global-linum-mode +1)
+;(set-face-background 'linum "#1b1d1e")
+;(set-face-foreground 'linum "#333333)"
 
 ;(setq linum-format " ")
-                                        ;(setq linum-format " \u2442 ")
-(setq linum-format "%4d  ")
+
+;(setq linum-format " \u2442 ")
+;(setq linum-format "%4d  ")
 
 ;; change command and option key
 (setq mac-command-modifier 'meta)
@@ -98,7 +81,6 @@
 ;; you know mac
 (keyboard-translate ?\C-x ?\C-u)
 (keyboard-translate ?\C-u ?\C-x)
-
 
 (setenv "PATH"
         (concat
@@ -110,7 +92,6 @@
 (setq exec-path (append exec-path '("/usr/local/bin")))
 ;;let's add real shortcut for eshell
 
-
 ;; No splash screen please ... jeez
 (setq inhibit-startup-message t)
 
@@ -121,8 +102,7 @@
 ;; clojure related stuff
 ;; enable eldoc in clojure buffers
 (add-hook 'cider-mode-hook #'eldoc-mode)
-
-;; hide *nrepl* connection 
+;; hide *nrepl* connection
 (setq nrepl-hide-special-buffers t)
 
 (setq cider-repl-tab-command #'indent-for-tab-command)
@@ -146,9 +126,7 @@
 (setq cider-repl-result-prefix ";; => ")
 (setq cider-interactive-eval-result-prefix ";; => ")
 (setq cider-repl-use-clojure-font-lock t)
-
 (setq cider-switch-to-repl-command #'cider-switch-to-current-repl-buffer)
-
 (setq cider-test-show-report-on-success t)
 
 ;(setq cider-refresh-before-fn "user/stop-system!" cider-refresh-after-fn "user/start-system!")
@@ -161,18 +139,26 @@
 (add-hook 'cider-repl-mode-hook #'company-mode)
 (add-hook 'cider-mode-hook #'company-mode)
 
-(setq company-idle-delay 0.27) ; never start completions automatically
+(setq company-idle-delay 0.3) ; never start completions automatically
 (global-set-key (kbd "M-TAB") #'company-complete) ; use meta+tab, aka C-M-i, as manual trigger
-(global-set-key (kbd "TAB") #'company-indent-or-complete-common)
+;(global-set-key (kbd "TAB") #'company-indent-or-complete-common)
 
-(add-hook 'clojure-mode 'cider-mode)
+(add-hook 'clojure-mode-hook 'cider-mode)
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'cider-repl-mode-hook 'subword-mode)
 (add-hook 'cider-repl-mode-hook 'smartparens-strict-mode)
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 
+(require 'clj-refactor)
+(defun my-clojure-mode-hook ()
+  (clj-refactor-mode 1)
+  (yas-minor-mode 1) ; for adding require/use/import
+  (cljr-add-keybindings-with-prefix "C-c C-m"))
+
+(add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
+
 (require 'cider-eval-sexp-fu)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;clojure  end 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;clojure  end
 ;; tramp , remote file manipulation
 (setq tramp-chunksize 500)
 (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
@@ -236,12 +222,16 @@
 (require 'git-gutter)
 (global-git-gutter-mode +1)
 
-;;1B1D1E
 ;; background color ,modified for monokai
 ;(set-face-foreground 'git-gutter:modified "#282828") monokai default color
-(set-face-foreground 'git-gutter:modified "gray40")
-(set-face-foreground 'git-gutter:added "gray40")
-(set-face-foreground 'git-gutter:deleted "gray40")
+(set-face-foreground 'git-gutter:modified "#1b1d1e")
+(set-face-background 'git-gutter:modified "#777777")
+(set-face-foreground 'git-gutter:added "#1b1d1e")
+(set-face-background 'git-gutter:added "#777777")
+(set-face-foreground 'git-gutter:deleted "#1b1d1e")
+(set-face-background 'git-gutter:deleted "#777777")
+
+
 
 
 ;; line management
@@ -283,48 +273,22 @@
                   (interactive)
                   (ignore-errors (backward-char 5))))
 
-;; basic movement
-;;(global-set-key (kbd "M-c") 'previous-line)
-;;(global-set-key (kbd "M-t") 'next-line)
-;;(global-set-key (kbd "M-h") 'backward-char)
-;;(global-set-key (kbd "M-n") 'forward-char)
-
-
-;;(global-set-key (kbd "M-C") 'scroll-down)
-;;(global-set-key (kbd "M-T") 'scroll-up)
-
-
-;;(global-set-key (kbd "M-H") 'scroll-down-command)
-;;(global-set-key (kbd "M-N") 'scroll-up-command)
-
-;(global-set-key (kbd "M-g") 'backward-word)
-;(global-set-key (kbd "M-r") 'forward-word)
-
 (global-set-key (kbd "M-G") 'beginning-of-buffer)
 (global-set-key (kbd "M-R") 'end-of-buffer)
 
-
-;(global-set-key (kbd "M-e") 'delete-forward-char)
-;(global-set-key (kbd "M-u") 'delete-backward-char)
-
-;(key-chord-define-global "''" 'other-window)
+(key-chord-define-global "''" 'other-window)
 (key-chord-define-global ",," 'prelude-switch-to-previous-buffer)
 (key-chord-define-global "aa" 'helm-mini)
 ;(key-chord-define-global "@@" 'cider-restart)
 (key-chord-define-global "$$" 'project-explorer-open)
-(key-chord-define-global "zz" 'cider-connect)
+;(key-chord-define-global "zz" 'cider-connect)
 
 (setq cider-test-show-report-on-success t)
 
 (require 'cider-mode)
 (require 'clojure-mode)
 (define-key clojure-mode-map (kbd "C-x c") 'cider-eval-last-sexp-to-repl)
-;(define-key clojure-mode-map (kbd "C-x j") 'cider-jack-in)
-;(define-key clojure-mode-map (kbd "C-x J") 'cider-restart)
 (define-key clojure-mode-map (kbd "C-x F") 'cider-format-buffer)
-
-
-
 (define-key helm-find-files-map (kbd "<tab>") 'helm-execute-persistent-action)
 
 (defun yui-compress ()
@@ -332,10 +296,9 @@
   (call-process-region
    (point-min) (point-max) "yuicompressor" t t nil (buffer-file-name)))
 
-
 (require 'project-explorer)
 (setq pe/omit-gitignore t)
-(setq pe/width 35)
+(setq pe/width 28)
 
 ;;refresh all namespaces
 (defun nrepl-refresh ()
@@ -357,7 +320,6 @@
   (interactive)
   (switch-to-buffer "*temp*"))
 
-
 (defun detabify-buffer ()
   "Calls untabify on the current buffer"
   (interactive)
@@ -370,14 +332,11 @@
   (delete-trailing-whitespace))
 
 (defun mbp-clojure-mode-keybindings ()
-  
+
   (local-set-key (kbd "<f1>") 'nrepl-reset)
-  (local-set-key (kbd "<f2>") 'nrepl-refresh))
+  (local-set-key (kbd "<f2> <return>") 'nrepl-refresh))
 
 (global-set-key (kbd "C-x t") 'temp-buffer)
-;;awesome buffer
-
-(add-hook 'clojure-mode-hook 'mbp-clojure-mode-keybindings)
 
 ;; this whitespace is kinda killing me
 ;(setq prelude-whitespace nil)
@@ -420,14 +379,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(linum ((t (:foreground "#222222" :background "#010101" :box nil))))
- '(window-numbering-face ((t (:foreground "DeepPink" :underline "DeepPink" :weight bold))) t))
+ )
 
 ;; fullscreen
 (toggle-frame-fullscreen)
 
 ;;all I want is working cursor
-(setq-default cursor-type 'box)
+(setq-default cursor-type 'bar)
 (set-cursor-color "#FABD2F")
 (blink-cursor-mode t)
 
@@ -437,6 +395,7 @@
 
 ;; Automatically uncompress .gz files
 (global-set-key "\M-z" 'redo)
+(global-set-key (kbd "C-x C-g") 'helm-imenu)
 
 ;; Get rid of keys I hit accidentally:
 (global-unset-key "\M-c")    ; don't want the capitalize thing
@@ -449,28 +408,22 @@
 (setq-default indent-tabs-mode nil)
 (setq tabify nil)
 (setq fill-column 75)
-(setq  cursor-in-non-selected-windows nil) 
+(setq  cursor-in-non-selected-windows nil)
 ;;set the background-color of selected region
 
 ;; make a clear selection color
-(set-face-attribute 'region nil :background "#7F9F7F")
+(set-face-attribute 'region nil :background "#787878")
 ;;window management
-(require 'window-numbering)
 ;; highlight the window number in pink color
-(window-numbering-mode 1)
 (setq magit-auto-revert-mode nil)
 (setq magit-last-seen-setup-instructions "1.4.")
-
 ;;ui performance improvement
 (setq redisplay-dont-pause t)
 
 ;;I like darkep background
-;(set-background-color "#1B1D1E")
+(set-background-color "#1b1d1e")
+(set-face-background 'fringe "#1b1d1e")
 
-
-(set-face-background 'fringe "#010101")
-(set-face-background 'mode-line "black")
-(set-face-foreground 'mode-line "cyan")
 (set-face-attribute 'mode-line nil
                     :foreground "gray60" :background "gray10"
                     :inverse-video nil
@@ -481,12 +434,6 @@
                     :inverse-video nil
                     :box '(:line-width 1 :color "gray20" :style nil))
 
-
-
-
-
-
-
 ;; keep a smooth look of it
 ;(set-face-background 'fringe "#1B1D1E")
 
@@ -494,23 +441,34 @@
 ;; I want a snappy Emacs
 (global-flycheck-mode -1)
 
-;(global-set-key [remap goto-line] 'goto-line-with-feedback)
-;; (defun goto-line-with-feedback ()
-;;   "Show line numbers temporarily, while prompting for the line number input"
-;;   (interactive)
-;;   (unwind-protect
-;;       (progn
-;;         (linum-mode 1)
-;;         (goto-line (read-number "Goto line: ")))
-;;     (linum-mode -1)))
-;;better mode line
-;(ocodo-svg-modelines-init)
-;(smt/set-theme 'ocodo-mesh-retro-aqua-smt)
-
-
+                                        
 ;clear within the eshell to clear the entire buffer.
 (defun eshell/clear ()
   "04Dec2001 - sailor, to clear the eshell buffer."
   (interactive)
   (let ((inhibit-read-only t))
     (erase-buffer)))
+(setq warning-minimum-level :emergency)
+(global-diff-hl-mode -1)
+
+;;python stuff
+(package-initialize)
+(elpy-enable)
+(require 'python)
+(setq python-shell-interpreter "ipython")
+(setq python-shell-interpreter-args "--pylab")
+
+(defun send-line-or-region ()
+  (interactive)
+  (if (region-active-p)
+      (call-interactively 'elpy-shell-send-region-or-buffer)
+    (python-shell-send-string (thing-at-point 'line))))
+(define-key elpy-mode-map (kbd "C-c C-c") 'send-line-or-region)
+
+;; code fucking snippets
+(yas-global-mode 1)
+
+(exec-path-from-shell-initialize)
+
+
+(window-numbering-mode +1)
