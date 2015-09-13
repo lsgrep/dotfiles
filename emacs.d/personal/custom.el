@@ -24,6 +24,7 @@
                           'window-number
                           'project-explorer
                           'paredit
+                          'clojure-snippets
                           'cider
                           'cider-eval-sexp-fu
                           'speed-type
@@ -42,13 +43,16 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("42089e9dfe41a491e48b05c31b6f1851abf4e5a704951bb55cd0e44186937cbb" "67c6ff5060132fa023d8e78a679d4c6573cf1b90c8aef4d1972634956c314da3" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "a444b2e10bedc64e4c7f312a737271f9a2f2542c67caa13b04d525196562bf38" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "83e584d74b0faea99a414a06dae12f11cd3176fdd4eba6674422539951bcfaa8" default)))
+    ("19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" "f5ef7ddecf161a2951048c204c2c6d9d5be08745b136dce583056ad4b234b861" "42089e9dfe41a491e48b05c31b6f1851abf4e5a704951bb55cd0e44186937cbb" "67c6ff5060132fa023d8e78a679d4c6573cf1b90c8aef4d1972634956c314da3" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "a444b2e10bedc64e4c7f312a737271f9a2f2542c67caa13b04d525196562bf38" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "83e584d74b0faea99a414a06dae12f11cd3176fdd4eba6674422539951bcfaa8" default)))
  '(git-gutter:added-sign " +")
  '(git-gutter:deleted-sign " -")
  '(git-gutter:modified-sign " *")
+ '(nrepl-message-colors
+   (quote
+    ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (gotham-theme aurora-theme window-number ipython elpy powerline color-theme-sanityinc-tomorrow zenburn rotate ac-cider cyberpunk-theme cyberpunk zop-to-char zenburn-theme window-numbering web-mode volatile-highlights vkill undo-tree speed-type smex smartrep smartparens slime rainbow-mode rainbow-delimiters project-explorer ov operate-on-number move-text monokai-theme mediawiki markdown-mode magit-gitflow key-chord json-mode js2-mode ido-ubiquitous htmlize helm-projectile helm-descbinds helm-ag haskell-mode guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine git-gutter gist geiser flycheck flx-ido expand-region exec-path-from-shell elisp-slime-nav easy-kill discover-my-major diminish company-auctex company-anaconda coffee-mode clj-refactor cdlatex browse-kill-ring anzu ace-window))))
+    (yaml-mode reveal-in-osx-finder clojure-snippets gotham-theme aurora-theme window-number ipython elpy powerline color-theme-sanityinc-tomorrow zenburn rotate ac-cider cyberpunk-theme cyberpunk zop-to-char zenburn-theme window-numbering web-mode volatile-highlights vkill undo-tree speed-type smex smartrep smartparens slime rainbow-mode rainbow-delimiters project-explorer ov operate-on-number move-text monokai-theme mediawiki markdown-mode magit-gitflow key-chord json-mode js2-mode ido-ubiquitous htmlize helm-projectile helm-descbinds helm-ag haskell-mode guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine git-gutter gist geiser flycheck flx-ido expand-region exec-path-from-shell elisp-slime-nav easy-kill discover-my-major diminish company-auctex company-anaconda coffee-mode clj-refactor cdlatex browse-kill-ring anzu ace-window))))
 
 ;;ui tweaks
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -58,21 +62,21 @@
 (global-hl-line-mode -1)
 
 ;; personal styling
-(set-default-font "Hermit 16")
-(load-theme 'aurora);;https://github.com/tonsky/FiraCodex
+(set-default-font "Fira Mono 16")
+(load-theme 'monokai);;https://github.com/tonsky/FiraCodex
 
 ;(set-face-attribute 'default nil :height 140)
 (scroll-bar-mode -1)
 ;; show line numbers
 
-;(global-linum-mode +1)
+(global-linum-mode -1)
 ;(set-face-background 'linum "#1b1d1e")
 ;(set-face-foreground 'linum "#333333)"
 
 ;(setq linum-format " ")
 
 ;(setq linum-format " \u2442 ")
-;(setq linum-format "%4d  ")
+;(setq linum-format " %4d ")
 
 ;; change command and option key
 (setq mac-command-modifier 'meta)
@@ -128,6 +132,8 @@
 (setq cider-repl-use-clojure-font-lock t)
 (setq cider-switch-to-repl-command #'cider-switch-to-current-repl-buffer)
 (setq cider-test-show-report-on-success t)
+(setq cider-show-error-buffer nil)
+(setq cider-auto-select-error-buffer nil)
 
 ;(setq cider-refresh-before-fn "user/stop-system!" cider-refresh-after-fn "user/start-system!")
 ;(setq cider-known-endpoints '(("host-a" "10.10.10.1" "7888") ("host-b" "7888")))
@@ -224,14 +230,9 @@
 
 ;; background color ,modified for monokai
 ;(set-face-foreground 'git-gutter:modified "#282828") monokai default color
-;(set-face-foreground 'git-gutter:modified "#1b1d1e")
-(set-face-background 'git-gutter:modified "#777777")
-(set-face-foreground 'git-gutter:added "#263238")
-(set-face-background 'git-gutter:added "#777777")
-(set-face-foreground 'git-gutter:deleted "#263238")
-(set-face-background 'git-gutter:deleted "#777777")
-(set-face-foreground 'git-gutter:modified "#263238")
-
+(set-face-foreground 'git-gutter:added "#282828")
+(set-face-foreground 'git-gutter:deleted "#282828")
+(set-face-foreground 'git-gutter:modified "#282828")
 
 
 ;; line management
@@ -339,7 +340,7 @@
   (cider-repl-return))
 
 (defun mbp-clojure-mode-keybindings ()
-  (local-set-key (kbd "<f7>") 'nrepl-refresh)
+  (local-set-key (kbd "C-c C-s") 'nrepl-refresh)
   (local-set-key (kbd "<f5>") 'nrepl-reset)
   (local-set-key (kbd "<f6>") 'nrepl-run-all-tests))
 
@@ -430,11 +431,11 @@
 (setq redisplay-dont-pause t)
 
 ;;I like darkep background
-;(set-background-color "#1b1d1e")
-;(set-face-background 'fringe "#1b1d1e")
+(set-background-color "#1b1d1e")
+(set-face-background 'fringe "#1b1d1e")
 
-(set-face-attribute 'mode-line nil :foreground "gray60" :background "#324148" :inverse-video nil :box '(:line-width 1 :color "gray20" :style nil))
-(set-face-attribute 'mode-line-inactive nil :foreground "gray60" :background "#324148" :inverse-video nil :box '(:line-width 1 :color "gray20" :style nil))
+(set-face-attribute 'mode-line nil :foreground "gray60" :background "#1b1d1e" :inverse-video nil :box '(:line-width 1 :color "gray20" :style nil))
+(set-face-attribute 'mode-line-inactive nil :foreground "gray60" :background "#1b1d1e" :inverse-video nil :box '(:line-width 1 :color "gray20" :style nil))
 
 ;; keep a smooth look of it
 ;(set-face-background 'fringe "#1B1D1E")
@@ -472,3 +473,30 @@
 (yas-reload-all)
 (yas-global-mode 1)
 (add-hook 'clojure-mode-hook #'yas-minor-mode)
+
+;; custom stuff
+(defun get-search-term (beg end)
+  "message region or \"empty string\" if none highlighted"
+  (interactive (if (use-region-p)
+                   (list (region-beginning) (region-end))
+                 (list (point-min) (point-min))))
+  (let ((selection (buffer-substring-no-properties beg end)))
+    (if (= (length selection) 0)
+        (message "empty string")
+      (message selection))))
+
+
+(defun eshell-here ()
+  "Opens up a new shell in the directory associated with the current buffer's file."
+  (interactive)
+  (let* ((parent (file-name-directory (buffer-file-name)))
+         (name   (car
+                  (last
+                   (split-string parent "/" t)))))
+    (split-window-vertically)
+    (other-window 1)
+    (eshell "new")
+    (rename-buffer (concat "*eshell: " name "*"))
+
+    (insert (concat "ls"))
+    (eshell-send-input)))
