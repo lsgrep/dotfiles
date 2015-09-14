@@ -18,20 +18,20 @@
     (package-refresh-contents))
 
 ;;add your packages here
-(ensure-package-installed 'htmlize
-                          'window-numbering
-                          'git-gutter
-                          'window-number
-                          'project-explorer
-                          'paredit
-                          'clojure-snippets
-                          'cider
-                          'cider-eval-sexp-fu
-                          'speed-type
-                          'cyberpunk-theme
-                          'magit-gitflow
-                          'monokai-theme
-                          'clj-refactor)
+(ensure-package-installed
+ 'swiper
+ 'swipre-helm
+ 'git-gutter
+ 'window-number
+ 'project-explorer
+ 'paredit
+ 'clojure-snippets
+ 'cider
+ 'cider-eval-sexp-fu
+ 'cyberpunk-theme
+ 'magit-gitflow
+ 'monokai-theme
+ 'clj-refactor)
 ;;init
 (package-initialize)
 ;;this has to be on top. or modications require confirmation
@@ -43,16 +43,10 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" "f5ef7ddecf161a2951048c204c2c6d9d5be08745b136dce583056ad4b234b861" "42089e9dfe41a491e48b05c31b6f1851abf4e5a704951bb55cd0e44186937cbb" "67c6ff5060132fa023d8e78a679d4c6573cf1b90c8aef4d1972634956c314da3" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "a444b2e10bedc64e4c7f312a737271f9a2f2542c67caa13b04d525196562bf38" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "83e584d74b0faea99a414a06dae12f11cd3176fdd4eba6674422539951bcfaa8" default)))
- '(git-gutter:added-sign " +")
- '(git-gutter:deleted-sign " -")
- '(git-gutter:modified-sign " *")
- '(nrepl-message-colors
-   (quote
-    ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
+    ("08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
  '(package-selected-packages
    (quote
-    (yaml-mode reveal-in-osx-finder clojure-snippets gotham-theme aurora-theme window-number ipython elpy powerline color-theme-sanityinc-tomorrow zenburn rotate ac-cider cyberpunk-theme cyberpunk zop-to-char zenburn-theme window-numbering web-mode volatile-highlights vkill undo-tree speed-type smex smartrep smartparens slime rainbow-mode rainbow-delimiters project-explorer ov operate-on-number move-text monokai-theme mediawiki markdown-mode magit-gitflow key-chord json-mode js2-mode ido-ubiquitous htmlize helm-projectile helm-descbinds helm-ag haskell-mode guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine git-gutter gist geiser flycheck flx-ido expand-region exec-path-from-shell elisp-slime-nav easy-kill discover-my-major diminish company-auctex company-anaconda coffee-mode clj-refactor cdlatex browse-kill-ring anzu ace-window))))
+    (swiper-helm swift-mode swiper ivy zop-to-char zenburn-theme yaml-mode window-numbering window-number web-mode volatile-highlights vkill undo-tree speed-type smex smartrep smartparens smart-mode-line slime scss-mode scala-mode2 reveal-in-osx-finder rainbow-mode rainbow-delimiters project-explorer ov operate-on-number move-text monokai-theme molokai-theme magit-gitflow key-chord json-rpc json-mode js2-mode ido-ubiquitous htmlize helm-projectile helm-descbinds helm-ag haskell-mode guru-mode grizzl gotham-theme god-mode gitignore-mode gitconfig-mode git-timemachine git-gutter gist geiser flycheck flx-ido expand-region exec-path-from-shell elisp-slime-nav easy-kill discover-my-major diminish diff-hl cyberpunk-theme company-anaconda color-theme-sanityinc-tomorrow clojure-snippets clj-refactor cider-eval-sexp-fu browse-kill-ring anzu ace-window))))
 
 ;;ui tweaks
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -63,7 +57,7 @@
 
 ;; personal styling
 (set-default-font "Fira Mono 16")
-(load-theme 'monokai);;https://github.com/tonsky/FiraCodex
+(load-theme 'molokai);;https://github.com/tonsky/FiraCodex
 
 ;(set-face-attribute 'default nil :height 140)
 (scroll-bar-mode -1)
@@ -85,16 +79,6 @@
 ;; you know mac
 (keyboard-translate ?\C-x ?\C-u)
 (keyboard-translate ?\C-u ?\C-x)
-
-(setenv "PATH"
-        (concat
-         "/usr/local/bin/" ":"
-         (getenv "PATH") ; inherited from OS
-         ))
-
-(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-(setq exec-path (append exec-path '("/usr/local/bin")))
-;;let's add real shortcut for eshell
 
 ;; No splash screen please ... jeez
 (setq inhibit-startup-message t)
@@ -178,14 +162,6 @@
 
 (setq org-src-fontify-natively t)
 ;(set-input-mode t nil t)
-(require 'erc-join)
-(setq erc-hide-list '("JOIN" "PART" "QUIT"))
-(erc-autojoin-mode 1)
-(setq erc-max-buffer-size 700000)
-(setq erc-autojoin-channels-alist
-      '(("freenode.net" "#emacs"  "#statistics"
-         "#R"  "#machinelearning"  "#lisp"  "#git"
-         "#networking" "#reactjs" "#clojure")))
 
 
 (require 'magit-gitflow)
@@ -230,9 +206,15 @@
 
 ;; background color ,modified for monokai
 ;(set-face-foreground 'git-gutter:modified "#282828") monokai default color
-(set-face-foreground 'git-gutter:added "#282828")
-(set-face-foreground 'git-gutter:deleted "#282828")
-(set-face-foreground 'git-gutter:modified "#282828")
+
+(set-face-foreground 'git-gutter:deleted "#1b1d1e")
+(set-face-background 'git-gutter:deleted "#465765")
+(set-face-foreground 'git-gutter:modified "#1b1d1e")
+(set-face-background 'git-gutter:modified "#465765")
+(set-face-foreground 'git-gutter:added "#1b1d1e")
+(set-face-background 'git-gutter:added "#465765")
+
+
 
 
 ;; line management
@@ -285,9 +267,6 @@
 ;(key-chord-define-global "zz" 'cider-connect)
 
 (setq cider-test-show-report-on-success t)
-
-(require 'cider-mode)
-(require 'clojure-mode)
 (define-key clojure-mode-map (kbd "C-x c") 'cider-eval-last-sexp-to-repl)
 (define-key clojure-mode-map (kbd "C-x F") 'cider-format-buffer)
 (define-key helm-find-files-map (kbd "<tab>") 'helm-execute-persistent-action)
@@ -444,7 +423,7 @@
 ;; I want a snappy Emacs
 (global-flycheck-mode -1)
 
-                                        
+
 ;clear within the eshell to clear the entire buffer.
 (defun eshell/clear ()
   "04Dec2001 - sailor, to clear the eshell buffer."
@@ -470,9 +449,25 @@
 (define-key elpy-mode-map (kbd "C-c C-c") 'send-line-or-region)
 
 ;; code fucking snippets
-(yas-reload-all)
-(yas-global-mode 1)
-(add-hook 'clojure-mode-hook #'yas-minor-mode)
+;(yas-reload-all)
+;(yas-global-mode 1)
+;(add-hook 'clojure-mode-hook #'yas-minor-mode)
+
+;;better comp
+(setq projectile-completion-system 'grizzl)
+(setq  helm-mode-fuzzy-match t)
+(setq  helm-completion-in-region-fuzzy-match t)
+(setq helm-M-x-fuzzy-match t)
+(setq helm-buffers-fuzzy-matching t
+      helm-recentf-fuzzy-match    t)
+(setq helm-semantic-fuzzy-match t
+      helm-imenu-fuzzy-match    t)
+(setq helm-locate-fuzzy-match t)
+(setq helm-apropos-fuzzy-match t)
+(setq helm-lisp-fuzzy-completion t)
+
+;;let's add some helm stuff,fuzzy and beautiful
+
 
 ;; custom stuff
 (defun get-search-term (beg end)
@@ -500,3 +495,11 @@
 
     (insert (concat "ls"))
     (eshell-send-input)))
+
+;; Awesome search
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key "\C-r" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key [f6] 'ivy-resume)
