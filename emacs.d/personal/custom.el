@@ -71,11 +71,19 @@
 (setq recentf-max-saved-items 200
       recentf-max-menu-items 15)
 (recentf-mode +1)
-(global-set-key (kbd "C-c f") 'recentf-open-files)
+
 
 (global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x m") 'eshell)
 
+(defun recentf-ido-find-file ()
+  "Find a recent file using ido."
+  (interactive)
+  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
+    (when file
+      (find-file file))))
 
+(global-set-key (kbd "C-c f") 'recentf-ido-find-file)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
