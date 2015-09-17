@@ -1,6 +1,5 @@
 (require 'package)
 (package-initialize)
-
 ;;; quick startup
 (setq gc-cons-threshold 100000000)
 
@@ -18,6 +17,18 @@
 ;;; smooth scrolling
 (setq scroll-step            1
       scroll-conservatively  10000)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
+ '(package-selected-packages
+   (quote
+    (ace-window popup window-number swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer powerline origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu))))
 
 ;; there are necessary
 (defun ensure-package-installed (&rest packages)
@@ -62,6 +73,7 @@
  'projectile
  'monokai-theme
  'flycheck
+ 'ace-window
  'molokai-theme)
 
 (projectile-global-mode)
@@ -128,6 +140,8 @@
 (global-set-key "\C-r" 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key [f6] 'ivy-resum)
+
+
 
 (global-set-key (kbd "C-c C-c") 'eval-last-sexp)
 ;; better search and replace
@@ -220,11 +234,15 @@
 
 (setq cider-repl-wrap-history t)
 (setq cider-repl-history-size 1000)
-(global-company-mode)
-(add-hook 'cider-repl-mode-hook #'company-mode)
-(add-hook 'cider-mode-hook #'company-mode)
 
-(setq company-idle-delay 0.3) ; never start completions automatically
+;;; Comfuckingpany
+(global-company-mode)
+(setq company-tooltip-align-annotations t)
+(setq company-idle-delay 0.3)
+(setq company-dabbrev-ignore-case nil)
+(setq company-dabbrev-downcase nil)
+(setq company-tooltip-flip-when-above t)
+(setq company-dabbrev-code-other-buffers 'code)
 ;(global-set-key (kbd "M-TAB") #'company-complete) ; use meta+tab, aka C-M-i, as manual trigger
 ;(global-set-key (kbd "TAB") #'company-indent-or-complete-common)
 
@@ -357,7 +375,6 @@
 (global-set-key (kbd "M-G") 'beginning-of-buffer)
 (global-set-key (kbd "M-R") 'end-of-buffer)
 
-(key-chord-define-global "''" 'other-window)
 (key-chord-define-global ",," 'previous-buffer)
 
 ;(key-chord-define-global "@@" 'cider-restart)
@@ -502,16 +519,126 @@
 ;;; linum specific
 (require 'linum)
 (set-face-attribute 'linum nil
-                    :background (face-attribute 'default :background)
-                    :foreground (face-attribute 'font-lock-comment-face :foreground))
+                     :background (face-attribute 'default :background)
+                     :foreground (face-attribute 'font-lock-comment-face :foreground))
 (set-face-attribute 'linum nil :foreground "#343434")
-(global-linum-mode +1)
+(global-linum-mode +1) 
 (setq linum-format " %4d ")
-(set-face-attribute 'vertical-border nil :foreground (face-attribute 'fringe :background))
 
+;;; annoying white vectical thing
+(set-face-attribute 'vertical-border nil :foreground (face-attribute 'fringe :background))
 (set-face-attribute 'fringe nil :foreground "gray60" :background "#1b1d1e" :inverse-video nil :box '(:line-width 1 :color "gray20" :style nil))
-(set-face-attribute 'mode-line nil :foreground "gray60" :background "#1b1d1e" :inverse-video nil :box '(:line-width 1 :color "gray20" :style nil))
-(set-face-attribute 'mode-line-inactive nil :foreground "gray60" :background "#1b1d1e" :inverse-video nil :box '(:line-width 1 :color "gray20" :style nil))
+
+(setq-default
+ mode-line-format
+ '(; Position, including warning for 80 columns
+   (:propertize "%4l:" face mode-line-position-face)
+   (:eval (propertize "%3c" 'face
+                      (if (>= (current-column) 80)
+                          'mode-line-80col-face
+                        'mode-line-position-face)))
+   ; emacsclient [default -- keep?]
+   mode-line-client
+   "  "
+   ; read-only or modified status
+   (:eval
+    (cond (buffer-read-only
+           (propertize " RO " 'face 'mode-line-read-only-face))
+          ((buffer-modified-p)
+           (propertize " ** " 'face 'mode-line-modified-face))
+          (t "      ")))
+   "    "
+   ; directory and buffer/file name
+   (:propertize (:eval (shorten-directory default-directory 30))
+                face mode-line-folder-face)
+   (:propertize "%b"
+                face mode-line-filename-face)
+   ; narrow [default -- keep?]
+   " %n "
+   ; mode indicators: vc, recursive edit, major mode, minor modes, process, global
+   (vc-mode vc-mode)
+   "  %["
+   (:propertize mode-name
+                face mode-line-mode-face)
+   "%] "
+   (:eval (propertize (format-mode-line minor-mode-alist)
+                      'face 'mode-line-minor-mode-face))
+   (:propertize mode-line-process
+                face mode-line-process-face)
+   (global-mode-string global-mode-string)
+   "    "
+   ; nyan-mode uses nyan cat as an alternative to %p
+   (:eval (when nyan-mode (list (nyan-create))))
+   ))
+
+(defun shorten-directory (dir max-length)
+  "Show up to `max-length' characters of a directory name `dir'."
+  (let ((path (reverse (split-string (abbreviate-file-name dir) "/")))
+        (output ""))
+    (when (and path (equal "" (car path)))
+      (setq path (cdr path)))
+    (while (and path (< (length output) (- max-length 4)))
+      (setq output (concat (car path) "/" output))
+      (setq path (cdr path)))
+    (when path
+      (setq output (concat ".../" output)))
+    output))
+
+;; Extra mode line faces
+(make-face 'mode-line-read-only-face)
+(make-face 'mode-line-modified-face)
+(make-face 'mode-line-folder-face)
+(make-face 'mode-line-filename-face)
+(make-face 'mode-line-position-face)
+(make-face 'mode-line-mode-face)
+(make-face 'mode-line-minor-mode-face)
+(make-face 'mode-line-process-face)
+(make-face 'mode-line-80col-face)
+
+(set-face-attribute 'mode-line nil
+    :foreground "gray60" :background "gray20"
+    :inverse-video nil
+    :box '(:line-width 6 :color "gray20" :style nil))
+(set-face-attribute 'mode-line-inactive nil
+    :foreground "gray60" :background "gray20"
+    :inverse-video nil
+    :box '(:line-width 6 :color "gray20" :style nil))
+
+(set-face-attribute 'mode-line-read-only-face nil
+    :inherit 'mode-line-face
+    :foreground "#4271ae"
+    :box '(:line-width 2 :color "#4271ae"))
+
+(set-face-attribute 'mode-line-modified-face nil
+    :inherit 'mode-line-face
+    :foreground "#eab700"
+    :background "gray20"
+    :box '(:line-width 2 :color "DimGray"))
+
+(set-face-attribute 'mode-line-folder-face nil
+    :inherit 'mode-line-face
+    :foreground "gray60")
+(set-face-attribute 'mode-line-filename-face nil
+    :inherit 'mode-line-face
+    :foreground "#eab700"
+    :weight 'bold)
+(set-face-attribute 'mode-line-position-face nil
+    :inherit 'mode-line-face
+    :family "Menlo" :height 100)
+(set-face-attribute 'mode-line-mode-face nil
+    :inherit 'mode-line-face
+    :foreground "gray80")
+(set-face-attribute 'mode-line-minor-mode-face nil
+    :inherit 'mode-line-mode-face
+    :foreground "gray40"
+    :height 110)
+(set-face-attribute 'mode-line-process-face nil
+    :inherit 'mode-line-face
+    :foreground "#718c00") 
+(set-face-attribute 'mode-line-80col-face nil
+    :inherit 'mode-line-position-face
+    :foreground "black" :background "#eab700") 
+
 
 ;;; ok, I am confident with my spellings
 (global-flycheck-mode -1)
@@ -612,10 +739,9 @@
 
 (global-set-key (kbd "C-c I") 'settings)
 
-
 (column-number-mode 1)
-(require 'powerline)
-(powerline-default-theme)
+;(require 'powerline)
+;(powerline-default-theme)
 
 (require 'origami)
 
@@ -659,17 +785,98 @@
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
+;;; grep project
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+;(global-set-key (kbd "C-c t") 'counsel-load-theme)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
- '(package-selected-packages
-   (quote
-    (powerline origami markdown-mode expand-region rainbow-delimiters grizzl lorem-ipsum flycheck python-mode lisp-mode key-chord company company-mode smartparens molokai-theme clj-refactor monokai-theme magit-gitflow cyberpunk-theme cider-eval-sexp-fu cider clojure-snippets paredit project-explorer window-number git-gutter swiper)))
- '(send-mail-function (quote sendmail-send-it)))
+;;; Hydra window management
+(require 'hydra)
+(require 'windmove)
+(global-set-key
+   (kbd "C-x t")
+   (defhydra hydra-toggle (:color teal)
+     "
+_a_ abbrev-mode:      %`abbrev-mode
+_d_ debug-on-error    %`debug-on-error
+_f_ auto-fill-mode    %`auto-fill-function
+_t_ truncate-lines    %`truncate-lines
+
+"
+     ("a" abbrev-mode nil)
+     ("d" toggle-debug-on-error nil)
+     ("f" auto-fill-mode nil)
+     ("t" toggle-truncate-lines nil)
+     ("q" nil "cancel")))
+
+(defun hydra-move-splitter-left (arg)
+    "Move window splitter left."
+    (interactive "p")
+    (if (let ((windmove-wrap-around))
+          (windmove-find-other-window 'right))
+        (shrink-window-horizontally arg)
+      (enlarge-window-horizontally arg)))
+
+(defun hydra-move-splitter-right (arg)
+  "Move window splitter right."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+        (windmove-find-other-window 'right))
+      (enlarge-window-horizontally arg)
+    (shrink-window-horizontally arg)))
+
+(defun hydra-move-splitter-up (arg)
+  "Move window splitter up."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+        (windmove-find-other-window 'up))
+      (enlarge-window arg)
+    (shrink-window arg)))
+
+(defun hydra-move-splitter-down (arg)
+  "Move window splitter down."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+        (windmove-find-other-window 'up))
+      (shrink-window arg)
+    (enlarge-window arg)))
+
+(global-set-key
+   (kbd "C-M-a")
+   (defhydra hydra-window (:color amaranth)
+     "
+Move Point^^^^   Move Splitter   ^Ace^                       ^Split^
+--------------------------------------------------------------------------------
+_w_, _<up>_      Shift + Move    _C-a_: ace-window           _2_: split-window-below
+_a_, _<left>_                    _C-s_: ace-window-swap      _3_: split-window-right
+_s_, _<down>_                    _C-d_: ace-window-delete    ^ ^
+_d_, _<right>_                   ^   ^                       ^ ^
+You can use arrow-keys or WASD.
+"
+     ("2" split-window-below nil)
+     ("3" split-window-right nil)
+     ("a" windmove-left nil)
+     ("s" windmove-down nil)
+     ("w" windmove-up nil)
+     ("d" windmove-right nil)
+     ("A" hydra-move-splitter-left nil)
+     ("S" hydra-move-splitter-down nil)
+     ("W" hydra-move-splitter-up nil)
+     ("D" hydra-move-splitter-right nil)
+     ("<left>" windmove-left nil)
+     ("<down>" windmove-down nil)
+     ("<up>" windmove-up nil)
+     ("<right>" windmove-right nil)
+     ("<S-left>" hydra-move-splitter-left nil)
+     ("<S-down>" hydra-move-splitter-down nil)
+     ("<S-up>" hydra-move-splitter-up nil)
+     ("<S-right>" hydra-move-splitter-right nil)
+     ("C-a" ace-window nil)
+     ("u" hydra--universal-argument nil)
+     ("C-s" (lambda () (interactive) (ace-window 4)) nil)
+     ("C-d" (lambda () (interactive) (ace-window 16)) nil)
+     ("q" nil "quit")))
+
+;;; Setup windowing
+(global-set-key (kbd "M-p") 'ace-window)
+
 
