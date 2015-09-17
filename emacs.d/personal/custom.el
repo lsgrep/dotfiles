@@ -1,9 +1,9 @@
 (require 'package)
 (package-initialize)
+(setq gc-cons-threshold 100000000)
 
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t) ; Org-mode's repository
 
 ;; there are necessary
@@ -23,8 +23,8 @@
 
 ;;add your packages here
 (ensure-package-installed
+ 'grizzl
  'swiper
- 'swiper-helm
  'git-gutter
  'window-number
  'project-explorer
@@ -32,7 +32,9 @@
  'recentf
  'clojure-snippets
  'clojure-mode
+ 'clj-refactor
  'cider
+ 'expand-region
  'smartparens
  'cider-eval-sexp-fu
  'cyberpunk-theme
@@ -45,15 +47,47 @@
  'projectile
  'monokai-theme
  'flycheck
- 'molokai-theme
- 'clj-refactor)
-
+ 'molokai-theme)
 
 (projectile-global-mode)
 (key-chord-mode 1)
 (smartparens-global-mode)
 
+;;;
+;;; rainbow makes things easier for the eyes
+;;;
+
+;; enables rainbow-delimiters-mode in other Lisp mode buffers.
+(require 'rainbow-delimiters)
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'lisp-mode-hook 'paredit-mode) 
+(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'clojure-mode-hook 'paredit-mode)
+
+(require 'cl-lib)
+(require 'color)
+(cl-loop
+ for index from 1 to rainbow-delimiters-max-face-count
+ do
+ (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
+   (cl-callf color-saturate-name (face-foreground face) 30)))
+
+(set-face-attribute 'rainbow-delimiters-unmatched-face nil
+                    :foreground 'unspecified
+                    :inherit 'error
+                    :strike-through t)
+
+(require 'paren) ; show-paren-mismatch is defined in paren.el
+(set-face-attribute 'rainbow-delimiters-unmatched-face nil
+                    :foreground 'unspecified
+                    :inherit 'show-paren-mismatch)
+
+;;;
+;;; end of rainbow
+;;;
+
 
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
@@ -71,7 +105,6 @@
 (setq recentf-max-saved-items 200
       recentf-max-menu-items 15)
 (recentf-mode +1)
-
 
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x m") 'eshell)
@@ -95,7 +128,7 @@
     ("08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
  '(package-selected-packages
    (quote
-    (lorem-ipsum flycheck python-mode lisp-mode key-chord company company-mode smartparens molokai-theme clj-refactor monokai-theme magit-gitflow cyberpunk-theme cider-eval-sexp-fu cider clojure-snippets paredit project-explorer window-number git-gutter swiper)))
+    (markdown-mode expand-region rainbow-delimiters grizzl lorem-ipsum flycheck python-mode lisp-mode key-chord company company-mode smartparens molokai-theme clj-refactor monokai-theme magit-gitflow cyberpunk-theme cider-eval-sexp-fu cider clojure-snippets paredit project-explorer window-number git-gutter swiper)))
  '(send-mail-function (quote sendmail-send-it)))
 
 ;;ui tweaks
@@ -104,6 +137,9 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 (global-hl-line-mode -1)
+(require 'paren)
+(setq show-paren-style 'parenthesis)
+(show-paren-mode +1)
 
 ;; personal styling
 (set-default-font "Fira Mono 16")
@@ -113,14 +149,14 @@
 (scroll-bar-mode -1)
 ;; show line numbers
 
-(global-linum-mode -1)
+(global-linum-mode +1)
 ;(set-face-background 'linum "#1b1d1e")
 ;(set-face-foreground 'linum "#333333)"
 
 ;(setq linum-format " ")
 
 ;(setq linum-format " \u2442 ")
-;(setq linum-format " %4d ")
+(setq linum-format " %4d ")
 
 ;; change command and option key
 (setq mac-command-modifier 'meta)
@@ -252,6 +288,8 @@
 ;; let's make changed code visible to us.
 (require 'git-gutter)
 (global-git-gutter-mode +1)
+;; If you would like to use git-gutter.el and linum-mode
+(git-gutter:linum-setup)
 
 ;; background color ,modified for monokai
 ;(set-face-foreground 'git-gutter:modified "#282828") monokai default color
@@ -454,8 +492,11 @@
 
 ;;I like darkep background
 (set-background-color "#1b1d1e")
-(set-face-background 'fringe "#1b1d1e")
+;(set-window-fringes nil 0 0) 
+(set-face-attribute 'linum nil :foreground "#343434")
+(set-face-attribute 'vertical-border nil :foreground (face-attribute 'fringe :background))
 
+(set-face-attribute 'fringe nil :foreground "gray60" :background "#1b1d1e" :inverse-video nil :box '(:line-width 1 :color "gray20" :style nil))
 (set-face-attribute 'mode-line nil :foreground "gray60" :background "#1b1d1e" :inverse-video nil :box '(:line-width 1 :color "gray20" :style nil))
 (set-face-attribute 'mode-line-inactive nil :foreground "gray60" :background "#1b1d1e" :inverse-video nil :box '(:line-width 1 :color "gray20" :style nil))
 
@@ -490,25 +531,10 @@
 
 (define-key elpy-mode-map (kbd "C-c C-c") 'send-line-or-region)
 
-;; code fucking snippets
-;(yas-reload-all)
-;(yas-global-mode 1)
-;(add-hook 'clojure-mode-hook #'yas-minor-mode)
 
 ;;better comp
 (setq projectile-completion-system 'grizzl)
-(setq  helm-mode-fuzzy-match t)
-(setq  helm-completion-in-region-fuzzy-match t)
-(setq helm-M-x-fuzzy-match t)
-(setq helm-buffers-fuzzy-matching t
-      helm-recentf-fuzzy-match    t)
-(setq helm-semantic-fuzzy-match t
-      helm-imenu-fuzzy-match    t)
-(setq helm-locate-fuzzy-match t)
-(setq helm-apropos-fuzzy-match t)
-(setq helm-lisp-fuzzy-completion t)
 
-;;let's add some helm stuff,fuzzy and beautiful
 
 ;; custom stuff
 (defun get-search-term (beg end)
@@ -555,9 +581,9 @@
                  ((not prefix) "%Y-%m-%d" ) ;"%d.%m.%Y"
                  ((equal prefix '(4)) "%Y-%m-%d")
                  ((equal prefix '(16)) "%A, %d. %B %Y")))
-        (system-time-locale "de_DE"))
+        (system-time-locale "en_US"))
     (insert (format-time-string format))))
 
 (global-set-key (kbd "C-c 1") 'insert-date)
-
-
+(message "=> all set,master")
+(set-border-color "Black")
