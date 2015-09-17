@@ -1,10 +1,23 @@
 (require 'package)
 (package-initialize)
+
+;;; quick startup
 (setq gc-cons-threshold 100000000)
 
+;;; major repos
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t) ; Org-mode's repository
+
+;;; less crap
+(setq inhibit-startup-message t)
+(setq inhibit-splash-screen t)
+(setq initial-scratch-message nil)
+(setq initial-buffer-choice "~/")
+
+;;; smooth scrolling
+(setq scroll-step            1
+      scroll-conservatively  10000)
 
 ;; there are necessary
 (defun ensure-package-installed (&rest packages)
@@ -21,7 +34,7 @@
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 
-;;add your packages here
+;;; necessary packages
 (ensure-package-installed
  'grizzl
  'swiper
@@ -31,6 +44,7 @@
  'paredit
  'recentf
  'clojure-snippets
+ 'origami
  'clojure-mode
  'clj-refactor
  'cider
@@ -39,6 +53,7 @@
  'cider-eval-sexp-fu
  'cyberpunk-theme
  'magit-gitflow
+ 'markdown-mode
  'company
  'elpy
  'lorem-ipsum
@@ -57,8 +72,26 @@
 ;;; rainbow makes things easier for the eyes
 ;;;
 
-;; enables rainbow-delimiters-mode in other Lisp mode buffers.
 (require 'rainbow-delimiters)
+(set-face-attribute 'rainbow-delimiters-depth-1-face nil
+                    :foreground "#78c5d6")
+(set-face-attribute 'rainbow-delimiters-depth-2-face nil
+                    :foreground "#bf62a6")
+(set-face-attribute 'rainbow-delimiters-depth-3-face nil
+                    :foreground "#459ba8")
+(set-face-attribute 'rainbow-delimiters-depth-4-face nil
+                    :foreground "#e868a2")
+(set-face-attribute 'rainbow-delimiters-depth-5-face nil
+                    :foreground "#79c267")
+(set-face-attribute 'rainbow-delimiters-depth-6-face nil
+                    :foreground "#f28c33")
+(set-face-attribute 'rainbow-delimiters-depth-7-face nil
+                    :foreground "#c5d647")
+(set-face-attribute 'rainbow-delimiters-depth-8-face nil
+                    :foreground "#f5d63d")
+(set-face-attribute 'rainbow-delimiters-depth-9-face nil
+                    :foreground "#78c5d6")
+
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
@@ -88,7 +121,7 @@
 ;;; end of rainbow
 ;;;
 
-
+;;;  swiper,ivy is much better than default and helm
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
 (global-set-key "\C-s" 'swiper)
@@ -99,8 +132,8 @@
 (global-set-key (kbd "C-c C-c") 'eval-last-sexp)
 ;; better search and replace
 (global-set-key (kbd "C-c %") 'query-replace-regexp)
-;;this has to be on top. or modications require confirmation
 
+;;;  show recent files
 (require 'recentf)
 (setq recentf-max-saved-items 200
       recentf-max-menu-items 15)
@@ -118,23 +151,14 @@
 
 (global-set-key (kbd "C-c f") 'recentf-ido-find-file)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
- '(package-selected-packages
-   (quote
-    (markdown-mode expand-region rainbow-delimiters grizzl lorem-ipsum flycheck python-mode lisp-mode key-chord company company-mode smartparens molokai-theme clj-refactor monokai-theme magit-gitflow cyberpunk-theme cider-eval-sexp-fu cider clojure-snippets paredit project-explorer window-number git-gutter swiper)))
- '(send-mail-function (quote sendmail-send-it)))
+
 
 ;;ui tweaks
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(when (display-graphic-p)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1))
+
 
 (global-hl-line-mode -1)
 (require 'paren)
@@ -147,30 +171,16 @@
 
 ;(set-face-attribute 'default nil :height 140)
 (scroll-bar-mode -1)
-;; show line numbers
 
-(global-linum-mode +1)
-;(set-face-background 'linum "#1b1d1e")
-;(set-face-foreground 'linum "#333333)"
-
-;(setq linum-format " ")
-
-;(setq linum-format " \u2442 ")
-(setq linum-format " %4d ")
-
-;; change command and option key
+;;;  change command and option key 
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'super)
 
-;; you know mac
+;;; you know dvorak 
 (keyboard-translate ?\C-x ?\C-u)
 (keyboard-translate ?\C-u ?\C-x)
 
-;; No splash screen please ... jeez
-(setq inhibit-startup-message t)
-
-;;;;;;;;;;;;;;;;; clojure start
-
+;;; Clojure
 (require 'clojure-mode)
 (require 'cider)
 ;; clojure related stuff
@@ -224,10 +234,10 @@
 (add-hook 'cider-repl-mode-hook 'smartparens-strict-mode)
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 
+;;; Clojure Refartoring Awesomeness, you know.
 (require 'clj-refactor)
 (defun my-clojure-mode-hook ()
   (clj-refactor-mode 1)
-  (yas-minor-mode 1) ; for adding require/use/import
   (cljr-add-keybindings-with-prefix "C-c C-m"))
 
 (add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
@@ -248,7 +258,7 @@
 (setq org-src-fontify-natively t)
 ;(set-input-mode t nil t)
 
-
+;;; magit
 (require 'magit-gitflow)
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
 
@@ -285,7 +295,7 @@
 (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
 
 
-;; let's make changed code visible to us.
+;;; Git Gutterys
 (require 'git-gutter)
 (global-git-gutter-mode +1)
 ;; If you would like to use git-gutter.el and linum-mode
@@ -293,13 +303,15 @@
 
 ;; background color ,modified for monokai
 ;(set-face-foreground 'git-gutter:modified "#282828") monokai default color
+(set-face-foreground 'git-gutter:deleted "#565758")
+(set-face-background 'git-gutter:deleted "#1b1d1e")
 
-(set-face-foreground 'git-gutter:deleted "#1b1d1e")
-(set-face-background 'git-gutter:deleted "#465765")
-(set-face-foreground 'git-gutter:modified "#1b1d1e")
-(set-face-background 'git-gutter:modified "#465765")
-(set-face-foreground 'git-gutter:added "#1b1d1e")
-(set-face-background 'git-gutter:added "#465765")
+(set-face-foreground 'git-gutter:modified "#565758")
+(set-face-background 'git-gutter:modified "#1b1d1e")
+
+(set-face-foreground 'git-gutter:added "#565758")
+(set-face-background 'git-gutter:added "#1b1d1e")
+
 
 ;; line management
 (defun open-line-below ()
@@ -314,6 +326,8 @@
   (newline)
   (forward-line -1)
   (indent-for-tab-command))
+
+
 
 (global-set-key (kbd "<C-return>") 'open-line-below)
 (global-set-key (kbd "<C-S-return>") 'open-line-above)
@@ -349,7 +363,6 @@
 ;(key-chord-define-global "@@" 'cider-restart)
 (key-chord-define-global "$$" 'project-explorer-open)
 (key-chord-define-global "xx" 'execute-extended-command)
-;(key-chord-define-global "zz" 'cider-connect)
 
 (setq cider-test-show-report-on-success t)
 (define-key clojure-mode-map (kbd "C-x c") 'cider-eval-last-sexp-to-repl)
@@ -444,12 +457,6 @@
 
 (setenv "PATH"
         (concat (getenv "PATH") ":/usr/local/bin"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 ;; fullscreen
 (toggle-frame-fullscreen)
@@ -469,7 +476,6 @@
 
 ;; Get rid of keys I hit accidentally:
 (global-unset-key "\M-c")    ; don't want the capitalize thing
-
 
 ;; which screw up my directory listings.  Make it put them
 ;; somewhere else:
@@ -492,23 +498,26 @@
 
 ;;I like darkep background
 (set-background-color "#1b1d1e")
-;(set-window-fringes nil 0 0) 
+
+;;; linum specific
+(require 'linum)
+(set-face-attribute 'linum nil
+                    :background (face-attribute 'default :background)
+                    :foreground (face-attribute 'font-lock-comment-face :foreground))
 (set-face-attribute 'linum nil :foreground "#343434")
+(global-linum-mode +1)
+(setq linum-format " %4d ")
 (set-face-attribute 'vertical-border nil :foreground (face-attribute 'fringe :background))
 
 (set-face-attribute 'fringe nil :foreground "gray60" :background "#1b1d1e" :inverse-video nil :box '(:line-width 1 :color "gray20" :style nil))
 (set-face-attribute 'mode-line nil :foreground "gray60" :background "#1b1d1e" :inverse-video nil :box '(:line-width 1 :color "gray20" :style nil))
 (set-face-attribute 'mode-line-inactive nil :foreground "gray60" :background "#1b1d1e" :inverse-video nil :box '(:line-width 1 :color "gray20" :style nil))
 
-;; keep a smooth look of it
-;(set-face-background 'fringe "#1B1D1E")
-
-;;linum colors , hide distracting information , focus on the most important things
-;; I want a snappy Emacs
+;;; ok, I am confident with my spellings
 (global-flycheck-mode -1)
 
 
-;clear within the eshell to clear the entire buffer.
+;;; clear within the eshell to clear the entire buffer.
 (defun eshell/clear ()
   "04Dec2001 - sailor, to clear the eshell buffer."
   (interactive)
@@ -516,8 +525,8 @@
     (erase-buffer)))
 (setq warning-minimum-level :emergency)
 
-;;python stuff
-(package-initialize)
+;;; python
+(package-initialize)                    
 (elpy-enable)
 (require 'python)
 (setq python-shell-interpreter "ipython")
@@ -532,7 +541,7 @@
 (define-key elpy-mode-map (kbd "C-c C-c") 'send-line-or-region)
 
 
-;;better comp
+;;; better completion for projectile
 (setq projectile-completion-system 'grizzl)
 
 
@@ -546,7 +555,6 @@
     (if (= (length selection) 0)
         (message "empty string")
       (message selection))))
-
 
 (defun eshell-here ()
   "Opens up a new shell in the directory associated with the current buffer's file."
@@ -585,5 +593,83 @@
     (insert (format-time-string format))))
 
 (global-set-key (kbd "C-c 1") 'insert-date)
-(message "=> all set,master")
-(set-border-color "Black")
+
+(defun settings ()
+  (interactive)
+  (find-file "~/.emacs.d/personal/custom.el"))
+
+(defun reload-settings ()
+  (interactive)
+  (load-file "~/.emacs.d/personal/custom.el"))
+
+(defun fish-settings ()
+  (interactive)
+  (find-file "/work/Clojure/dotfiles/config.fish"))
+
+(defun lein-settings ()
+  (interactive)
+  (find-file "~/.lein/profiles.clj"))
+
+(global-set-key (kbd "C-c I") 'settings)
+
+
+(column-number-mode 1)
+(require 'powerline)
+(powerline-default-theme)
+
+(require 'origami)
+
+(require 'markdown-mode)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+
+(require 'yasnippet)
+(yas-global-mode 1)
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+(define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
+
+(require 'popup)
+(define-key popup-menu-keymap (kbd "M-n") 'popup-next)
+(define-key popup-menu-keymap (kbd "TAB") 'popup-next)
+(define-key popup-menu-keymap (kbd "<tab>") 'popup-next)
+(define-key popup-menu-keymap (kbd "<backtab>") 'popup-previous)
+(define-key popup-menu-keymap (kbd "M-p") 'popup-previous)
+
+(defun yas-popup-isearch-prompt (prompt choices &optional display-fn)
+  (when (featurep 'popup)
+    (popup-menu*
+     (mapcar
+      (lambda (choice)
+        (popup-make-item
+         (or (and display-fn (funcall display-fn choice))
+             choice)
+         :value choice))
+      choices)
+     :prompt prompt
+     ;; start isearch mode immediately
+     :isearch t
+     )))
+
+(setq yas-prompt-functions '(yas-popup-isearch-prompt yas-ido-prompt yas-no-prompt))
+
+;;; expand the region if necesarry
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
+ '(package-selected-packages
+   (quote
+    (powerline origami markdown-mode expand-region rainbow-delimiters grizzl lorem-ipsum flycheck python-mode lisp-mode key-chord company company-mode smartparens molokai-theme clj-refactor monokai-theme magit-gitflow cyberpunk-theme cider-eval-sexp-fu cider clojure-snippets paredit project-explorer window-number git-gutter swiper)))
+ '(send-mail-function (quote sendmail-send-it)))
+

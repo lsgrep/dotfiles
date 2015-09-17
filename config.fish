@@ -18,7 +18,6 @@ function gce
     ssh awklsgrep@vpn
 end
 
-
 function gho
   open https://(git config --get remote.origin.url|sed -e s/.git//g|sed s,:,/,g)/$argv
 end
