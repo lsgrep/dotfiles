@@ -1,5 +1,9 @@
+(require 'package)
+(package-initialize)
+
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t) ; Org-mode's repository
 
 ;; there are necessary
@@ -25,16 +29,53 @@
  'window-number
  'project-explorer
  'paredit
+ 'recentf
  'clojure-snippets
+ 'clojure-mode
  'cider
+ 'smartparens
  'cider-eval-sexp-fu
  'cyberpunk-theme
  'magit-gitflow
+ 'company
+ 'elpy
+ 'lorem-ipsum
+ 'python-mode
+ 'key-chord
+ 'projectile
  'monokai-theme
+ 'flycheck
+ 'molokai-theme
  'clj-refactor)
-;;init
-(package-initialize)
+
+
+(projectile-global-mode)
+(key-chord-mode 1)
+(smartparens-global-mode)
+
+(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key "\C-r" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key [f6] 'ivy-resum)
+
+(global-set-key (kbd "C-c C-c") 'eval-last-sexp)
+;; better search and replace
+(global-set-key (kbd "C-c %") 'query-replace-regexp)
 ;;this has to be on top. or modications require confirmation
+
+(require 'recentf)
+(setq recentf-max-saved-items 200
+      recentf-max-menu-items 15)
+(recentf-mode +1)
+(global-set-key (kbd "C-c f") 'recentf-open-files)
+
+(global-set-key (kbd "C-x g") 'magit-status)
+
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -46,7 +87,8 @@
     ("08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
  '(package-selected-packages
    (quote
-    (markdown-mode lorem-ipsum swipre-helm zop-to-char zenburn-theme yaml-mode window-numbering window-number web-mode volatile-highlights vkill undo-tree swiper-helm swift-mode speed-type smex smartrep smartparens smart-mode-line slime scss-mode scala-mode2 reveal-in-osx-finder rainbow-mode rainbow-delimiters project-explorer ov operate-on-number move-text monokai-theme molokai-theme magit-gitflow key-chord json-rpc json-mode js2-mode ido-ubiquitous htmlize helm-projectile helm-descbinds helm-ag haskell-mode guru-mode grizzl gotham-theme god-mode gitignore-mode gitconfig-mode git-timemachine git-gutter gist geiser flycheck flx-ido expand-region exec-path-from-shell elisp-slime-nav easy-kill discover-my-major diminish diff-hl cyberpunk-theme company-anaconda color-theme-sanityinc-tomorrow clojure-snippets clj-refactor cider-eval-sexp-fu browse-kill-ring anzu ace-window))))
+    (lorem-ipsum flycheck python-mode lisp-mode key-chord company company-mode smartparens molokai-theme clj-refactor monokai-theme magit-gitflow cyberpunk-theme cider-eval-sexp-fu cider clojure-snippets paredit project-explorer window-number git-gutter swiper)))
+ '(send-mail-function (quote sendmail-send-it)))
 
 ;;ui tweaks
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -256,16 +298,16 @@
 (global-set-key (kbd "M-R") 'end-of-buffer)
 
 (key-chord-define-global "''" 'other-window)
-(key-chord-define-global ",," 'prelude-switch-to-previous-buffer)
-(key-chord-define-global "aa" 'helm-mini)
+(key-chord-define-global ",," 'previous-buffer)
+
 ;(key-chord-define-global "@@" 'cider-restart)
 (key-chord-define-global "$$" 'project-explorer-open)
+(key-chord-define-global "xx" 'execute-extended-command)
 ;(key-chord-define-global "zz" 'cider-connect)
 
 (setq cider-test-show-report-on-success t)
 (define-key clojure-mode-map (kbd "C-x c") 'cider-eval-last-sexp-to-repl)
 (define-key clojure-mode-map (kbd "C-x F") 'cider-format-buffer)
-(define-key helm-find-files-map (kbd "<tab>") 'helm-execute-persistent-action)
 
 (defun yui-compress ()
   (interactive)
@@ -343,9 +385,6 @@
 
 ;; Treat clipboard input as UTF-8 string first; compound text next, etc.
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
-(require 'exec-path-from-shell)
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
 
 ;;annoying whitespace
 (setq whitespace-style (quote (spaces tabs newline space-mark tab-mark newline-mark)))
@@ -427,7 +466,6 @@
   (let ((inhibit-read-only t))
     (erase-buffer)))
 (setq warning-minimum-level :emergency)
-(global-diff-hl-mode -1)
 
 ;;python stuff
 (package-initialize)
@@ -464,7 +502,6 @@
 
 ;;let's add some helm stuff,fuzzy and beautiful
 
-
 ;; custom stuff
 (defun get-search-term (beg end)
   "message region or \"empty string\" if none highlighted"
@@ -492,17 +529,6 @@
     (insert (concat "ls"))
     (eshell-send-input)))
 
-;; Awesome search
-(require 'ivy)
-(require 'swiper)
-(require 'swiper-helm)
-(ivy-mode +1)
-(setq ivy-use-virtual-buffers t)
-(global-set-key "\C-s" 'swiper)
-(global-set-key "\C-r" 'swiper)
-(global-set-key (kbd "C-c C-r") 'ivy-resume)
-(global-set-key [f6] 'ivy-resume)
-
 ;;random text we need sometimes
 (lorem-ipsum-use-default-bindings)
 
@@ -512,9 +538,6 @@
 ;; stop the crap
 (setq make-backup-files nil) ; stop creating those backup~ files
 (setq auto-save-default nil) ; stop creating those #auto-save# files
-
-;; better search and replace
-(global-set-key (kbd "C-c %") 'query-replace-regexp)
 
 (defun insert-date (prefix)
   "Insert the current date. With prefix-argument, use ISO format. With
