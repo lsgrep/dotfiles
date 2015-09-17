@@ -20,7 +20,7 @@
 ;;add your packages here
 (ensure-package-installed
  'swiper
- 'swipre-helm
+ 'swiper-helm
  'git-gutter
  'window-number
  'project-explorer
@@ -46,7 +46,7 @@
     ("08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
  '(package-selected-packages
    (quote
-    (swiper-helm swift-mode swiper ivy zop-to-char zenburn-theme yaml-mode window-numbering window-number web-mode volatile-highlights vkill undo-tree speed-type smex smartrep smartparens smart-mode-line slime scss-mode scala-mode2 reveal-in-osx-finder rainbow-mode rainbow-delimiters project-explorer ov operate-on-number move-text monokai-theme molokai-theme magit-gitflow key-chord json-rpc json-mode js2-mode ido-ubiquitous htmlize helm-projectile helm-descbinds helm-ag haskell-mode guru-mode grizzl gotham-theme god-mode gitignore-mode gitconfig-mode git-timemachine git-gutter gist geiser flycheck flx-ido expand-region exec-path-from-shell elisp-slime-nav easy-kill discover-my-major diminish diff-hl cyberpunk-theme company-anaconda color-theme-sanityinc-tomorrow clojure-snippets clj-refactor cider-eval-sexp-fu browse-kill-ring anzu ace-window))))
+    (markdown-mode lorem-ipsum swipre-helm zop-to-char zenburn-theme yaml-mode window-numbering window-number web-mode volatile-highlights vkill undo-tree swiper-helm swift-mode speed-type smex smartrep smartparens smart-mode-line slime scss-mode scala-mode2 reveal-in-osx-finder rainbow-mode rainbow-delimiters project-explorer ov operate-on-number move-text monokai-theme molokai-theme magit-gitflow key-chord json-rpc json-mode js2-mode ido-ubiquitous htmlize helm-projectile helm-descbinds helm-ag haskell-mode guru-mode grizzl gotham-theme god-mode gitignore-mode gitconfig-mode git-timemachine git-gutter gist geiser flycheck flx-ido expand-region exec-path-from-shell elisp-slime-nav easy-kill discover-my-major diminish diff-hl cyberpunk-theme company-anaconda color-theme-sanityinc-tomorrow clojure-snippets clj-refactor cider-eval-sexp-fu browse-kill-ring anzu ace-window))))
 
 ;;ui tweaks
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -121,7 +121,6 @@
 
 ;(setq cider-refresh-before-fn "user/stop-system!" cider-refresh-after-fn "user/start-system!")
 ;(setq cider-known-endpoints '(("host-a" "10.10.10.1" "7888") ("host-b" "7888")))
-
 
 (setq cider-repl-wrap-history t)
 (setq cider-repl-history-size 1000)
@@ -213,9 +212,6 @@
 (set-face-background 'git-gutter:modified "#465765")
 (set-face-foreground 'git-gutter:added "#1b1d1e")
 (set-face-background 'git-gutter:added "#465765")
-
-
-
 
 ;; line management
 (defun open-line-below ()
@@ -497,9 +493,40 @@
     (eshell-send-input)))
 
 ;; Awesome search
-(ivy-mode 1)
+(require 'ivy)
+(require 'swiper)
+(require 'swiper-helm)
+(ivy-mode +1)
 (setq ivy-use-virtual-buffers t)
 (global-set-key "\C-s" 'swiper)
 (global-set-key "\C-r" 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key [f6] 'ivy-resume)
+
+;;random text we need sometimes
+(lorem-ipsum-use-default-bindings)
+
+;;  we have to move efficiently 
+(global-subword-mode 1)
+
+;; stop the crap
+(setq make-backup-files nil) ; stop creating those backup~ files
+(setq auto-save-default nil) ; stop creating those #auto-save# files
+
+;; better search and replace
+(global-set-key (kbd "C-c %") 'query-replace-regexp)
+
+(defun insert-date (prefix)
+  "Insert the current date. With prefix-argument, use ISO format. With
+   two prefix arguments, write out the day and month name."
+  (interactive "P")
+  (let ((format (cond
+                 ((not prefix) "%Y-%m-%d" ) ;"%d.%m.%Y"
+                 ((equal prefix '(4)) "%Y-%m-%d")
+                 ((equal prefix '(16)) "%A, %d. %B %Y")))
+        (system-time-locale "de_DE"))
+    (insert (format-time-string format))))
+
+(global-set-key (kbd "C-c 1") 'insert-date)
+
+
