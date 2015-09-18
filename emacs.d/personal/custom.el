@@ -25,10 +25,10 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
+    ("05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
  '(package-selected-packages
    (quote
-    (ace-window popup window-number swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer powerline origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu))))
+    (rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup window-number swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer powerline origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu))))
 
 ;; there are necessary
 (defun ensure-package-installed (&rest packages)
@@ -67,6 +67,8 @@
  'markdown-mode
  'company
  'elpy
+ 'pylint
+ 'pyflakes
  'lorem-ipsum
  'python-mode
  'key-chord
@@ -139,7 +141,7 @@
 (global-set-key "\C-s" 'swiper)
 (global-set-key "\C-r" 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
-(global-set-key [f6] 'ivy-resum)
+(global-set-key [f6] 'ivy-resume)
 
 
 
@@ -878,5 +880,9 @@ You can use arrow-keys or WASD.
 
 ;;; Setup windowing
 (global-set-key (kbd "M-p") 'ace-window)
-
-
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
