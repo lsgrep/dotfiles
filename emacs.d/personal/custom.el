@@ -28,7 +28,7 @@
     ("05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
  '(package-selected-packages
    (quote
-    (rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup window-number swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer powerline origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu))))
+    (nyan-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup window-number swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer powerline origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu))))
 
 ;; there are necessary
 (defun ensure-package-installed (&rest packages)
@@ -61,6 +61,8 @@
  'cider
  'expand-region
  'smartparens
+ 'rainbow-delimiters
+ 'popup
  'cider-eval-sexp-fu
  'cyberpunk-theme
  'magit-gitflow
@@ -85,6 +87,7 @@
 ;;;
 ;;; rainbow makes things easier for the eyes
 ;;;
+(nyan-mode 1)
 
 (require 'rainbow-delimiters)
 (set-face-attribute 'rainbow-delimiters-depth-1-face nil
@@ -645,13 +648,14 @@
 ;;; ok, I am confident with my spellings
 (global-flycheck-mode -1)
 
-
 ;;; clear within the eshell to clear the entire buffer.
 (defun eshell/clear ()
   "04Dec2001 - sailor, to clear the eshell buffer."
   (interactive)
   (let ((inhibit-read-only t))
-    (erase-buffer)))
+    (erase-buffer)
+    (eshell-send-input)))
+
 (setq warning-minimum-level :emergency)
 
 ;;; python
@@ -672,7 +676,6 @@
 
 ;;; better completion for projectile
 (setq projectile-completion-system 'grizzl)
-
 
 ;; custom stuff
 (defun get-search-term (beg end)
@@ -788,6 +791,7 @@
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 ;;; grep project
+(require 'swiper)
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
 ;(global-set-key (kbd "C-c t") 'counsel-load-theme)
 

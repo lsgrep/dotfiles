@@ -5,3 +5,4 @@
 (package-initialize)
 (setq custom-file "/Users/yusup/.emacs.d/personal/custom.el")
 (load custom-file)
+(put 'erase-buffer 'disabled nil)
