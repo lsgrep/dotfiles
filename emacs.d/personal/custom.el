@@ -25,10 +25,10 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("50ce37723ff2abc0b0b05741864ae9bd22c17cdb469cae134973ad46c7e48044" "0c311fb22e6197daba9123f43da98f273d2bfaeeaeb653007ad1ee77f0003037" "8fed5e4b89cf69107d524c4b91b4a4c35bcf1b3563d5f306608f0c48f580fdf8" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
+    ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "50ce37723ff2abc0b0b05741864ae9bd22c17cdb469cae134973ad46c7e48044" "0c311fb22e6197daba9123f43da98f273d2bfaeeaeb653007ad1ee77f0003037" "8fed5e4b89cf69107d524c4b91b4a4c35bcf1b3563d5f306608f0c48f580fdf8" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
  '(package-selected-packages
    (quote
-    (gist highlight-parentheses paradox helm-projectile olivetti auto-yasnippet noctilux-theme smex rainbow-mode esk-pretty-fn nyan-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup window-number swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer powerline origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
+    (color-theme-sanityinc-tomorrow goto-last-change gist highlight-parentheses paradox helm-projectile olivetti auto-yasnippet noctilux-theme smex rainbow-mode esk-pretty-fn nyan-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup window-number swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer powerline origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
  '(paradox-automatically-star nil)
  '(paradox-github-token "0db6d16c1f76f17248a644e1818ee075a4af9bfd"))
 
@@ -74,16 +74,19 @@
  'helm
  'helm-projectile
  'pylint
+ 'rainbow-mode
  'pyflakes
  'lorem-ipsum
  'python-mode
  'key-chord
  'projectile
+ 'nyan-mode
  'gist
  'highlight-parentheses
  'monokai-theme
  'flycheck
  'counsel
+ 'goto-last-change
  'ace-window
  'molokai-theme)
 
@@ -158,7 +161,7 @@
 
 ;; personal styling
 (set-default-font "Fira Mono 16")
-(load-theme 'molokai);;https://github.com/tonsky/FiraCodex
+(load-theme 'monokai);;https://github.com/tonsky/FiraCodex
 
 ;(set-face-attribute 'default nil :height 140)
 (scroll-bar-mode -1)
@@ -174,12 +177,12 @@
 ;;; Clojure
 (require 'clojure-mode)
 (require 'cider)
+(setq cider-ovelays-use-font-lock t)
 ;; clojure related stuff
 ;; enable eldoc in clojure buffers
 (add-hook 'cider-mode-hook #'eldoc-mode)
 ;; hide *nrepl* connection
 (setq nrepl-hide-special-buffers t)
-
 (setq cider-repl-tab-command #'indent-for-tab-command)
 
 (setq cider-auto-mode nil)
@@ -190,24 +193,25 @@
 (setq cider-show-error-buffer nil)
 (setq cider-show-error-buffer 'only-in-repl)
 (setq cider-auto-select-error-buffer nil)
-(setq cider-stacktrace-default-filters '(tooling dup))
-
+(setq cider-stacktrace-default-filters nil)
 (setq cider-stacktrace-fill-column 80)
 (setq nrepl-buffer-name-separator "-")
-
 (setq nrepl-buffer-name-show-port t)
-(setq cider-repl-display-in-current-window t)
+
+
+(setq cider-repl-display-in-current-window nil)
 (setq cider-prompt-save-file-on-load nil)
+
 (setq cider-repl-result-prefix ";; => ")
 (setq cider-interactive-eval-result-prefix ";; => ")
 (setq cider-repl-use-clojure-font-lock t)
 (setq cider-switch-to-repl-command #'cider-switch-to-current-repl-buffer)
 (setq cider-test-show-report-on-success t)
-(setq cider-show-error-buffer nil)
-(setq cider-auto-select-error-buffer nil)
 
-;(setq cider-refresh-before-fn "user/stop-system!" cider-refresh-after-fn "user/start-system!")
-;(setq cider-known-endpoints '(("host-a" "10.10.10.1" "7888") ("host-b" "7888")))
+(setq cider-known-endpoints '(("hyper" "127.0.0.1" "33333")))
+(setq cider-refresh-show-log-buffer t)
+
+
 
 (setq cider-repl-wrap-history t)
 (setq cider-repl-history-size 1000)
@@ -222,6 +226,7 @@
 (setq company-dabbrev-code-other-buffers 'code)
 ;(global-set-key (kbd "M-TAB") #'company-complete) ; use meta+tab, aka C-M-i, as manual trigger
 ;(global-set-key (kbd "TAB") #'company-indent-or-complete-common)
+
 
 (add-hook 'clojure-mode-hook 'cider-mode)
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
@@ -319,14 +324,14 @@
 
 ;; background color ,modified for monokai
 ;(set-face-foreground 'git-gutter:modified "#282828") monokai default color
-(set-face-foreground 'git-gutter:deleted "#565758")
-(set-face-background 'git-gutter:deleted "#1b1d1e")
+(set-face-foreground 'git-gutter:deleted "#7F073F")
+(set-face-background 'git-gutter:deleted "#14171A")
+(set-face-foreground 'git-gutter:modified "#7F073F")
+(set-face-background 'git-gutter:modified "#14171A")
+(set-face-foreground 'git-gutter:added "#7F073F")
+(set-face-background 'git-gutter:added "#14171A")
 
-(set-face-foreground 'git-gutter:modified "#565758")
-(set-face-background 'git-gutter:modified "#1b1d1e")
 
-(set-face-foreground 'git-gutter:added "#565758")
-(set-face-background 'git-gutter:added "#1b1d1e")
 
 (global-set-key (kbd "C-x C-g") 'git-gutter:toggle)
 (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
@@ -758,7 +763,9 @@
 (require 'markdown-mode)
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\grimoire*\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
 
 
 (require 'yasnippet)
@@ -900,6 +907,7 @@ You can use arrow-keys or WASD.
      projectile-known-projects)
    :action #'projectile-switch-project-by-name))
 (global-set-key (kbd "C-c m") 'ivy-switch-project)
+(global-set-key (kbd  "C-x C-\\") 'goto-last-change)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -907,3 +915,21 @@ You can use arrow-keys or WASD.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+(defun clojure-test-filename ()
+  (concat (projectile-project-root) 
+          "test/" 
+          (mapconcat #'identity
+                     (butlast (split-string (cider-current-ns) "\\.")) "/")
+          "/"
+          (file-name-nondirectory (file-name-sans-extension (buffer-file-name)))
+          "_test.clj"))
+
+(defadvice projectile-toggle-between-implementation-and-test (around create-clojure-test-advice)
+  "Visit new file if can't find test"
+  (condition-case nil
+      ad-do-it
+    (error (find-file (clojure-test-filename)))))
+
+(ad-activate 'projectile-toggle-between-implementation-and-test)
