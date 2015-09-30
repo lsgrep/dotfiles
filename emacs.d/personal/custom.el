@@ -28,7 +28,7 @@
     ("50ce37723ff2abc0b0b05741864ae9bd22c17cdb469cae134973ad46c7e48044" "0c311fb22e6197daba9123f43da98f273d2bfaeeaeb653007ad1ee77f0003037" "8fed5e4b89cf69107d524c4b91b4a4c35bcf1b3563d5f306608f0c48f580fdf8" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
  '(package-selected-packages
    (quote
-    (highlight-parentheses paradox helm-projectile olivetti auto-yasnippet noctilux-theme smex rainbow-mode esk-pretty-fn nyan-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup window-number swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer powerline origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
+    (gist highlight-parentheses paradox helm-projectile olivetti auto-yasnippet noctilux-theme smex rainbow-mode esk-pretty-fn nyan-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup window-number swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer powerline origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
  '(paradox-automatically-star nil)
  '(paradox-github-token "0db6d16c1f76f17248a644e1818ee075a4af9bfd"))
 
@@ -79,6 +79,7 @@
  'python-mode
  'key-chord
  'projectile
+ 'gist
  'highlight-parentheses
  'monokai-theme
  'flycheck
@@ -900,3 +901,9 @@ You can use arrow-keys or WASD.
    :action #'projectile-switch-project-by-name))
 (global-set-key (kbd "C-c m") 'ivy-switch-project)
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
