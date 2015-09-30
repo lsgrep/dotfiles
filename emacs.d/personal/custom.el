@@ -25,10 +25,12 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
+    ("50ce37723ff2abc0b0b05741864ae9bd22c17cdb469cae134973ad46c7e48044" "0c311fb22e6197daba9123f43da98f273d2bfaeeaeb653007ad1ee77f0003037" "8fed5e4b89cf69107d524c4b91b4a4c35bcf1b3563d5f306608f0c48f580fdf8" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
  '(package-selected-packages
    (quote
-    (nyan-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup window-number swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer powerline origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu))))
+    (highlight-parentheses paradox helm-projectile olivetti auto-yasnippet noctilux-theme smex rainbow-mode esk-pretty-fn nyan-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup window-number swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer powerline origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
+ '(paradox-automatically-star nil)
+ '(paradox-github-token "0db6d16c1f76f17248a644e1818ee075a4af9bfd"))
 
 ;; there are necessary
 (defun ensure-package-installed (&rest packages)
@@ -69,71 +71,41 @@
  'markdown-mode
  'company
  'elpy
+ 'helm
+ 'helm-projectile
  'pylint
  'pyflakes
  'lorem-ipsum
  'python-mode
  'key-chord
  'projectile
+ 'highlight-parentheses
  'monokai-theme
  'flycheck
+ 'counsel
  'ace-window
  'molokai-theme)
 
 (projectile-global-mode)
 (key-chord-mode 1)
 (smartparens-global-mode)
+(rainbow-mode 1)
+
+;;; my dick is short ,so is my life
+(defalias 'yes-or-no-p 'y-or-n-p)
+;;; no bullshit
+(delete-selection-mode t)
 
 ;;;
 ;;; rainbow makes things easier for the eyes
 ;;;
-(nyan-mode 1)
-
-(require 'rainbow-delimiters)
-(set-face-attribute 'rainbow-delimiters-depth-1-face nil
-                    :foreground "#78c5d6")
-(set-face-attribute 'rainbow-delimiters-depth-2-face nil
-                    :foreground "#bf62a6")
-(set-face-attribute 'rainbow-delimiters-depth-3-face nil
-                    :foreground "#459ba8")
-(set-face-attribute 'rainbow-delimiters-depth-4-face nil
-                    :foreground "#e868a2")
-(set-face-attribute 'rainbow-delimiters-depth-5-face nil
-                    :foreground "#79c267")
-(set-face-attribute 'rainbow-delimiters-depth-6-face nil
-                    :foreground "#f28c33")
-(set-face-attribute 'rainbow-delimiters-depth-7-face nil
-                    :foreground "#c5d647")
-(set-face-attribute 'rainbow-delimiters-depth-8-face nil
-                    :foreground "#f5d63d")
-(set-face-attribute 'rainbow-delimiters-depth-9-face nil
-                    :foreground "#78c5d6")
-
+(nyan-mode t)
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'lisp-mode-hook 'paredit-mode) 
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'clojure-mode-hook 'paredit-mode)
-
-(require 'cl-lib)
-(require 'color)
-(cl-loop
- for index from 1 to rainbow-delimiters-max-face-count
- do
- (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
-   (cl-callf color-saturate-name (face-foreground face) 30)))
-
-(set-face-attribute 'rainbow-delimiters-unmatched-face nil
-                    :foreground 'unspecified
-                    :inherit 'error
-                    :strike-through t)
-
-(require 'paren) ; show-paren-mismatch is defined in paren.el
-(set-face-attribute 'rainbow-delimiters-unmatched-face nil
-                    :foreground 'unspecified
-                    :inherit 'show-paren-mismatch)
-
 ;;;
 ;;; end of rainbow
 ;;;
@@ -145,9 +117,8 @@
 (global-set-key "\C-r" 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key [f6] 'ivy-resume)
-
-
-
+(setq ivy-display-style 'fancy)
+;(setq projectile-completion-system 'ivy)
 (global-set-key (kbd "C-c C-c") 'eval-last-sexp)
 ;; better search and replace
 (global-set-key (kbd "C-c %") 'query-replace-regexp)
@@ -170,19 +141,19 @@
 
 (global-set-key (kbd "C-c f") 'recentf-ido-find-file)
 
-
-
 ;;ui tweaks
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (when (display-graphic-p)
   (tool-bar-mode -1)
   (scroll-bar-mode -1))
 
-
-(global-hl-line-mode -1)
+(global-hl-line-mode +1)
 (require 'paren)
 (setq show-paren-style 'parenthesis)
 (show-paren-mode +1)
+(setq show-paren-style 'parenthesis) 
+(setq show-paren-delay 0)
+(global-highlight-parentheses-mode t)
 
 ;; personal styling
 (set-default-font "Fira Mono 16")
@@ -265,6 +236,27 @@
 
 (add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
 
+(eval-after-load 'clojure-mode
+  '(font-lock-add-keywords
+    'clojure-mode `(("(\\(fn\\)[\[[:space:]]"
+                     (0 (progn (compose-region (match-beginning 1)
+                                               (match-end 1) "λ")
+                               nil))))))
+
+(eval-after-load 'clojure-mode
+  '(font-lock-add-keywords
+    'clojure-mode `(("\\(#\\)("
+                     (0 (progn (compose-region (match-beginning 1)
+                                               (match-end 1) "ƒ")
+                               nil))))))
+
+(eval-after-load 'clojure-mode
+  '(font-lock-add-keywords
+    'clojure-mode `(("\\(#\\){"
+                     (0 (progn (compose-region (match-beginning 1)
+                                               (match-end 1) "∈")
+                               nil))))))
+
 (require 'cider-eval-sexp-fu)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;clojure  end
 ;; tramp , remote file manipulation
@@ -334,6 +326,19 @@
 
 (set-face-foreground 'git-gutter:added "#565758")
 (set-face-background 'git-gutter:added "#1b1d1e")
+
+(global-set-key (kbd "C-x C-g") 'git-gutter:toggle)
+(global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
+
+;; Jump to next/previous hunk
+(global-set-key (kbd "C-x p") 'git-gutter:previous-hunk)
+(global-set-key (kbd "C-x n") 'git-gutter:next-hunk)
+
+;; Stage current hunk
+(global-set-key (kbd "C-x v s") 'git-gutter:stage-hunk)
+
+;; Revert current hunk
+(global-set-key (kbd "C-x v r") 'git-gutter:revert-hunk)
 
 
 ;; line management
@@ -513,13 +518,15 @@
 ;(set-face-attribute 'region nil :background "#787878")
 ;;window management
 ;; highlight the window number in pink color
-(setq magit-auto-revert-mode nil)
-(setq magit-last-seen-setup-instructions "1.4.")
+
+
+
 ;;ui performance improvement
 (setq redisplay-dont-pause t)
 
 ;;I like darkep background
-(set-background-color "#1b1d1e")
+;(set-background-color "#1b1d1e")
+(set-background-color "#14171A")
 
 ;;; linum specific
 (require 'linum)
@@ -532,7 +539,7 @@
 
 ;;; annoying white vectical thing
 (set-face-attribute 'vertical-border nil :foreground (face-attribute 'fringe :background))
-(set-face-attribute 'fringe nil :foreground "gray60" :background "#1b1d1e" :inverse-video nil :box '(:line-width 1 :color "gray20" :style nil))
+(set-face-attribute 'fringe nil :foreground "gray60" :background "#14171A" :inverse-video nil :box '(:line-width 1 :color "gray20" :style nil))
 
 (setq-default
  mode-line-format
@@ -554,7 +561,7 @@
           (t "      ")))
    "    "
    ; directory and buffer/file name
-   (:propertize (:eval (shorten-directory default-directory 30))
+   (:propertize (:eval (shorten-directory default-directory 12))
                 face mode-line-folder-face)
    (:propertize "%b"
                 face mode-line-filename-face)
@@ -601,13 +608,14 @@
 (make-face 'mode-line-80col-face)
 
 (set-face-attribute 'mode-line nil
-    :foreground "gray60" :background "gray20"
+    :foreground "gray80" :background "#202522"
     :inverse-video nil
-    :box '(:line-width 6 :color "gray20" :style nil))
+    :box '(:line-width 2 :color "#202522" :style nil))
+
 (set-face-attribute 'mode-line-inactive nil
-    :foreground "gray60" :background "gray20"
+    :foreground "gray60" :background "#202522"
     :inverse-video nil
-    :box '(:line-width 6 :color "gray20" :style nil))
+    :box '(:line-width 2 :color "#202522" :style nil))
 
 (set-face-attribute 'mode-line-read-only-face nil
     :inherit 'mode-line-face
@@ -617,8 +625,8 @@
 (set-face-attribute 'mode-line-modified-face nil
     :inherit 'mode-line-face
     :foreground "#eab700"
-    :background "gray20"
-    :box '(:line-width 2 :color "DimGray"))
+    :background "#202522"
+    :box '(:line-width 2 :color "#161514"))
 
 (set-face-attribute 'mode-line-folder-face nil
     :inherit 'mode-line-face
@@ -644,9 +652,7 @@
     :inherit 'mode-line-position-face
     :foreground "black" :background "#eab700") 
 
-
 ;;; ok, I am confident with my spellings
-(global-flycheck-mode -1)
 
 ;;; clear within the eshell to clear the entire buffer.
 (defun eshell/clear ()
@@ -657,7 +663,6 @@
     (eshell-send-input)))
 
 (setq warning-minimum-level :emergency)
-
 ;;; python
 (package-initialize)                    
 (elpy-enable)
@@ -672,7 +677,6 @@
     (python-shell-send-string (thing-at-point 'line))))
 
 (define-key elpy-mode-map (kbd "C-c C-c") 'send-line-or-region)
-
 
 ;;; better completion for projectile
 (setq projectile-completion-system 'grizzl)
@@ -884,9 +888,15 @@ You can use arrow-keys or WASD.
 
 ;;; Setup windowing
 (global-set-key (kbd "M-p") 'ace-window)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+(defun ivy-switch-project ()
+  (interactive)
+  (ivy-read
+   "Switch to project: "
+   (if (projectile-project-p)
+       (cons (abbreviate-file-name (projectile-project-root))
+             (projectile-relevant-known-projects))
+     projectile-known-projects)
+   :action #'projectile-switch-project-by-name))
+(global-set-key (kbd "C-c m") 'ivy-switch-project)
+
