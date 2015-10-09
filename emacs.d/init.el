@@ -166,7 +166,7 @@
   (tool-bar-mode -1)
   (scroll-bar-mode -1))
 
-(global-hl-line-mode +1)
+(global-hl-line-mode -1)
 (make-variable-buffer-local 'global-hl-line-mode)
 
 (require 'paren)
@@ -415,6 +415,8 @@
 
 (setq cider-test-show-report-on-success t)
 (define-key clojure-mode-map (kbd "C-x c") 'cider-eval-last-sexp-to-repl)
+(define-key emacs-lisp-mode-map (kbd "C-c C-c") 'eval-last-sexp)
+
 
 (defun yui-compress ()
   (interactive)
@@ -882,8 +884,6 @@ You can use arrow-keys or WASD.
 ;;; annoying as fuck.
 (visual-line-mode nil)
 
-
-
 ;;; web stuff
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
@@ -894,3 +894,4 @@ You can use arrow-keys or WASD.
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+
