@@ -14,6 +14,11 @@ function  goog
   ssh  -fCND 8888 awklsgrep@vpn
 end
 
+
+function gsh
+    gcloud compute ssh shell --zone asia-east1-c
+end
+
 function gce
     ssh awklsgrep@vpn
 end
