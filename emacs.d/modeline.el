@@ -7,7 +7,7 @@
     (abbrev-mode . "")
     (git-gutter-mode . "")
     ;; Major modes
-    (lisp-interaction-mode . " λ")
+    (lisp-interaction-mode . " λλ")
     (clojure-mode . " λ")
     (hi-lock-mode . "")
     (python-mode . " Py")
@@ -119,13 +119,13 @@ want to use in the modeline *in lieu of* the original.")
 (make-face 'mode-line-80col-face)
 
 (set-face-attribute 'mode-line nil
-    :foreground "gray60" :background "gray20"
+    :foreground "gray60" :background "black20"
     :inverse-video nil
-    :box '(:line-width 2 :color "gray20" :style nil))
+    :box '(:line-width 2 :color "black" :style nil))
 (set-face-attribute 'mode-line-inactive nil
-    :foreground "gray60" :background "gray20"
+    :foreground "gray60" :background "black20"
     :inverse-video nil
-    :box '(:line-width 2 :color "gray20" :style nil))
+    :box '(:line-width 2 :color "black" :style nil))
 
 (set-face-attribute 'mode-line-read-only-face nil
     :inherit 'mode-line-face
