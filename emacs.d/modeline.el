@@ -119,35 +119,36 @@ want to use in the modeline *in lieu of* the original.")
 (make-face 'mode-line-80col-face)
 
 (set-face-attribute 'mode-line nil
-    :foreground "gray60" :background "black20"
-    :inverse-video nil
-    :box '(:line-width 2 :color "black" :style nil))
-(set-face-attribute 'mode-line-inactive nil
-    :foreground "gray60" :background "black20"
-    :inverse-video nil
-    :box '(:line-width 2 :color "black" :style nil))
+    :foreground "gray60" :background (face-attribute 'default :background)
+    :inverse-video nil    :box nil)
+
+(set-face-attribute 'mode-line-inactive nil    :foreground "gray60" :background (face-attribute 'default :background) 
+    :inverse-video nil    :box nil) 
 
 (set-face-attribute 'mode-line-read-only-face nil
     :inherit 'mode-line-face
     :foreground "#4271ae"
-    :box '(:line-width 2 :color "#4271ae"))
+    :box nil)
 
 (set-face-attribute 'mode-line-modified-face nil
     :inherit 'mode-line-face
     :foreground "#eab700"
     :background "#gray20" 
-    :box '(:line-width 2 :color "#eab700"))  
+    :box nil)   
 
 (set-face-attribute 'mode-line-folder-face nil
     :inherit 'mode-line-face
     :foreground "gray60")
+
 (set-face-attribute 'mode-line-filename-face nil
     :inherit 'mode-line-face
     :foreground "#eab700"
     :weight 'bold)
+
 (set-face-attribute 'mode-line-position-face nil
     :inherit 'mode-line-face
-    :family "Monaco" :height 100)
+    :family "Monaco" :height 100) 
+
 (set-face-attribute 'mode-line-mode-face nil
     :inherit 'mode-line-face
     :foreground "gray80")
@@ -160,4 +161,4 @@ want to use in the modeline *in lieu of* the original.")
     :foreground "#718c00")
 (set-face-attribute 'mode-line-80col-face nil
     :inherit 'mode-line-position-face
-    :foreground "black" :background "#eab700")
+    :foreground (face-attribute 'default :background)  :background "#eab700")

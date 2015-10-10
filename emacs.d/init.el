@@ -31,9 +31,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#000000" "#8b0000" "#00ff00" "#ffa500" "#7b68ee" "#dc8cc3" "#93e0e3" "#dcdccc"])
  '(custom-safe-themes
    (quote
-    ("94ba29363bfb7e06105f68d72b268f85981f7fba2ddef89331660033101eb5e5" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "2ef75a0b64c58767376c9e2c5f07027add146720e6fab6b196cb6a1c68ef3c3f" "f5ef7ddecf161a2951048c204c2c6d9d5be08745b136dce583056ad4b234b861" "3ed645b3c08080a43a2a15e5768b893c27f6a02ca3282576e3bc09f3d9fa3aaa" "36affb6b6328d2bfa7a31b3183cd65d6dd1a8c0945382f94de729233b9737359" "19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" "95db78d85e3c0e735da28af774dfa59308db832f84b8a2287586f5b4f21a7a5b" "614f8478963ec8caac8809931c9d00f670e4519388c02f71d9d27b66d5741a7f" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "50ce37723ff2abc0b0b05741864ae9bd22c17cdb469cae134973ad46c7e48044" "0c311fb22e6197daba9123f43da98f273d2bfaeeaeb653007ad1ee77f0003037" "8fed5e4b89cf69107d524c4b91b4a4c35bcf1b3563d5f306608f0c48f580fdf8" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
+    ("30b7087fdd149a523aa614568dc6bacfab884145f4a67d64c80d6011d4c90837" "94ba29363bfb7e06105f68d72b268f85981f7fba2ddef89331660033101eb5e5" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "2ef75a0b64c58767376c9e2c5f07027add146720e6fab6b196cb6a1c68ef3c3f" "f5ef7ddecf161a2951048c204c2c6d9d5be08745b136dce583056ad4b234b861" "3ed645b3c08080a43a2a15e5768b893c27f6a02ca3282576e3bc09f3d9fa3aaa" "36affb6b6328d2bfa7a31b3183cd65d6dd1a8c0945382f94de729233b9737359" "19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" "95db78d85e3c0e735da28af774dfa59308db832f84b8a2287586f5b4f21a7a5b" "614f8478963ec8caac8809931c9d00f670e4519388c02f71d9d27b66d5741a7f" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "50ce37723ff2abc0b0b05741864ae9bd22c17cdb469cae134973ad46c7e48044" "0c311fb22e6197daba9123f43da98f273d2bfaeeaeb653007ad1ee77f0003037" "8fed5e4b89cf69107d524c4b91b4a4c35bcf1b3563d5f306608f0c48f580fdf8" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
+ '(fci-rule-color "#383838")
  '(git-gutter:added-sign "☀")
  '(git-gutter:deleted-sign "☂")
  '(git-gutter:modified-sign "☁")
@@ -177,7 +180,7 @@
 (global-highlight-parentheses-mode t)
 
 ;; personal styling
-(set-default-font "Source Code Pro 16")
+(set-default-font "PT Mono 17")
 (load-theme 'cyberpunk);;https://github.com/tonsky/FiraCodex
 
 ;(set-face-attribute 'default nil :height 140)
@@ -538,7 +541,7 @@
 ;;set the background-color of selected region
 
 ;; make a clear selection color
-(set-face-attribute 'region nil :background "#a0c0f0")
+(set-face-attribute 'region nil :background "#454545")
 ;;window management
 ;; highlight the window number in pink color
 
@@ -882,7 +885,7 @@ You can use arrow-keys or WASD.
 (setq-default indicate-empty-lines nil)
 (setq-default word-wrap t)
 ;;; annoying as fuck.
-(visual-line-mode nil)
+(global-visual-line-mode 0)
 
 ;;; web stuff
 (require 'web-mode)
@@ -895,3 +898,9 @@ You can use arrow-keys or WASD.
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
