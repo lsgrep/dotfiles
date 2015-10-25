@@ -11,7 +11,7 @@ end
 
 function  goog
   kill -9  (lsof -i :8888 |grep -i ssh |  awk '{print $2}' | uniq)
-  ssh  -fCND 8888 awklsgrep@vpn
+  ssh  -fCND 8888 shell
 end
 
 

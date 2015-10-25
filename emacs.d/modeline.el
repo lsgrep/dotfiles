@@ -133,8 +133,8 @@ want to use in the modeline *in lieu of* the original.")
 (set-face-attribute 'mode-line-modified-face nil
     :inherit 'mode-line-face
     :foreground "#eab700"
-    :background "#gray20" 
-    :box nil)   
+    :background (face-attribute 'default :background) 
+    :box nil)    
 
 (set-face-attribute 'mode-line-folder-face nil
     :inherit 'mode-line-face
@@ -143,7 +143,7 @@ want to use in the modeline *in lieu of* the original.")
 (set-face-attribute 'mode-line-filename-face nil
     :inherit 'mode-line-face
     :foreground "#eab700"
-    :weight 'bold)
+    :weight 'bold) 
 
 (set-face-attribute 'mode-line-position-face nil
     :inherit 'mode-line-face
@@ -161,4 +161,4 @@ want to use in the modeline *in lieu of* the original.")
     :foreground "#718c00")
 (set-face-attribute 'mode-line-80col-face nil
     :inherit 'mode-line-position-face
-    :foreground (face-attribute 'default :background)  :background "#eab700")
+    :foreground (face-attribute 'default :background)  :background "#eab700") 

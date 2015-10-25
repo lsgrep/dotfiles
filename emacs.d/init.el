@@ -31,19 +31,17 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#000000" "#8b0000" "#00ff00" "#ffa500" "#7b68ee" "#dc8cc3" "#93e0e3" "#dcdccc"])
  '(custom-safe-themes
    (quote
-    ("30b7087fdd149a523aa614568dc6bacfab884145f4a67d64c80d6011d4c90837" "94ba29363bfb7e06105f68d72b268f85981f7fba2ddef89331660033101eb5e5" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "2ef75a0b64c58767376c9e2c5f07027add146720e6fab6b196cb6a1c68ef3c3f" "f5ef7ddecf161a2951048c204c2c6d9d5be08745b136dce583056ad4b234b861" "3ed645b3c08080a43a2a15e5768b893c27f6a02ca3282576e3bc09f3d9fa3aaa" "36affb6b6328d2bfa7a31b3183cd65d6dd1a8c0945382f94de729233b9737359" "19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" "95db78d85e3c0e735da28af774dfa59308db832f84b8a2287586f5b4f21a7a5b" "614f8478963ec8caac8809931c9d00f670e4519388c02f71d9d27b66d5741a7f" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "50ce37723ff2abc0b0b05741864ae9bd22c17cdb469cae134973ad46c7e48044" "0c311fb22e6197daba9123f43da98f273d2bfaeeaeb653007ad1ee77f0003037" "8fed5e4b89cf69107d524c4b91b4a4c35bcf1b3563d5f306608f0c48f580fdf8" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
- '(fci-rule-color "#383838")
- '(git-gutter:added-sign "☀")
- '(git-gutter:deleted-sign "☂")
- '(git-gutter:modified-sign "☁")
- '(git-gutter:window-width 2)
+    ("cd2a93d7b63aff07b3565c1c95e461cb880f0b00d8dd6cdd10fa8ece01ffcfdf" "b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" "4f5bb895d88b6fe6a983e63429f154b8d939b4a8c581956493783b2515e22d6d" "0a1a7f64f8785ffbf5b5fbe8bca1ee1d9e1fb5e505ad9a0f184499fe6747c1af" "30b7087fdd149a523aa614568dc6bacfab884145f4a67d64c80d6011d4c90837" "94ba29363bfb7e06105f68d72b268f85981f7fba2ddef89331660033101eb5e5" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "2ef75a0b64c58767376c9e2c5f07027add146720e6fab6b196cb6a1c68ef3c3f" "f5ef7ddecf161a2951048c204c2c6d9d5be08745b136dce583056ad4b234b861" "3ed645b3c08080a43a2a15e5768b893c27f6a02ca3282576e3bc09f3d9fa3aaa" "36affb6b6328d2bfa7a31b3183cd65d6dd1a8c0945382f94de729233b9737359" "19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" "95db78d85e3c0e735da28af774dfa59308db832f84b8a2287586f5b4f21a7a5b" "614f8478963ec8caac8809931c9d00f670e4519388c02f71d9d27b66d5741a7f" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "50ce37723ff2abc0b0b05741864ae9bd22c17cdb469cae134973ad46c7e48044" "0c311fb22e6197daba9123f43da98f273d2bfaeeaeb653007ad1ee77f0003037" "8fed5e4b89cf69107d524c4b91b4a4c35bcf1b3563d5f306608f0c48f580fdf8" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
+ ; Rainbow
+ '(git-gutter:added-sign "++ ")
+ '(git-gutter:deleted-sign "-- ")
+ '(git-gutter:modified-sign "** ")
+ '(git-gutter:window-width 3)
  '(package-selected-packages
    (quote
-    (emmet-mode anaconda-mode ensime scala-mode2 scala-mode GOTO-last-change gist highlight-parentheses helm-projectile olivetti auto-yasnippet SMEX rainbow-mode nyan-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
+    (jsx-mode gotham-theme atom-one-dark-theme atom-dark-theme 4clojure ample-theme emmet-mode anaconda-mode ensime scala-mode2 scala-mode GOTO-last-change gist highlight-parentheses helm-projectile olivetti auto-yasnippet SMEX rainbow-mode nyan-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
  '(python-check-command "/usr/local/bin/pyflakes"))
 
 ;; there are necessary
@@ -128,6 +126,7 @@
 (add-hook 'lisp-mode-hook 'paredit-mode) 
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'clojure-mode-hook 'paredit-mode)
+(add-hook 'clojure-mode-hook 'git-gutter-mode)
 ;;;
 ;;; end of rainbow
 ;;;
@@ -180,14 +179,14 @@
 (global-highlight-parentheses-mode t)
 
 ;; personal styling
-(set-default-font "PT Mono 17")
-(load-theme 'cyberpunk);;https://github.com/tonsky/FiraCodex
+(set-default-font "Monaco 16")
+(load-theme 'molokai);;https://github.com/tonsky/FiraCodex
 
 ;(set-face-attribute 'default nil :height 140)
 (scroll-bar-mode -1)
 
-(add-to-list 'default-frame-alist '(height . 40))
-(add-to-list 'default-frame-alist '(width . 90))
+;(add-to-list 'default-frame-alist '(height . 40))
+;(add-to-list 'default-frame-alist '(width . 90))
 
 ;;;  change command and option key 
 (setq mac-command-modifier 'meta)
@@ -233,9 +232,6 @@
 
 (setq cider-known-endpoints '(("hyper" "127.0.0.1" "33333")))
 (setq cider-refresh-show-log-buffer t)
-
-
-
 (setq cider-repl-wrap-history t)
 (setq cider-repl-history-size 1000)
 
@@ -247,8 +243,6 @@
 (setq company-dabbrev-downcase nil)
 (setq company-tooltip-flip-when-above t)
 (setq company-dabbrev-code-other-buffers 'code)
-;(global-set-key (kbd "M-TAB") #'company-complete) ; use meta+tab, aka C-M-i, as manual trigger
-;(global-set-key (kbd "TAB") #'company-indent-or-complete-common)
 
 
 (add-hook 'clojure-mode-hook 'cider-mode)
@@ -265,26 +259,18 @@
 
 (add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
 
-;; (eval-after-load 'clojure-mode
-;;   '(font-lock-add-keywords
-;;     'clojure-mode `(("(\\(fn\\)[\[[:space:]]"
-;;                      (0 (progn (compose-region (match-beginning 1)
-;;                                                (match-end 1) "λ")
-;;                                nil))))))
+(defun cider-eval-expression-at-point-in-repl ()
+  (interactive)
+  (let ((form (cider-defun-at-point)))
+    ;; Strip excess whitespace
+    (while (string-match "\\`\s+\\|\n+\\'" form)
+           (setq form (replace-match "" t t form)))
+    (set-buffer (cider-get-repl-buffer))
+    (goto-char (point-max))
+    (insert form)
+    (cider-repl-return)))
+;(define-key cider-mode-map            (kbd "C-;") 'cider-eval-expression-at-point-in-repl)
 
-;; (eval-after-load 'clojure-mode
-;;   '(font-lock-add-keywords
-;;     'clojure-mode `(("\\(#\\)("
-;;                      (0 (progn (compose-region (match-beginning 1)
-;;                                                (match-end 1) "ƒ")
-;;                                nil))))))
-
-;; (eval-after-load 'clojure-mode
-;;   '(font-lock-add-keywords
-;;     'clojure-mode `(("\\(#\\){"
-;;                      (0 (progn (compose-region (match-beginning 1)
-;;                                                (match-end 1) "∈")
-;;                                nil))))))
 
 (require 'cider-eval-sexp-fu)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;clojure  end
@@ -549,26 +535,11 @@
 (setq redisplay-dont-pause t)
 
 ;;I like darkep background
-;(set-background-color "#1b1d1e")
-;(set-background-color "#14171A")
 (set-face-attribute 'fringe nil :background (face-attribute 'default :background))
 (set-face-attribute 'vertical-border nil :foreground (face-attribute 'fringe :background))
 
-;;; linum specific
-;(require 'linum)
-
-;; (set-face-attribute 'linum nil
-;;                     :background (face-attribute 'default :background)
-;;                     :foreground (face-attribute 'font-lock-comment-face :foreground))
 ;(global-linum-mode +1) 
 ;(setq linum-format " %4d ")
-
-;;; annoying white vectical thing
-;(set-face-attribute 'vertical-border nil :foreground (face-attribute 'fringe :background))
-;(set-face-attribute 'fringe nil :foreground "gray60" :background "#14171A" :inverse-video nil :box '(:line-width 1 :color "gray20" :style nil))
-
-;; Extra mode line faces
-;;; ok, I am confident with my spellings
 
 ;;; clear within the eshell to clear the entire buffer.
 (defun eshell/clear ()
@@ -720,21 +691,6 @@
 ;;; Hydra window management
 (require 'hydra)
 (require 'windmove)
-(global-set-key
-   (kbd "C-x t")
-   (defhydra hydra-toggle (:color teal)
-     "
-_a_ abbrev-mode:      %`abbrev-mode
-_d_ debug-on-error    %`debug-on-error
-_f_ auto-fill-mode    %`auto-fill-function
-_t_ truncate-lines    %`truncate-lines
-
-"
-     ("a" abbrev-mode nil)
-     ("d" toggle-debug-on-error nil)
-     ("f" auto-fill-mode nil)
-     ("t" toggle-truncate-lines nil)
-     ("q" nil "cancel")))
 
 (defun hydra-move-splitter-left (arg)
     "Move window splitter left."
@@ -883,9 +839,8 @@ You can use arrow-keys or WASD.
 ;(setq-default fill-column 99999)
 (setq-default fill-column 100)
 (setq-default indicate-empty-lines nil)
-(setq-default word-wrap t)
 ;;; annoying as fuck.
-(global-visual-line-mode 0)
+(global-visual-line-mode -1)
 
 ;;; web stuff
 (require 'web-mode)
@@ -898,9 +853,15 @@ You can use arrow-keys or WASD.
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(setq-default truncate-lines nil)
+(setq truncate-partial-width-windows nil)
+(set-fringe-mode '(1 . 1))
+
+
+;;; save when necessarry 
+(defun save-all ()
+  (interactive)
+  (save-some-buffers t))
+(add-hook 'focus-out-hook 'save-all)
+
+
