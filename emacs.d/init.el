@@ -31,17 +31,19 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(custom-safe-themes
    (quote
-    ("cd2a93d7b63aff07b3565c1c95e461cb880f0b00d8dd6cdd10fa8ece01ffcfdf" "b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" "4f5bb895d88b6fe6a983e63429f154b8d939b4a8c581956493783b2515e22d6d" "0a1a7f64f8785ffbf5b5fbe8bca1ee1d9e1fb5e505ad9a0f184499fe6747c1af" "30b7087fdd149a523aa614568dc6bacfab884145f4a67d64c80d6011d4c90837" "94ba29363bfb7e06105f68d72b268f85981f7fba2ddef89331660033101eb5e5" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "2ef75a0b64c58767376c9e2c5f07027add146720e6fab6b196cb6a1c68ef3c3f" "f5ef7ddecf161a2951048c204c2c6d9d5be08745b136dce583056ad4b234b861" "3ed645b3c08080a43a2a15e5768b893c27f6a02ca3282576e3bc09f3d9fa3aaa" "36affb6b6328d2bfa7a31b3183cd65d6dd1a8c0945382f94de729233b9737359" "19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" "95db78d85e3c0e735da28af774dfa59308db832f84b8a2287586f5b4f21a7a5b" "614f8478963ec8caac8809931c9d00f670e4519388c02f71d9d27b66d5741a7f" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "50ce37723ff2abc0b0b05741864ae9bd22c17cdb469cae134973ad46c7e48044" "0c311fb22e6197daba9123f43da98f273d2bfaeeaeb653007ad1ee77f0003037" "8fed5e4b89cf69107d524c4b91b4a4c35bcf1b3563d5f306608f0c48f580fdf8" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
- ; Rainbow
+    ("196cc00960232cfc7e74f4e95a94a5977cb16fd28ba7282195338f68c84058ec" "ad950f1b1bf65682e390f3547d479fd35d8c66cafa2b8aa28179d78122faa947" "11636897679ca534f0dec6f5e3cb12f28bf217a527755f6b9e744bd240ed47e1" "cd2a93d7b63aff07b3565c1c95e461cb880f0b00d8dd6cdd10fa8ece01ffcfdf" "b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" "4f5bb895d88b6fe6a983e63429f154b8d939b4a8c581956493783b2515e22d6d" "0a1a7f64f8785ffbf5b5fbe8bca1ee1d9e1fb5e505ad9a0f184499fe6747c1af" "30b7087fdd149a523aa614568dc6bacfab884145f4a67d64c80d6011d4c90837" "94ba29363bfb7e06105f68d72b268f85981f7fba2ddef89331660033101eb5e5" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "2ef75a0b64c58767376c9e2c5f07027add146720e6fab6b196cb6a1c68ef3c3f" "f5ef7ddecf161a2951048c204c2c6d9d5be08745b136dce583056ad4b234b861" "3ed645b3c08080a43a2a15e5768b893c27f6a02ca3282576e3bc09f3d9fa3aaa" "36affb6b6328d2bfa7a31b3183cd65d6dd1a8c0945382f94de729233b9737359" "19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" "95db78d85e3c0e735da28af774dfa59308db832f84b8a2287586f5b4f21a7a5b" "614f8478963ec8caac8809931c9d00f670e4519388c02f71d9d27b66d5741a7f" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "50ce37723ff2abc0b0b05741864ae9bd22c17cdb469cae134973ad46c7e48044" "0c311fb22e6197daba9123f43da98f273d2bfaeeaeb653007ad1ee77f0003037" "8fed5e4b89cf69107d524c4b91b4a4c35bcf1b3563d5f306608f0c48f580fdf8" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
+ '(fci-rule-color "#383838")
  '(git-gutter:added-sign "++ ")
  '(git-gutter:deleted-sign "-- ")
  '(git-gutter:modified-sign "** ")
  '(git-gutter:window-width 3)
  '(package-selected-packages
    (quote
-    (jsx-mode gotham-theme atom-one-dark-theme atom-dark-theme 4clojure ample-theme emmet-mode anaconda-mode ensime scala-mode2 scala-mode GOTO-last-change gist highlight-parentheses helm-projectile olivetti auto-yasnippet SMEX rainbow-mode nyan-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
+    (theme-changer moe-theme zenburn-theme jsx-mode gotham-theme atom-one-dark-theme atom-dark-theme 4clojure ample-theme emmet-mode anaconda-mode ensime scala-mode2 scala-mode GOTO-last-change gist highlight-parentheses helm-projectile olivetti auto-yasnippet SMEX rainbow-mode nyan-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
  '(python-check-command "/usr/local/bin/pyflakes"))
 
 ;; there are necessary
@@ -179,8 +181,18 @@
 (global-highlight-parentheses-mode t)
 
 ;; personal styling
-(set-default-font "Monaco 16")
-(load-theme 'molokai);;https://github.com/tonsky/FiraCodex
+(set-default-font "Monaco 17")
+
+(load-theme 'monokai);;https://github.com/tonsky/FiraCodex
+(set-background-color "#1b1d1e")
+(set-face-foreground 'font-lock-comment-face "#465457")
+(set-face-foreground 'font-lock-comment-delimiter-face "#465457")
+(set-face-foreground 'font-lock-doc-face "#757575")
+
+;(require 'moe-theme)
+;(moe-theme-set-color 'w/b)
+;(moe-dark)
+
 
 ;(set-face-attribute 'default nil :height 140)
 (scroll-bar-mode -1)
@@ -247,7 +259,6 @@
 
 (add-hook 'clojure-mode-hook 'cider-mode)
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
-(add-hook 'cider-repl-mode-hook 'subword-mode)
 (add-hook 'cider-repl-mode-hook 'smartparens-strict-mode)
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 
@@ -865,3 +876,9 @@ You can use arrow-keys or WASD.
 (add-hook 'focus-out-hook 'save-all)
 
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
