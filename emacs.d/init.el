@@ -2,9 +2,6 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-;(package-initialize)
-;(setq custom-file "/Users/yusup/.emacs.d/personal/custom.el")
-;(load custom-file)
 (require 'package)
 (package-initialize)
 (put 'erase-buffer 'disabled nil)
@@ -35,7 +32,7 @@
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(custom-safe-themes
    (quote
-    ("196cc00960232cfc7e74f4e95a94a5977cb16fd28ba7282195338f68c84058ec" "ad950f1b1bf65682e390f3547d479fd35d8c66cafa2b8aa28179d78122faa947" "11636897679ca534f0dec6f5e3cb12f28bf217a527755f6b9e744bd240ed47e1" "cd2a93d7b63aff07b3565c1c95e461cb880f0b00d8dd6cdd10fa8ece01ffcfdf" "b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" "4f5bb895d88b6fe6a983e63429f154b8d939b4a8c581956493783b2515e22d6d" "0a1a7f64f8785ffbf5b5fbe8bca1ee1d9e1fb5e505ad9a0f184499fe6747c1af" "30b7087fdd149a523aa614568dc6bacfab884145f4a67d64c80d6011d4c90837" "94ba29363bfb7e06105f68d72b268f85981f7fba2ddef89331660033101eb5e5" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "2ef75a0b64c58767376c9e2c5f07027add146720e6fab6b196cb6a1c68ef3c3f" "f5ef7ddecf161a2951048c204c2c6d9d5be08745b136dce583056ad4b234b861" "3ed645b3c08080a43a2a15e5768b893c27f6a02ca3282576e3bc09f3d9fa3aaa" "36affb6b6328d2bfa7a31b3183cd65d6dd1a8c0945382f94de729233b9737359" "19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" "95db78d85e3c0e735da28af774dfa59308db832f84b8a2287586f5b4f21a7a5b" "614f8478963ec8caac8809931c9d00f670e4519388c02f71d9d27b66d5741a7f" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "50ce37723ff2abc0b0b05741864ae9bd22c17cdb469cae134973ad46c7e48044" "0c311fb22e6197daba9123f43da98f273d2bfaeeaeb653007ad1ee77f0003037" "8fed5e4b89cf69107d524c4b91b4a4c35bcf1b3563d5f306608f0c48f580fdf8" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
+    ("f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" "196cc00960232cfc7e74f4e95a94a5977cb16fd28ba7282195338f68c84058ec" "ad950f1b1bf65682e390f3547d479fd35d8c66cafa2b8aa28179d78122faa947" "11636897679ca534f0dec6f5e3cb12f28bf217a527755f6b9e744bd240ed47e1" "cd2a93d7b63aff07b3565c1c95e461cb880f0b00d8dd6cdd10fa8ece01ffcfdf" "b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" "4f5bb895d88b6fe6a983e63429f154b8d939b4a8c581956493783b2515e22d6d" "0a1a7f64f8785ffbf5b5fbe8bca1ee1d9e1fb5e505ad9a0f184499fe6747c1af" "30b7087fdd149a523aa614568dc6bacfab884145f4a67d64c80d6011d4c90837" "94ba29363bfb7e06105f68d72b268f85981f7fba2ddef89331660033101eb5e5" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "2ef75a0b64c58767376c9e2c5f07027add146720e6fab6b196cb6a1c68ef3c3f" "f5ef7ddecf161a2951048c204c2c6d9d5be08745b136dce583056ad4b234b861" "3ed645b3c08080a43a2a15e5768b893c27f6a02ca3282576e3bc09f3d9fa3aaa" "36affb6b6328d2bfa7a31b3183cd65d6dd1a8c0945382f94de729233b9737359" "19352d62ea0395879be564fc36bc0b4780d9768a964d26dfae8aad218062858d" "95db78d85e3c0e735da28af774dfa59308db832f84b8a2287586f5b4f21a7a5b" "614f8478963ec8caac8809931c9d00f670e4519388c02f71d9d27b66d5741a7f" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "50ce37723ff2abc0b0b05741864ae9bd22c17cdb469cae134973ad46c7e48044" "0c311fb22e6197daba9123f43da98f273d2bfaeeaeb653007ad1ee77f0003037" "8fed5e4b89cf69107d524c4b91b4a4c35bcf1b3563d5f306608f0c48f580fdf8" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "08851585c86abcf44bb1232bced2ae13bc9f6323aeda71adfa3791d6e7fea2b6" default)))
  '(fci-rule-color "#383838")
  '(git-gutter:added-sign "++ ")
  '(git-gutter:deleted-sign "-- ")
@@ -43,7 +40,7 @@
  '(git-gutter:window-width 3)
  '(package-selected-packages
    (quote
-    (theme-changer moe-theme zenburn-theme jsx-mode gotham-theme atom-one-dark-theme atom-dark-theme 4clojure ample-theme emmet-mode anaconda-mode ensime scala-mode2 scala-mode GOTO-last-change gist highlight-parentheses helm-projectile olivetti auto-yasnippet SMEX rainbow-mode nyan-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
+    (beacon zenburn company-emoji focus osx-dictionary idle-highlight-mode theme-changer moe-theme zenburn-theme jsx-mode gotham-theme atom-one-dark-theme atom-dark-theme 4clojure ample-theme emmet-mode anaconda-mode ensime scala-mode2 scala-mode GOTO-last-change gist highlight-parentheses helm-projectile olivetti auto-yasnippet SMEX rainbow-mode nyan-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
  '(python-check-command "/usr/local/bin/pyflakes"))
 
 ;; there are necessary
@@ -84,9 +81,12 @@
  'cyberpunk-theme
  'magit-gitflow
  'markdown-mode
+ 'idle-highlight-mode
  'company
  'spaceline
+ 'fill-column-indicator
  'elpy
+ 'beacon
  'helm
  'helm-projectile
  'pylint
@@ -103,9 +103,11 @@
  'monokai-theme
  'flycheck
  'counsel
+ 'use-package
  'goto-last-change
  'ace-window
  'scala-mode2
+ 'aggressive-indent
  'ensime)
 
 (projectile-global-mode)
@@ -124,14 +126,6 @@
 (nyan-mode t)
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'lisp-mode-hook 'paredit-mode) 
-(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'clojure-mode-hook 'paredit-mode)
-(add-hook 'clojure-mode-hook 'git-gutter-mode)
-;;;
-;;; end of rainbow
-;;;
 
 ;;;  swiper,ivy is much better than default and helm
 (ivy-mode 1)
@@ -145,6 +139,10 @@
 
 ;; better search and replace
 (global-set-key (kbd "C-c %") 'query-replace-regexp)
+;; Key bindings
+;(require 'dash-at-point)
+(global-set-key (kbd "C-c d") 'dash-at-point)
+(global-set-key (kbd "C-c e") 'dash-at-point-with-docset)
 
 ;;;  show recent files
 (require 'recentf)
@@ -181,24 +179,12 @@
 (global-highlight-parentheses-mode t)
 
 ;; personal styling
-(set-default-font "Monaco 17")
-
+(set-frame-font "Fira Code 16")
 (load-theme 'monokai);;https://github.com/tonsky/FiraCodex
 (set-background-color "#1b1d1e")
 (set-face-foreground 'font-lock-comment-face "#465457")
 (set-face-foreground 'font-lock-comment-delimiter-face "#465457")
 (set-face-foreground 'font-lock-doc-face "#757575")
-
-;(require 'moe-theme)
-;(moe-theme-set-color 'w/b)
-;(moe-dark)
-
-
-;(set-face-attribute 'default nil :height 140)
-(scroll-bar-mode -1)
-
-;(add-to-list 'default-frame-alist '(height . 40))
-;(add-to-list 'default-frame-alist '(width . 90))
 
 ;;;  change command and option key 
 (setq mac-command-modifier 'meta)
@@ -208,44 +194,65 @@
 (keyboard-translate ?\C-x ?\C-u)
 (keyboard-translate ?\C-u ?\C-x)
 
-;;; Clojure
-(require 'clojure-mode)
-(require 'cider)
-(setq cider-ovelays-use-font-lock t)
-;; clojure related stuff
-;; enable eldoc in clojure buffers
-(add-hook 'cider-mode-hook #'eldoc-mode)
-;; hide *nrepl* connection
-(setq nrepl-hide-special-buffers t)
-(setq cider-repl-tab-command #'indent-for-tab-command)
+(require 'use-package)
+(use-package clojure-mode
+  :ensure t
+  :mode (("\\.clj\\'" . clojure-mode)
+         ("\\.edn\\'" . clojure-mode))
+  :init
+  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'clojure-mode-hook #'yas-minor-mode)         
+  (add-hook 'clojure-mode-hook #'subword-mode)           
+  (add-hook 'clojure-mode-hook #'smartparens-mode)
+  (add-hook 'clojure-mode-hook #'paredit-mode)       
+  (add-hook 'clojure-mode-hook #'eldoc-mode)
+  (add-hook 'clojure-mode-hook #'idle-highlight-mode)
+  (add-hook 'clojure-mode-hook (lambda () (setq dash-at-point-docset "clojure"))))
 
-(setq cider-auto-mode nil)
-;;dont log communications with log server
-(setq nrepl-log-messages nil)
-(setq cider-prefer-local-resources t)
-(setq cider-repl-pop-to-buffer-on-connect nil)
-(setq cider-show-error-buffer nil)
-(setq cider-show-error-buffer 'only-in-repl)
-(setq cider-auto-select-error-buffer nil)
-(setq cider-stacktrace-default-filters nil)
-(setq cider-stacktrace-fill-column 80)
-(setq nrepl-buffer-name-separator "-")
-(setq nrepl-buffer-name-show-port t)
+(use-package cider
+  :ensure t
+  :defer t
+  :init (add-hook 'cider-mode-hook #'clj-refactor-mode)
+  :diminish subword-mode
+  :config
+  (setq nrepl-log-messages t
+        cider-auto-select-error-buffer nil
+        cider-repl-display-in-current-window nil
+        cider-repl-use-clojure-font-lock t    
+        cider-prompt-save-file-on-load 'always-save
+        cider-font-lock-dynamically '(macro core function var)
+        nrepl-hide-special-buffers t
+        cider-repl-result-prefix ";; => "
+        cider-overlays-use-font-lock t)
+  
+  (cider-repl-toggle-pretty-printing))
 
+(use-package cider-eval-sexp-fu
+  :defer t)
 
-(setq cider-repl-display-in-current-window nil)
-(setq cider-prompt-save-file-on-load nil)
+(use-package clj-refactor
+  :defer t
+  :ensure t
+  :diminish clj-refactor-mode
+  :config (cljr-add-keybindings-with-prefix "C-c C-m"))
 
-(setq cider-repl-result-prefix ";; => ")
-(setq cider-interactive-eval-result-prefix ";; => ")
-(setq cider-repl-use-clojure-font-lock t)
-(setq cider-switch-to-repl-command #'cider-switch-to-current-repl-buffer)
-(setq cider-test-show-report-on-success t)
+(use-package smartparens
+  :defer t
+  :ensure t
+  :diminish smartparens-mode
+  :init
+  (setq sp-override-key-bindings
+        '(("C-<right>" . nil)
+          ("C-<left>" . nil)
+          ("C-)" . sp-forward-slurp-sexp)
+          ("M-<backspace>" . nil)
+          ("C-(" . sp-forward-barf-sexp)))
+  :config
+  (use-package smartparens-config)
+  (sp-use-smartparens-bindings)
+  (sp--update-override-key-bindings)
+  :commands (smartparens-mode show-smartparens-mode))
 
-(setq cider-known-endpoints '(("hyper" "127.0.0.1" "33333")))
-(setq cider-refresh-show-log-buffer t)
-(setq cider-repl-wrap-history t)
-(setq cider-repl-history-size 1000)
 
 ;;; Comfuckingpany
 (global-company-mode)
@@ -255,32 +262,6 @@
 (setq company-dabbrev-downcase nil)
 (setq company-tooltip-flip-when-above t)
 (setq company-dabbrev-code-other-buffers 'code)
-
-
-(add-hook 'clojure-mode-hook 'cider-mode)
-(add-hook 'cider-repl-mode-hook 'paredit-mode)
-(add-hook 'cider-repl-mode-hook 'smartparens-strict-mode)
-(add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
-
-;;; Clojure Refartoring Awesomeness, you know.
-(require 'clj-refactor)
-(defun my-clojure-mode-hook ()
-  (clj-refactor-mode 1)
-  (cljr-add-keybindings-with-prefix "C-c C-m"))
-
-(add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
-
-(defun cider-eval-expression-at-point-in-repl ()
-  (interactive)
-  (let ((form (cider-defun-at-point)))
-    ;; Strip excess whitespace
-    (while (string-match "\\`\s+\\|\n+\\'" form)
-           (setq form (replace-match "" t t form)))
-    (set-buffer (cider-get-repl-buffer))
-    (goto-char (point-max))
-    (insert form)
-    (cider-repl-return)))
-;(define-key cider-mode-map            (kbd "C-;") 'cider-eval-expression-at-point-in-repl)
 
 
 (require 'cider-eval-sexp-fu)
@@ -412,11 +393,7 @@
 ;(key-chord-define-global "@@" 'cider-restart)
 (key-chord-define-global "$$" 'project-explorer-open)
 (key-chord-define-global "xx" 'execute-extended-command)
-
-(setq cider-test-show-report-on-success t)
-(define-key clojure-mode-map (kbd "C-x c") 'cider-eval-last-sexp-to-repl)
 (define-key emacs-lisp-mode-map (kbd "C-c C-c") 'eval-last-sexp)
-
 
 (defun yui-compress ()
   (interactive)
@@ -469,7 +446,6 @@
   (local-set-key (kbd "C-c C-s") 'nrepl-refresh)
   (local-set-key (kbd "<f5>") 'nrepl-reset)
   (local-set-key (kbd "<f6>") 'nrepl-run-all-tests))
-
 (add-hook 'clojure-mode-hook 'mbp-clojure-mode-keybindings)
 
 (global-set-key (kbd "C-x t") 'temp-buffer)
@@ -592,20 +568,6 @@
         (message "empty string")
       (message selection))))
 
-(defun eshell-here ()
-  "Opens up a new shell in the directory associated with the current buffer's file."
-  (interactive)
-  (let* ((parent (file-name-directory (buffer-file-name)))
-         (name   (car
-                  (last
-                   (split-string parent "/" t)))))
-    (split-window-vertically)
-    (other-window 1)
-    (eshell "new")
-    (rename-buffer (concat "*eshell: " name "*"))
-
-    (insert (concat "ls"))
-    (eshell-send-input)))
 
 ;;random text we need sometimes
 (lorem-ipsum-use-default-bindings)
@@ -648,10 +610,8 @@
 
 (global-set-key (kbd "C-c I") 'settings)
 
-(column-number-mode 1)
 ;(require 'powerline)
 ;(powerline-default-theme)
-
 (require 'origami)
 
 (require 'markdown-mode)
@@ -659,19 +619,6 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\grimoire*\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-(require 'yasnippet)
-(yas-global-mode 1)
-(define-key yas-minor-mode-map (kbd "<tab>") nil)
-(define-key yas-minor-mode-map (kbd "TAB") nil)
-(define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
-
-(require 'popup)
-(define-key popup-menu-keymap (kbd "M-n") 'popup-next)
-(define-key popup-menu-keymap (kbd "TAB") 'popup-next)
-(define-key popup-menu-keymap (kbd "<tab>") 'popup-next)
-(define-key popup-menu-keymap (kbd "<backtab>") 'popup-previous)
-(define-key popup-menu-keymap (kbd "M-p") 'popup-previous)
 
 (defun yas-popup-isearch-prompt (prompt choices &optional display-fn)
   (when (featurep 'popup)
@@ -824,7 +771,9 @@ You can use arrow-keys or WASD.
 (add-hook 'clojure-mode-hook 'fci-mode)
 ;;cleanup modeline
 (load-file "~/.emacs.d/modeline.el")
-
+(add-to-list 'load-path "~/.emacs.d/dash-at-point.el")
+(autoload 'dash-at-point "dash-at-point.el"
+          "Search the word at point with Dash." t nil)
 
 (defvar sk-big-fringe-mode nil)
 (define-minor-mode sk-big-fringe-mode
@@ -845,10 +794,8 @@ You can use arrow-keys or WASD.
 (setq fci-rule-width 1)
 (setq fci-rule-color (face-attribute 'default :background))
 (fci-mode t)
-
-
-;(setq-default fill-column 99999)
 (setq-default fill-column 100)
+
 (setq-default indicate-empty-lines nil)
 ;;; annoying as fuck.
 (global-visual-line-mode -1)
@@ -873,12 +820,17 @@ You can use arrow-keys or WASD.
 (defun save-all ()
   (interactive)
   (save-some-buffers t))
+(setq-default truncate-lines t)
 (add-hook 'focus-out-hook 'save-all)
-
-
+(global-aggressive-indent-mode 1)
+;;; the thing shows up makes you happy and cozy.
+(beacon-mode 1)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+
