@@ -40,7 +40,12 @@
  '(git-gutter:window-width 3)
  '(package-selected-packages
    (quote
-    (smart-mode-line-powerline-theme smart-mode-line beacon zenburn company-emoji focus osx-dictionary idle-highlight-mode theme-changer moe-theme zenburn-theme jsx-mode gotham-theme atom-one-dark-theme atom-dark-theme 4clojure ample-theme emmet-mode anaconda-mode ensime scala-mode2 scala-mode GOTO-last-change gist highlight-parentheses helm-projectile olivetti auto-yasnippet SMEX rainbow-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup swiper-helm smartparens rainbow-delimiters python-mode projectile project-explorer origami monokai-theme molokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
+    (smart-mode-line beacon  company-emoji  osx-dictionary idle-highlight-mode
+                     jsx-mode   4clojure ample-theme emmet-mode anaconda-mode ensime scala-mode2 scala-mode GOTO-last-change gist
+                     highlight-parentheses helm-projectile  auto-yasnippet SMEX rainbow-mode helm counsel rainbow-delimeters company
+                     clojure-mode paredit swiper pylint pyflakes ace-window popup swiper-helm smartparens  python-mode projectile project-explorer
+                     origami monokai-theme  markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme
+                     clojure-snippets clj-refactor cider-eval-sexp-fu)))
  '(python-check-command "/usr/local/bin/pyflakes"))
 
 ;; there are necessary
@@ -175,13 +180,7 @@
 
 ;; personal styling
 (set-frame-font "Monaco 16")
-(load-theme 'monokai);;https://github.com/tonsky/FiraCodex
-(set-background-color "#1b1d1e")
-(set-face-foreground 'font-lock-comment-face "#465457")
-(set-face-foreground 'font-lock-comment-delimiter-face "#465457")
-(set-face-foreground 'font-lock-doc-face "#757575")
-
-;;;  change command and option key 
+(load-theme 'monokai)
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'super)
 
@@ -764,8 +763,8 @@ You can use arrow-keys or WASD.
 (require 'ensime)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 (add-hook 'clojure-mode-hook 'fci-mode)
-;;cleanup modeline
-;(load-file "~/.emacs.d/modeline.el")
+
+                                        
 (add-to-list 'load-path "~/.emacs.d/dash-at-point.el")
 (autoload 'dash-at-point "dash-at-point.el"
           "Search the word at point with Dash." t nil)
@@ -790,6 +789,7 @@ You can use arrow-keys or WASD.
 (setq fci-rule-color (face-attribute 'default :background))
 (fci-mode t)
 (setq-default fill-column 100)
+(column-number-mode t)
 
 (setq-default indicate-empty-lines nil)
 ;;; annoying as fuck.
@@ -822,10 +822,8 @@ You can use arrow-keys or WASD.
 (beacon-mode 1)
 
 (setq sml/no-confirm-load-theme t)
-                                        ;(setq sml/theme 'smart-mode-line-powerline)
-(setq sml/theme 'dark)
+;(setq sml/theme 'light)
 (sml/setup)
-
 
 ;;let
 (defvar mode-line-cleaner-alist
@@ -848,8 +846,6 @@ You can use arrow-keys or WASD.
 When you add a new element to the alist, keep in mind that you
 must pass the correct minor/major mode symbol and a string you
 want to use in the modeline *in lieu of* the original.")
-
-
 (defun clean-mode-line ()
   (interactive)
   (loop for cleaner in mode-line-cleaner-alist
@@ -862,15 +858,11 @@ want to use in the modeline *in lieu of* the original.")
              (when (eq mode major-mode)
                (setq mode-name mode-str)))))
 
-
 (add-hook 'after-change-major-mode-hook 'clean-mode-line)
-
 
 (set-face-attribute 'mode-line nil
                     :foreground "gray60" :background (face-attribute 'default :background)
                     :inverse-video nil    :box nil)
-
-(set-face-attribute 'mode-line-inactive nil    :foreground "gray60" :background (face-attribute 'default :background) 
-                    :inverse-video nil    :box nil) 
-
-(nyan-mode t)
+(set-face-attribute 'mode-line-inactive nil
+                    :foreground "gray60" :background (face-attribute 'default :background)
+                    :inverse-video nil    :box nil)
