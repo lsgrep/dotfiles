@@ -30,23 +30,51 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ '(compilation-message-face (quote default))
  '(custom-safe-themes
    (quote
-    ("196cc00960232cfc7e74f4e95a94a5977cb16fd28ba7282195338f68c84058ec" default)))
+    ("b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" "c86f868347919095aa44d2a6129dd714cbcf8feaa88ba954f636295b14ceff8f" "196cc00960232cfc7e74f4e95a94a5977cb16fd28ba7282195338f68c84058ec" default)))
  '(fci-rule-color "#383838")
- '(git-gutter:added-sign "++ ")
- '(git-gutter:deleted-sign "-- ")
- '(git-gutter:modified-sign "** ")
- '(git-gutter:window-width 3)
+ '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
+ '(highlight-tail-colors
+   (quote
+    (("#49483E" . 0)
+     ("#67930F" . 20)
+     ("#349B8D" . 30)
+     ("#21889B" . 50)
+     ("#968B26" . 60)
+     ("#A45E0A" . 70)
+     ("#A41F99" . 85)
+     ("#49483E" . 100))))
+ '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (smart-mode-line beacon  company-emoji  osx-dictionary idle-highlight-mode
-                     jsx-mode   4clojure ample-theme emmet-mode anaconda-mode ensime scala-mode2 scala-mode GOTO-last-change gist
-                     highlight-parentheses helm-projectile  auto-yasnippet SMEX rainbow-mode helm counsel rainbow-delimeters company
-                     clojure-mode paredit swiper pylint pyflakes ace-window popup swiper-helm smartparens  python-mode projectile project-explorer
-                     origami monokai-theme  markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme
-                     clojure-snippets clj-refactor cider-eval-sexp-fu)))
- '(python-check-command "/usr/local/bin/pyflakes"))
+    (molokai-theme smart-mode-line beacon company-emoji osx-dictionary idle-highlight-mode jsx-mode 4clojure ample-theme emmet-mode anaconda-mode ensime scala-mode2 scala-mode GOTO-last-change gist highlight-parentheses helm-projectile auto-yasnippet SMEX rainbow-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup swiper-helm smartparens python-mode projectile project-explorer origami monokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
+ '(python-check-command "/usr/local/bin/pyflakes")
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#F92672")
+     (40 . "#CF4F1F")
+     (60 . "#C26C0F")
+     (80 . "#E6DB74")
+     (100 . "#AB8C00")
+     (120 . "#A18F00")
+     (140 . "#989200")
+     (160 . "#8E9500")
+     (180 . "#A6E22E")
+     (200 . "#729A1E")
+     (220 . "#609C3C")
+     (240 . "#4E9D5B")
+     (260 . "#3C9F79")
+     (280 . "#A1EFE4")
+     (300 . "#299BA6")
+     (320 . "#2896B5")
+     (340 . "#2790C3")
+     (360 . "#66D9EF"))))
+ '(vc-annotate-very-old-color nil)
+ '(weechat-color-list
+   (unspecified "#272822" "#49483E" "#A20C41" "#F92672" "#67930F" "#A6E22E" "#968B26" "#E6DB74" "#21889B" "#66D9EF" "#A41F99" "#FD5FF0" "#349B8D" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
 
 ;; there are necessary
 (defun ensure-package-installed (&rest packages)
@@ -67,8 +95,6 @@
 (ensure-package-installed
  'grizzl
  'swiper
- 'git-gutter
- 'window-number
  'project-explorer
  'paredit
  'recentf
@@ -119,6 +145,7 @@
 (smartparens-global-mode)
 (rainbow-mode 1)
 
+
 ;;; my dick is short ,so is my life
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;;; no bullshit
@@ -168,7 +195,7 @@
   (tool-bar-mode -1)
   (scroll-bar-mode -1))
 
-(global-hl-line-mode -1)
+(global-hl-line-mode +1)
 (make-variable-buffer-local 'global-hl-line-mode)
 
 (require 'paren)
@@ -179,7 +206,7 @@
 (global-highlight-parentheses-mode t)
 
 ;; personal styling
-(set-frame-font "Monaco 16")
+(set-frame-font "Monaco 15")
 (load-theme 'monokai)
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'super)
@@ -312,33 +339,16 @@
 
 
 ;;; Git Gutterys
-(require 'git-gutter)
-(global-git-gutter-mode +1)
-;; If you would like to use git-gutter.el and linum-mode
-;(git-gutter:linum-setup)
-
+;;; (require 'git-gutter)
+;;; (global-git-gutter-mode +1)
+;;; (git-gutter:linum-setup)
 ;; background color ,modified for monokai
-;(set-face-foreground 'git-gutter:modified "#282828") monokai default color
-(set-face-background 'git-gutter:deleted (face-attribute 'default :background)) 
-(set-face-foreground 'git-gutter:deleted (face-attribute 'font-lock-comment-face :foreground))
-(set-face-background 'git-gutter:modified (face-attribute 'default :background))
-(set-face-foreground 'git-gutter:modified (face-attribute 'font-lock-comment-face :foreground))
-(set-face-background 'git-gutter:added (face-attribute 'default :background))
-(set-face-foreground 'git-gutter:added (face-attribute 'font-lock-comment-face :foreground))
-
-(global-set-key (kbd "C-x C-g") 'git-gutter:toggle)
-(global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
-
-;; Jump to next/previous hunk
-(global-set-key (kbd "C-x p") 'git-gutter:previous-hunk)
-(global-set-key (kbd "C-x n") 'git-gutter:next-hunk)
-
-;; Stage current hunk
-(global-set-key (kbd "C-x v s") 'git-gutter:stage-hunk)
-
-;; Revert current hunk
-(global-set-key (kbd "C-x v r") 'git-gutter:revert-hunk)
-
+;; (set-face-background 'git-gutter:deleted (face-attribute 'default :background)) 
+;; (set-face-foreground 'git-gutter:deleted (face-attribute 'font-lock-comment-face :foreground))
+;; (set-face-background 'git-gutter:modified (face-attribute 'default :background))
+;; (set-face-foreground 'git-gutter:modified (face-attribute 'font-lock-comment-face :foreground))
+;; (set-face-background 'git-gutter:added (face-attribute 'default :background))
+;; (set-face-foreground 'git-gutter:added (face-attribute 'font-lock-comment-face :foreground))
 
 ;; line management
 (defun open-line-below ()
@@ -508,7 +518,7 @@
 ;;set the background-color of selected region
 
 ;; make a clear selection color
-(set-face-attribute 'region nil :background "#454545")
+(set-face-attribute 'region nil :background "#898989")
 ;;window management
 ;; highlight the window number in pink color
 
@@ -519,8 +529,8 @@
 (set-face-attribute 'fringe nil :background (face-attribute 'default :background))
 (set-face-attribute 'vertical-border nil :foreground (face-attribute 'fringe :background))
 
-;(global-linum-mode +1) 
-;(setq linum-format " %4d ")
+;;; (global-linum-mode +1)
+;;; (setq linum-format " %4d ")
 
 ;;; clear within the eshell to clear the entire buffer.
 (defun eshell/clear ()
@@ -766,29 +776,14 @@ You can use arrow-keys or WASD.
 
                                         
 (add-to-list 'load-path "~/.emacs.d/dash-at-point.el")
-(autoload 'dash-at-point "dash-at-point.el"
-          "Search the word at point with Dash." t nil)
-
-(defvar sk-big-fringe-mode nil)
-(define-minor-mode sk-big-fringe-mode
-  "Minor mode to hide the mode-line in the current buffer."
-  :init-value nil
-  :global t
-  :variable sk-big-fringe-mode
-  :group 'editing-basics
-  (if (not sk-big-fringe-mode)
-      (set-fringe-style nil)
-    (set-fringe-mode
-     (/ (- (frame-pixel-width)
-           (* 100 (frame-char-width)))
-        2))))
+(autoload 'dash-at-point "dash-at-point.el"  "Search the word at point with Dash." t nil)
 
 (require 'fill-column-indicator)
 (setq fci-style 'rule)
 (setq fci-rule-width 1)
 (setq fci-rule-color (face-attribute 'default :background))
 (fci-mode t)
-(setq-default fill-column 100)
+(setq-default fill-column 200)
 (column-number-mode t)
 
 (setq-default indicate-empty-lines nil)
@@ -832,7 +827,6 @@ You can use arrow-keys or WASD.
     (paredit-mode . " π")
     (eldoc-mode . "")
     (abbrev-mode . "")
-    (git-gutter-mode . "")
     ;; Major modes
     (lisp-interaction-mode . " λλ")
     (clojure-mode . " λ")
@@ -866,3 +860,11 @@ want to use in the modeline *in lieu of* the original.")
 (set-face-attribute 'mode-line-inactive nil
                     :foreground "gray60" :background (face-attribute 'default :background)
                     :inverse-video nil    :box nil)
+
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

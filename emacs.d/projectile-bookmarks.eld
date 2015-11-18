@@ -1,1 +1,1 @@
-("~/dotfiles/" "/data/Clojure/hyper/")
+("~/dotfiles/" "/data/Clojure/hyper/" "/data/Clojure/onyx/")
