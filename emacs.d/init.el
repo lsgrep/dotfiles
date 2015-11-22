@@ -28,13 +28,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(compilation-message-face (quote default))
  '(custom-safe-themes
    (quote
-    ("b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" "c86f868347919095aa44d2a6129dd714cbcf8feaa88ba954f636295b14ceff8f" "196cc00960232cfc7e74f4e95a94a5977cb16fd28ba7282195338f68c84058ec" default)))
- '(fci-rule-color "#383838")
+    ("196cc00960232cfc7e74f4e95a94a5977cb16fd28ba7282195338f68c84058ec" default)))
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
    (quote
@@ -49,7 +50,7 @@
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (molokai-theme smart-mode-line beacon company-emoji osx-dictionary idle-highlight-mode jsx-mode 4clojure ample-theme emmet-mode anaconda-mode ensime scala-mode2 scala-mode GOTO-last-change gist highlight-parentheses helm-projectile auto-yasnippet SMEX rainbow-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup swiper-helm smartparens python-mode projectile project-explorer origami monokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
+    (gotham-theme molokai-theme smart-mode-line beacon company-emoji osx-dictionary idle-highlight-mode jsx-mode 4clojure ample-theme emmet-mode anaconda-mode ensime scala-mode2 scala-mode GOTO-last-change gist highlight-parentheses helm-projectile auto-yasnippet SMEX rainbow-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup swiper-helm smartparens python-mode projectile project-explorer origami monokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
  '(python-check-command "/usr/local/bin/pyflakes")
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
@@ -783,7 +784,7 @@ You can use arrow-keys or WASD.
 (setq fci-rule-width 1)
 (setq fci-rule-color (face-attribute 'default :background))
 (fci-mode t)
-(setq-default fill-column 200)
+(setq-default fill-column 100)
 (column-number-mode t)
 
 (setq-default indicate-empty-lines nil)
@@ -801,7 +802,7 @@ You can use arrow-keys or WASD.
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
-(setq-default truncate-lines nil)
+
 (setq truncate-partial-width-windows nil)
 (set-fringe-mode '(1 . 1))
 
@@ -810,7 +811,7 @@ You can use arrow-keys or WASD.
 (defun save-all ()
   (interactive)
   (save-some-buffers t))
-(setq-default truncate-lines t)
+(setq-default truncate-lines nil)
 (add-hook 'focus-out-hook 'save-all)
 (global-aggressive-indent-mode 1)
 ;;; the thing shows up makes you happy and cozy.
