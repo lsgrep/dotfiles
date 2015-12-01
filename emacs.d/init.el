@@ -3,6 +3,7 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (require 'package)
+(load-library "url-handlers")
 (package-initialize)
 (put 'erase-buffer 'disabled nil)
 ;;; quick startup
@@ -23,59 +24,6 @@
 (setq scroll-step            1
       scroll-conservatively  10000)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
- '(compilation-message-face (quote default))
- '(custom-safe-themes
-   (quote
-    ("196cc00960232cfc7e74f4e95a94a5977cb16fd28ba7282195338f68c84058ec" default)))
- '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
- '(highlight-tail-colors
-   (quote
-    (("#49483E" . 0)
-     ("#67930F" . 20)
-     ("#349B8D" . 30)
-     ("#21889B" . 50)
-     ("#968B26" . 60)
-     ("#A45E0A" . 70)
-     ("#A41F99" . 85)
-     ("#49483E" . 100))))
- '(magit-diff-use-overlays nil)
- '(package-selected-packages
-   (quote
-    (gotham-theme molokai-theme smart-mode-line beacon company-emoji osx-dictionary idle-highlight-mode jsx-mode 4clojure ample-theme emmet-mode anaconda-mode ensime scala-mode2 scala-mode GOTO-last-change gist highlight-parentheses helm-projectile auto-yasnippet SMEX rainbow-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup swiper-helm smartparens python-mode projectile project-explorer origami monokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
- '(python-check-command "/usr/local/bin/pyflakes")
- '(vc-annotate-background nil)
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#F92672")
-     (40 . "#CF4F1F")
-     (60 . "#C26C0F")
-     (80 . "#E6DB74")
-     (100 . "#AB8C00")
-     (120 . "#A18F00")
-     (140 . "#989200")
-     (160 . "#8E9500")
-     (180 . "#A6E22E")
-     (200 . "#729A1E")
-     (220 . "#609C3C")
-     (240 . "#4E9D5B")
-     (260 . "#3C9F79")
-     (280 . "#A1EFE4")
-     (300 . "#299BA6")
-     (320 . "#2896B5")
-     (340 . "#2790C3")
-     (360 . "#66D9EF"))))
- '(vc-annotate-very-old-color nil)
- '(weechat-color-list
-   (unspecified "#272822" "#49483E" "#A20C41" "#F92672" "#67930F" "#A6E22E" "#968B26" "#E6DB74" "#21889B" "#66D9EF" "#A41F99" "#FD5FF0" "#349B8D" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
 
 ;; there are necessary
 (defun ensure-package-installed (&rest packages)
@@ -96,10 +44,12 @@
 (ensure-package-installed
  'grizzl
  'swiper
+ 'emmet-mode
  'project-explorer
  'paredit
  'recentf
  'clojure-snippets
+ 'smart-mode-line
  'origami
  'clojure-mode
  'clj-refactor
@@ -141,6 +91,63 @@
  'aggressive-indent
  'ensime)
 
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ '(compilation-message-face (quote default))
+ '(custom-safe-themes
+   (quote
+    ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" "c86f868347919095aa44d2a6129dd714cbcf8feaa88ba954f636295b14ceff8f" "196cc00960232cfc7e74f4e95a94a5977cb16fd28ba7282195338f68c84058ec" default)))
+ '(fci-rule-color "#49483E")
+ '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
+ '(highlight-tail-colors
+   (quote
+    (("#49483E" . 0)
+     ("#67930F" . 20)
+     ("#349B8D" . 30)
+     ("#21889B" . 50)
+     ("#968B26" . 60)
+     ("#A45E0A" . 70)
+     ("#A41F99" . 85)
+     ("#49483E" . 100))))
+ '(magit-diff-use-overlays nil)
+ '(package-selected-packages
+   (quote
+    (discover-js2-refactor color-theme-sanityinc-tomorrow gradle-mode yaml-mode xkcd gotham-theme molokai-theme smart-mode-line beacon company-emoji osx-dictionary idle-highlight-mode jsx-mode 4clojure ample-theme emmet-mode anaconda-mode ensime scala-mode2 scala-mode GOTO-last-change gist highlight-parentheses helm-projectile auto-yasnippet SMEX rainbow-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup swiper-helm smartparens python-mode projectile project-explorer origami monokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
+ '(python-check-command "/usr/local/bin/pyflakes")
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#F92672")
+     (40 . "#CF4F1F")
+     (60 . "#C26C0F")
+     (80 . "#E6DB74")
+     (100 . "#AB8C00")
+     (120 . "#A18F00")
+     (140 . "#989200")
+     (160 . "#8E9500")
+     (180 . "#A6E22E")
+     (200 . "#729A1E")
+     (220 . "#609C3C")
+     (240 . "#4E9D5B")
+     (260 . "#3C9F79")
+     (280 . "#A1EFE4")
+     (300 . "#299BA6")
+     (320 . "#2896B5")
+     (340 . "#2790C3")
+     (360 . "#66D9EF"))))
+ '(vc-annotate-very-old-color nil)
+ '(weechat-color-list
+   (unspecified "#272822" "#49483E" "#A20C41" "#F92672" "#67930F" "#A6E22E" "#968B26" "#E6DB74" "#21889B" "#66D9EF" "#A41F99" "#FD5FF0" "#349B8D" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
+
+
 (projectile-global-mode)
 (key-chord-mode 1)
 (smartparens-global-mode)
@@ -172,6 +179,9 @@
 (global-set-key (kbd "C-c d") 'dash-at-point)
 (global-set-key (kbd "C-c e") 'dash-at-point-with-docset)
 
+
+(global-set-key (kbd "C-M-d") 'paredit-forward-down)
+
 ;;;  show recent files
 (require 'recentf)
 (setq recentf-max-saved-items 200
@@ -188,7 +198,7 @@
     (when file
       (find-file file))))
 
-(global-set-key (kbd "C-c f") 'recentf-ido-find-file)
+(global-set-key (kbd "C-c f") 'helm-recentf)
 
 ;;ui tweaks
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -209,6 +219,7 @@
 ;; personal styling
 (set-frame-font "Monaco 15")
 (load-theme 'monokai)
+
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'super)
 
@@ -278,12 +289,15 @@
 
 ;;; Comfuckingpany
 (global-company-mode)
+
 (setq company-tooltip-align-annotations t)
 (setq company-idle-delay 0.3)
 (setq company-dabbrev-ignore-case nil)
 (setq company-dabbrev-downcase nil)
 (setq company-tooltip-flip-when-above t)
 (setq company-dabbrev-code-other-buffers 'code)
+
+
 
 
 (require 'cider-eval-sexp-fu)
@@ -802,6 +816,16 @@ You can use arrow-keys or WASD.
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
+(require 'gradle-mode)
+(add-to-list 'auto-mode-alist '("\\.gradle?\\'" . gradle-mode))
+
+;;;
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yaml?\\'" . yaml-mode))
+
+(require 'js2-mode)
+(add-to-list 'auto-mode-alist '("\\.js?\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-mode))
 
 (setq truncate-partial-width-windows nil)
 (set-fringe-mode '(1 . 1))
@@ -862,10 +886,14 @@ want to use in the modeline *in lieu of* the original.")
                     :foreground "gray60" :background (face-attribute 'default :background)
                     :inverse-video nil    :box nil)
 
+(require 'emmet-mode)
+(add-hook 'web-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+(add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+(add-hook 'js2-mode-hook 'yas-minor-mode)
+(add-hook 'js2-mode-hook 'js2-refactor-mode)
+(js2r-add-keybindings-with-prefix "C-c C-m")
+
+
