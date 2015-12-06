@@ -2,8 +2,8 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(require 'package)
 (load-library "url-handlers")
+(require 'package)
 (package-initialize)
 (put 'erase-buffer 'disabled nil)
 ;;; quick startup
@@ -54,14 +54,15 @@
  'clojure-mode
  'clj-refactor
  'cider
+ 'yaml-mode
+ 'js2-mode
+ 'js2-refactor
  'web-mode
  'expand-region
  'smartparens
  'rainbow-delimiters
  'popup
  'cider-eval-sexp-fu
- 'cyberpunk-theme
- 'magit-gitflow
  'markdown-mode
  'idle-highlight-mode
  'company
@@ -104,7 +105,7 @@
  '(compilation-message-face (quote default))
  '(custom-safe-themes
    (quote
-    ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" "c86f868347919095aa44d2a6129dd714cbcf8feaa88ba954f636295b14ceff8f" "196cc00960232cfc7e74f4e95a94a5977cb16fd28ba7282195338f68c84058ec" default)))
+    ("196cc00960232cfc7e74f4e95a94a5977cb16fd28ba7282195338f68c84058ec" default)))
  '(fci-rule-color "#49483E")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
@@ -120,7 +121,7 @@
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (discover-js2-refactor color-theme-sanityinc-tomorrow gradle-mode yaml-mode xkcd gotham-theme molokai-theme smart-mode-line beacon company-emoji osx-dictionary idle-highlight-mode jsx-mode 4clojure ample-theme emmet-mode anaconda-mode ensime scala-mode2 scala-mode GOTO-last-change gist highlight-parentheses helm-projectile auto-yasnippet SMEX rainbow-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup swiper-helm smartparens python-mode projectile project-explorer origami monokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy cyberpunk-theme clojure-snippets clj-refactor cider-eval-sexp-fu)))
+    (git-gutter+ discover discover-js2-refactor color-theme-sanityinc-tomorrow gradle-mode yaml-mode xkcd gotham-theme molokai-theme smart-mode-line beacon company-emoji osx-dictionary idle-highlight-mode jsx-mode 4clojure ample-theme emmet-mode anaconda-mode ensime scala-mode2 scala-mode GOTO-last-change gist highlight-parentheses helm-projectile auto-yasnippet SMEX rainbow-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup swiper-helm smartparens python-mode projectile project-explorer origami monokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy clojure-snippets clj-refactor cider-eval-sexp-fu)))
  '(python-check-command "/usr/local/bin/pyflakes")
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
@@ -147,12 +148,10 @@
  '(weechat-color-list
    (unspecified "#272822" "#49483E" "#A20C41" "#F92672" "#67930F" "#A6E22E" "#968B26" "#E6DB74" "#21889B" "#66D9EF" "#A41F99" "#FD5FF0" "#349B8D" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
 
-
 (projectile-global-mode)
 (key-chord-mode 1)
 (smartparens-global-mode)
 (rainbow-mode 1)
-
 
 ;;; my dick is short ,so is my life
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -179,7 +178,6 @@
 (global-set-key (kbd "C-c d") 'dash-at-point)
 (global-set-key (kbd "C-c e") 'dash-at-point-with-docset)
 
-
 (global-set-key (kbd "C-M-d") 'paredit-forward-down)
 
 ;;;  show recent files
@@ -198,7 +196,7 @@
     (when file
       (find-file file))))
 
-(global-set-key (kbd "C-c f") 'helm-recentf)
+(global-set-key (kbd "C-c f") 'ivy-recentf)
 
 ;;ui tweaks
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -217,7 +215,7 @@
 (global-highlight-parentheses-mode t)
 
 ;; personal styling
-(set-frame-font "Monaco 15")
+(set-frame-font "PT Mono 17")
 (load-theme 'monokai)
 
 (setq mac-command-modifier 'meta)
@@ -286,7 +284,6 @@
   (sp--update-override-key-bindings)
   :commands (smartparens-mode show-smartparens-mode))
 
-
 ;;; Comfuckingpany
 (global-company-mode)
 
@@ -296,9 +293,6 @@
 (setq company-dabbrev-downcase nil)
 (setq company-tooltip-flip-when-above t)
 (setq company-dabbrev-code-other-buffers 'code)
-
-
-
 
 (require 'cider-eval-sexp-fu)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;clojure  end
@@ -314,12 +308,9 @@
 ;; Custom blog related stuff
 
 (setq org-src-fontify-natively t)
-;(set-input-mode t nil t)
 
-;;; magit
-(require 'magit-gitflow)
-(add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
-
+(set-input-mode t nil t)
+(require 'magit)
 ;; full screen magit-status
 (defun magit-toggle-whitespace ()
   (interactive)
@@ -352,11 +343,9 @@
 
 (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
 
-
 ;;; Git Gutterys
-;;; (require 'git-gutter)
-;;; (global-git-gutter-mode +1)
-;;; (git-gutter:linum-setup)
+(global-git-gutter+-mode)
+                                        ;(git-gutter:linum-setup)
 ;; background color ,modified for monokai
 ;; (set-face-background 'git-gutter:deleted (face-attribute 'default :background)) 
 ;; (set-face-foreground 'git-gutter:deleted (face-attribute 'font-lock-comment-face :foreground))
@@ -406,7 +395,6 @@
 
 (global-set-key (kbd "M-G") 'beginning-of-buffer)
 (global-set-key (kbd "M-R") 'end-of-buffer)
-
 (key-chord-define-global ",," 'previous-buffer)
 
 ;(key-chord-define-global "@@" 'cider-restart)
@@ -544,8 +532,8 @@
 (set-face-attribute 'fringe nil :background (face-attribute 'default :background))
 (set-face-attribute 'vertical-border nil :foreground (face-attribute 'fringe :background))
 
-;;; (global-linum-mode +1)
-;;; (setq linum-format " %4d ")
+                                        ;(global-linum-mode +1)
+;(setq linum-format " %4d ")
 
 ;;; clear within the eshell to clear the entire buffer.
 (defun eshell/clear ()
@@ -828,8 +816,7 @@ You can use arrow-keys or WASD.
 (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-mode))
 
 (setq truncate-partial-width-windows nil)
-(set-fringe-mode '(1 . 1))
-
+                                        ;(set-fringe-mode '(1 . 1))
 
 ;;; save when necessarry 
 (defun save-all ()
@@ -861,10 +848,10 @@ You can use arrow-keys or WASD.
     (emacs-lisp-mode . " EL")
     (nxhtml-mode . " nx"))
   "Alist for `clean-mode-line'.
-
 When you add a new element to the alist, keep in mind that you
 must pass the correct minor/major mode symbol and a string you
 want to use in the modeline *in lieu of* the original.")
+
 (defun clean-mode-line ()
   (interactive)
   (loop for cleaner in mode-line-cleaner-alist
@@ -891,9 +878,6 @@ want to use in the modeline *in lieu of* the original.")
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
 (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
 
-
 (add-hook 'js2-mode-hook 'yas-minor-mode)
 (add-hook 'js2-mode-hook 'js2-refactor-mode)
 (js2r-add-keybindings-with-prefix "C-c C-m")
-
-

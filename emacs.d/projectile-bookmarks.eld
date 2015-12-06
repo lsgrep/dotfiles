@@ -1,1 +1,1 @@
-("/work/cmp/" "~/dotfiles/" "/usr/local/" "/data/Clojure/hyper/" "/work/ol3-react-example/" "/work/cmp/src/main/webapp/ol/" "/data/Clojure/Web/cmp/" "/data/Clojure/onyx/")
+("~/dotfiles/" "/data/Clojure/hyper/" "/work/cmp/" "/work/Lispy/om/" "/data/Clojure/om-tutorial/" "/usr/local/" "/work/ol3-react-example/" "/work/cmp/src/main/webapp/ol/" "/data/Clojure/Web/cmp/" "/data/Clojure/onyx/")
