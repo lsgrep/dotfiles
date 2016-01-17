@@ -3,7 +3,7 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (load-library "url-handlers")
-(require 'package)
+;(require 'package)
 (package-initialize)
 (put 'erase-buffer 'disabled nil)
 ;;; quick startup
@@ -74,7 +74,7 @@
  'helm-projectile
  'pylint
  'rainbow-mode
- 'pyflakes
+ 'magit
  'anaconda-mode
  'lorem-ipsum
  'python-mode
@@ -88,7 +88,8 @@
  'use-package
  'goto-last-change
  'ace-window
- 'scala-mode2
+ 'gradle-mode
+ 'exec-path-from-shell
  'aggressive-indent
  'ensime)
 
@@ -98,6 +99,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(Linum-format "%7i ")
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
@@ -105,7 +107,8 @@
  '(compilation-message-face (quote default))
  '(custom-safe-themes
    (quote
-    ("196cc00960232cfc7e74f4e95a94a5977cb16fd28ba7282195338f68c84058ec" default)))
+    ("38ba6a938d67a452aeb1dada9d7cdeca4d9f18114e9fc8ed2b972573138d4664" default)))
+ '(fci-rule-character-color "#202020")
  '(fci-rule-color "#49483E")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
@@ -119,10 +122,14 @@
      ("#A41F99" . 85)
      ("#49483E" . 100))))
  '(magit-diff-use-overlays nil)
+ '(main-line-color1 "#1E1E1E")
+ '(main-line-color2 "#111111")
+ '(main-line-separator-style (quote chamfer))
  '(package-selected-packages
    (quote
-    (git-gutter+ discover discover-js2-refactor color-theme-sanityinc-tomorrow gradle-mode yaml-mode xkcd gotham-theme molokai-theme smart-mode-line beacon company-emoji osx-dictionary idle-highlight-mode jsx-mode 4clojure ample-theme emmet-mode anaconda-mode ensime scala-mode2 scala-mode GOTO-last-change gist highlight-parentheses helm-projectile auto-yasnippet SMEX rainbow-mode helm counsel rainbow-delimeters company clojure-mode paredit swiper pylint pyflakes ace-window popup swiper-helm smartparens python-mode projectile project-explorer origami monokai-theme markdown-mode magit-gitflow lorem-ipsum key-chord grizzl git-gutter flycheck expand-region elpy clojure-snippets clj-refactor cider-eval-sexp-fu)))
- '(python-check-command "/usr/local/bin/pyflakes")
+    (color-theme-gruber-darker sublime-themes ujelly-theme gruber-darker-theme soothe-theme moe-theme fireplace yaml-mode web-mode use-package spaceline smartparens smart-mode-line rainbow-mode rainbow-delimiters python-mode pylint project-explorer origami monokai-theme markdown-mode magit lorem-ipsum key-chord js2-refactor idle-highlight-mode highlight-parentheses helm-projectile grizzl gradle-mode goto-last-change git-gutter gist flycheck fill-column-indicator expand-region exec-path-from-shell ensime emmet-mode elpy cyberpunk-theme counsel clojure-snippets clj-refactor cider-eval-sexp-fu beacon anaconda-mode aggressive-indent ace-window)))
+ '(powerline-color1 "#1E1E1E")
+ '(powerline-color2 "#111111")
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
@@ -204,7 +211,7 @@
   (tool-bar-mode -1)
   (scroll-bar-mode -1))
 
-(global-hl-line-mode +1)
+;(global-hl-line-mode +1)
 (make-variable-buffer-local 'global-hl-line-mode)
 
 (require 'paren)
@@ -215,8 +222,11 @@
 (global-highlight-parentheses-mode t)
 
 ;; personal styling
-(set-frame-font "PT Mono 17")
+(set-frame-font "PT Mono 16")
 (load-theme 'monokai)
+
+;;; set background
+;(set-background-color "#1b1d1e")
 
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'super)
@@ -344,15 +354,15 @@
 (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
 
 ;;; Git Gutterys
-(global-git-gutter+-mode)
+(global-git-gutter-mode)
                                         ;(git-gutter:linum-setup)
 ;; background color ,modified for monokai
-;; (set-face-background 'git-gutter:deleted (face-attribute 'default :background)) 
-;; (set-face-foreground 'git-gutter:deleted (face-attribute 'font-lock-comment-face :foreground))
-;; (set-face-background 'git-gutter:modified (face-attribute 'default :background))
-;; (set-face-foreground 'git-gutter:modified (face-attribute 'font-lock-comment-face :foreground))
-;; (set-face-background 'git-gutter:added (face-attribute 'default :background))
-;; (set-face-foreground 'git-gutter:added (face-attribute 'font-lock-comment-face :foreground))
+(set-face-background 'git-gutter:deleted (face-attribute 'default :background)) 
+(set-face-foreground 'git-gutter:deleted (face-attribute 'font-lock-comment-face :foreground))
+(set-face-background 'git-gutter:modified (face-attribute 'default :background))
+(set-face-foreground 'git-gutter:modified (face-attribute 'font-lock-comment-face :foreground))
+(set-face-background 'git-gutter:added (face-attribute 'default :background))
+(set-face-foreground 'git-gutter:added (face-attribute 'font-lock-comment-face :foreground))
 
 ;; line management
 (defun open-line-below ()
@@ -414,7 +424,7 @@
 ;;refresh all namespaces
 (defun nrepl-refresh ()
   (interactive)
-  (call-interactively 'cider-switch-to-relevant-repl-buffer)
+  (call-interactively 'cider-switch-to-repl-buffer)
   (goto-char (point-max))
   (insert "(clojure.tools.namespace.repl/refresh)")
   (cider-repl-return))
@@ -422,7 +432,7 @@
 ;; reset your system
 (defun nrepl-reset ()
   (interactive)
-  (call-interactively 'cider-switch-to-relevant-repl-buffer)
+  (call-interactively 'cider-switch-to-repl-buffer)
   (goto-char (point-max))
   (insert "(user/reset)")
   (cider-repl-return))
@@ -444,7 +454,7 @@
 
 (defun nrepl-run-all-tests (ns)
   (interactive (list (cider-current-ns)))
-  (call-interactively 'cider-switch-to-relevant-repl-buffer)
+  (call-interactively 'cider-switch-to-repl-buffer)
   (goto-char (point-max))
   (insert (format "(cljs.user/run-tests '%s)" ns))
   (cider-repl-return))
@@ -496,13 +506,11 @@
 (toggle-frame-fullscreen)
 
 ;;all I want is working cursor
-(setq-default cursor-type 'bar)
-(set-cursor-color "#FABD2F")
-(blink-cursor-mode t)
+
 
 ;; Show errors in this file:
 ;;(setq debug-on-error t)
-;(setq stack-trace-on-error t)
+                                        ;(setq stack-trace-on-error t)
 
 ;; Automatically uncompress .gz files
 (global-set-key "\M-z" 'redo)
@@ -532,8 +540,8 @@
 (set-face-attribute 'fringe nil :background (face-attribute 'default :background))
 (set-face-attribute 'vertical-border nil :foreground (face-attribute 'fringe :background))
 
-                                        ;(global-linum-mode +1)
-;(setq linum-format " %4d ")
+;(global-linum-mode +1)
+(setq linum-format " %4d ")
 
 ;;; clear within the eshell to clear the entire buffer.
 (defun eshell/clear ()
@@ -756,25 +764,8 @@ You can use arrow-keys or WASD.
 (global-set-key (kbd "C-c m") 'ivy-switch-project)
 (global-set-key (kbd  "C-x C-\\") 'goto-last-change)
 
-;; (defun clojure-test-filename ()
-;;   (concat (projectile-project-root) 
-;;           "test/" 
-;;           (mapconcat #'identity
-;;                      (butlast (split-string (cider-current-ns) "\\.")) "/")
-;;           "/"
-;;           (file-name-nondirectory (file-name-sans-extension (buffer-file-name)))
-;;           "_test.clj"))
-
-;; (defadvice projectile-toggle-between-implementation-and-test (around create-clojure-test-advice)
-;;   "Visit new file if can't find test"
-;;   (condition-case nil
-;;       ad-do-it
-;;     (error (find-file (clojure-test-filename)))))
-
 ;; (ad-activate 'projectile-toggle-between-implementation-and-test)
-(require 'scala-mode2)
 (require 'ensime)
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 (add-hook 'clojure-mode-hook 'fci-mode)
 
                                         
@@ -791,7 +782,7 @@ You can use arrow-keys or WASD.
 
 (setq-default indicate-empty-lines nil)
 ;;; annoying as fuck.
-(global-visual-line-mode -1)
+;(global-visual-line-mode -1)
 
 ;;; web stuff
 (require 'web-mode)
@@ -866,13 +857,6 @@ want to use in the modeline *in lieu of* the original.")
 
 (add-hook 'after-change-major-mode-hook 'clean-mode-line)
 
-(set-face-attribute 'mode-line nil
-                    :foreground "gray60" :background (face-attribute 'default :background)
-                    :inverse-video nil    :box nil)
-(set-face-attribute 'mode-line-inactive nil
-                    :foreground "gray60" :background (face-attribute 'default :background)
-                    :inverse-video nil    :box nil)
-
 (require 'emmet-mode)
 (add-hook 'web-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
@@ -881,3 +865,22 @@ want to use in the modeline *in lieu of* the original.")
 (add-hook 'js2-mode-hook 'yas-minor-mode)
 (add-hook 'js2-mode-hook 'js2-refactor-mode)
 (js2r-add-keybindings-with-prefix "C-c C-m")
+
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;;;  exec shell 
+(defun shell-region (start end)
+  "execute region in an inferior shell"
+  (interactive "r")
+  (shell-command  (buffer-substring-no-properties start end)))
+
+(setq-default cursor-type 'hbar)
+(set-cursor-color "#FABD2F")
+(blink-cursor-mode t)
