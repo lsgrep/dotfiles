@@ -127,7 +127,7 @@
  '(main-line-separator-style (quote chamfer))
  '(package-selected-packages
    (quote
-    (color-theme-gruber-darker sublime-themes ujelly-theme gruber-darker-theme soothe-theme moe-theme fireplace yaml-mode web-mode use-package spaceline smartparens smart-mode-line rainbow-mode rainbow-delimiters python-mode pylint project-explorer origami monokai-theme markdown-mode magit lorem-ipsum key-chord js2-refactor idle-highlight-mode highlight-parentheses helm-projectile grizzl gradle-mode goto-last-change git-gutter gist flycheck fill-column-indicator expand-region exec-path-from-shell ensime emmet-mode elpy cyberpunk-theme counsel clojure-snippets clj-refactor cider-eval-sexp-fu beacon anaconda-mode aggressive-indent ace-window)))
+    (solarized-theme zenburn-theme zenburn swift-mode color-theme-gruber-darker sublime-themes ujelly-theme gruber-darker-theme soothe-theme moe-theme fireplace yaml-mode web-mode use-package spaceline smartparens smart-mode-line rainbow-mode rainbow-delimiters python-mode pylint project-explorer origami monokai-theme markdown-mode magit lorem-ipsum key-chord js2-refactor idle-highlight-mode highlight-parentheses helm-projectile grizzl gradle-mode goto-last-change git-gutter gist flycheck fill-column-indicator expand-region exec-path-from-shell ensime emmet-mode elpy cyberpunk-theme counsel clojure-snippets clj-refactor cider-eval-sexp-fu beacon anaconda-mode aggressive-indent ace-window)))
  '(powerline-color1 "#1E1E1E")
  '(powerline-color2 "#111111")
  '(vc-annotate-background nil)
@@ -223,10 +223,13 @@
 
 ;; personal styling
 (set-frame-font "PT Mono 16")
+                                        ;(add-to-list 'load-path "~/.emacs.d/moe-theme.el")
+                                        ;(require 'moe-theme)
 (load-theme 'monokai)
 
 ;;; set background
-;(set-background-color "#1b1d1e")
+(set-background-color "#1b1d1e")
+
 
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'super)
@@ -354,15 +357,15 @@
 (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
 
 ;;; Git Gutterys
-(global-git-gutter-mode)
+                                        ;(global-git-gutter-mode)
                                         ;(git-gutter:linum-setup)
 ;; background color ,modified for monokai
-(set-face-background 'git-gutter:deleted (face-attribute 'default :background)) 
-(set-face-foreground 'git-gutter:deleted (face-attribute 'font-lock-comment-face :foreground))
-(set-face-background 'git-gutter:modified (face-attribute 'default :background))
-(set-face-foreground 'git-gutter:modified (face-attribute 'font-lock-comment-face :foreground))
-(set-face-background 'git-gutter:added (face-attribute 'default :background))
-(set-face-foreground 'git-gutter:added (face-attribute 'font-lock-comment-face :foreground))
+                                        ;(set-face-background 'git-gutter:deleted (face-attribute 'default :background)) 
+                                        ;(set-face-foreground 'git-gutter:deleted (face-attribute 'font-lock-comment-face :foreground))
+                                        ;(set-face-background 'git-gutter:modified (face-attribute 'default :background))
+                                        ;(set-face-foreground 'git-gutter:modified (face-attribute 'font-lock-comment-face :foreground))
+                                        ;(set-face-background 'git-gutter:added (face-attribute 'default :background))
+;(set-face-foreground 'git-gutter:added (face-attribute 'font-lock-comment-face :foreground))
 
 ;; line management
 (defun open-line-below ()
@@ -410,7 +413,7 @@
 ;(key-chord-define-global "@@" 'cider-restart)
 (key-chord-define-global "$$" 'project-explorer-open)
 (key-chord-define-global "xx" 'execute-extended-command)
-(define-key emacs-lisp-mode-map (kbd "C-c C-c") 'eval-last-sexp)
+
 
 (defun yui-compress ()
   (interactive)
@@ -507,7 +510,6 @@
 
 ;;all I want is working cursor
 
-
 ;; Show errors in this file:
 ;;(setq debug-on-error t)
                                         ;(setq stack-trace-on-error t)
@@ -537,10 +539,9 @@
 (setq redisplay-dont-pause t)
 
 ;;I like darkep background
-(set-face-attribute 'fringe nil :background (face-attribute 'default :background))
-(set-face-attribute 'vertical-border nil :foreground (face-attribute 'fringe :background))
 
-;(global-linum-mode +1)
+
+(global-linum-mode +1)
 (setq linum-format " %4d ")
 
 ;;; clear within the eshell to clear the entire buffer.
@@ -568,6 +569,14 @@
     (python-shell-send-string (thing-at-point 'line))))
 
 (define-key elpy-mode-map (kbd "C-c C-c") 'send-line-or-region)
+(define-key emacs-lisp-mode-map (kbd "C-c C-c") 'pp-eval-last-sexp)
+
+(require 'swift-mode)
+(add-hook 'swift-mode
+          (lambda ()
+            (define-key cider-repl-mode-map (kbd "M-p")
+              'ace-window)))
+(define-key swift-mode-map (kbd "C-c C-c") 'swift-mode-send-region)
 
 ;;; better completion for projectile
 (setq projectile-completion-system 'grizzl)
@@ -749,6 +758,8 @@ You can use arrow-keys or WASD.
             (define-key cider-repl-mode-map (kbd "M-p")
               'ace-window)))
 
+
+
 (global-set-key (kbd "M-p") 'ace-window)
 
 (defun ivy-switch-project ()
@@ -820,7 +831,7 @@ You can use arrow-keys or WASD.
 (beacon-mode 1)
 
 (setq sml/no-confirm-load-theme t)
-;(setq sml/theme 'light)
+(setq sml/theme 'dark)
 (sml/setup)
 
 ;;let
@@ -868,12 +879,10 @@ want to use in the modeline *in lieu of* the original.")
 
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
+
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+ '(linum ((t (:inherit (shadow default) :background "#1b1d1e"
+                       :foreground "#343434")))))
 
 ;;;  exec shell 
 (defun shell-region (start end)
@@ -884,3 +893,36 @@ want to use in the modeline *in lieu of* the original.")
 (setq-default cursor-type 'hbar)
 (set-cursor-color "#FABD2F")
 (blink-cursor-mode t)
+
+;;; set the default shell
+(setq explicit-shell-file-name "/usr/local/bin/bash")
+
+(set-face-attribute 'fringe nil :background (face-attribute 'default :background)) ;
+(set-face-attribute 'vertical-border nil :foreground (face-attribute 'default :background))
+
+;;;  org mode
+(setq org-log-done 'time)
+(global-set-key (kbd "C-c a") 'org-agenda)
+
+;;file to save todo items
+(setq org-agenda-files (quote ("/Users/yusup/Maxi.org")))
+
+
+;;set priority range from A to C with default A
+(setq org-highest-priority ?A)
+(setq org-lowest-priority ?C)
+(setq org-default-priority ?A)
+
+;;set colours for priorities
+(setq org-priority-faces '((?A . (:foreground "#F0DFAF" :weight bold))
+                           (?B . (:foreground "LightSteelBlue"))
+                           (?C . (:foreground "OliveDrab"))))
+
+;;open agenda in current window
+(setq org-agenda-window-setup (quote current-window))
+
+;;capture todo items using C-c c t
+(define-key global-map (kbd "C-c c") 'org-capture)
+(setq org-capture-templates
+      '(("t" "todo" entry (file+headline "/Users/yusup/Maxi.org" "Tasks")
+         "* TODO [#A] %?")))
