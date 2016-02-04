@@ -160,7 +160,7 @@
 (smartparens-global-mode)
 (rainbow-mode 1)
 
-;;; my dick is short ,so is my life
+;;; life is short , but not my dick. 
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;;; no bullshit
 (delete-selection-mode t)
@@ -222,7 +222,7 @@
 (global-highlight-parentheses-mode t)
 
 ;; personal styling
-(set-frame-font "PT Mono 16")
+(set-frame-font "Monaco 15")
                                         ;(add-to-list 'load-path "~/.emacs.d/moe-theme.el")
                                         ;(require 'moe-theme)
 (load-theme 'monokai)
