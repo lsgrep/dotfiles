@@ -250,7 +250,7 @@
 (setq mac-option-modifier 'super)
 
                                         ;(setq x-meta-keysym 'super)
-;(setq x-super-keysym 'meta)
+                                        ;(setq x-super-keysym 'meta)
 
 ;;; you know dvorak 
 (keyboard-translate ?\C-x ?\C-u)
@@ -274,19 +274,9 @@
 (use-package cider
   :ensure t
   :defer t
-  :init (add-hook 'cider-mode-hook #'clj-refactor-mode)
   :diminish subword-mode
-  :config
-  (setq nrepl-log-messages t
-        cider-auto-select-error-buffer nil
-        cider-repl-display-in-current-window nil
-        cider-repl-use-clojure-font-lock t    
-        cider-prompt-save-file-on-load 'always-save
-        cider-font-lock-dynamically '(macro core function var)
-        nrepl-hide-special-buffers t
-        cider-repl-result-prefix ";; => "
-        cider-overlays-use-font-lock t)
-  
+  :init
+  (add-hook 'cider-mode-hook #'clj-refactor-mode)
   (cider-repl-toggle-pretty-printing))
 
 (use-package cider-eval-sexp-fu
@@ -377,14 +367,10 @@
 ;;; Git Gutterys
 (global-git-gutter-mode)
                                         ;(git-gutter:linum-setup)
-
-
 (require 'git-gutter)
-
                                         ;(face-attribute 'font-lock-comment-face  :foreground)
                                         ;(set-face-background 'git-gutter:modified "white")
 (set-face-foreground 'git-gutter:modified (face-attribute 'default :background))
-
 
 (set-face-foreground 'git-gutter:added (face-attribute 'default :background))
 
@@ -902,7 +888,6 @@ want to use in the modeline *in lieu of* the original.")
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-
 ;;;  exec shell 
 (defun shell-region (start end)
   "execute region in an inferior shell"
@@ -920,36 +905,8 @@ want to use in the modeline *in lieu of* the original.")
 (set-face-attribute 'vertical-border nil :foreground (face-attribute 'default :background))
 (set-face-attribute 'linum nil :background  (face-attribute 'default :background) :foreground "#343434") 
 
-;;;  org mode
-(setq org-log-done 'time)
-(global-set-key (kbd "C-c a") 'org-agenda)
 
-;;file to save todo items
-(setq org-agenda-files (quote ("/Users/yusup/Maxi.org")))
 
-;;set priority range from A to C with default A
-(setq org-highest-priority ?A)
-(setq org-lowest-priority ?C)
-(setq org-default-priority ?A)
-
-;;set colours for priorities
-(setq org-priority-faces '((?A . (:foreground "#F0DFAF" :weight bold))
-                           (?B . (:foreground "LightSteelBlue"))
-                           (?C . (:foreground "OliveDrab"))))
-
-;;open agenda in current window
-(setq org-agenda-window-setup (quote current-window))
-;;capture todo items using C-c c t
-(define-key global-map (kbd "C-c c") 'org-capture)
-(setq org-capture-templates
-      '(("t" "todo" entry (file+headline "/Users/yusup/Maxi.org" "Tasks")
-         "* TODO [#A] %?")))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 
 
