@@ -24,7 +24,6 @@
 (setq scroll-step            1
       scroll-conservatively  10000)
 
-
 ;; there are necessary
 (defun ensure-package-installed (&rest packages)
   (mapcar
@@ -48,6 +47,7 @@
  'project-explorer
  'paredit
  'recentf
+ 'swift-mode
  'clojure-snippets
  'smart-mode-line
  'origami
@@ -99,66 +99,69 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(Linum-format "%7i ")
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
-   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+   ["#000000" "#8b0000" "#00ff00" "#ffa500" "#7b68ee" "#dc8cc3" "#93e0e3" "#dcdccc"])
  '(compilation-message-face (quote default))
  '(custom-safe-themes
    (quote
-    ("38ba6a938d67a452aeb1dada9d7cdeca4d9f18114e9fc8ed2b972573138d4664" default)))
- '(fci-rule-character-color "#202020")
- '(fci-rule-color "#49483E")
+    ("1e3b2c9e7e84bb886739604eae91a9afbdfb2e269936ec5dd4a9d3b7a943af7f" "9527feeeec43970b1d725bdc04e97eb2b03b15be982ac50089ad223d3c6f2920" "8288b9b453cdd2398339a9fd0cec94105bc5ca79b86695bd7bf0381b1fbe8147" "99953b61ecd4c3e414a177934e888ce9ee12782bbaf2125ec2385d5fd732cbc2" "f3d6a49e3f4491373028eda655231ec371d79d6d2a628f08d5aa38739340540b" "6c62b1cd715d26eb5aa53843ed9a54fc2b0d7c5e0f5118d4efafa13d7715c56e" "5999e12c8070b9090a2a1bbcd02ec28906e150bb2cdce5ace4f965c76cf30476" "316d29f8cd6ca980bf2e3f1c44d3a64c1a20ac5f825a167f76e5c619b4e92ff4" "ff02e8e37c9cfd192d6a0cb29054777f5254c17b1bf42023ba52b65e4307b76a" "a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" "4f5bb895d88b6fe6a983e63429f154b8d939b4a8c581956493783b2515e22d6d" "c697b65591ba1fdda42fae093563867a95046466285459bd4e686dc95a819310" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "708df3cbb25425ccbf077a6e6f014dc3588faba968c90b74097d11177b711ad1" "38ba6a938d67a452aeb1dada9d7cdeca4d9f18114e9fc8ed2b972573138d4664" "badc4f9ae3ee82a5ca711f3fd48c3f49ebe20e6303bba1912d4e2d19dd60ec98" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "71ecffba18621354a1be303687f33b84788e13f40141580fa81e7840752d31bf" default)))
+ '(fci-rule-color "#073642")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
    (quote
-    (("#49483E" . 0)
+    (("#3E3D31" . 0)
      ("#67930F" . 20)
      ("#349B8D" . 30)
      ("#21889B" . 50)
      ("#968B26" . 60)
      ("#A45E0A" . 70)
      ("#A41F99" . 85)
-     ("#49483E" . 100))))
+     ("#3E3D31" . 100))))
+ '(hl-sexp-background-color "#1c1f26")
  '(magit-diff-use-overlays nil)
- '(main-line-color1 "#1E1E1E")
- '(main-line-color2 "#111111")
  '(main-line-separator-style (quote chamfer))
+ '(nrepl-message-colors
+   (quote
+    ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (solarized-theme zenburn-theme zenburn swift-mode color-theme-gruber-darker sublime-themes ujelly-theme gruber-darker-theme soothe-theme moe-theme fireplace yaml-mode web-mode use-package spaceline smartparens smart-mode-line rainbow-mode rainbow-delimiters python-mode pylint project-explorer origami monokai-theme markdown-mode magit lorem-ipsum key-chord js2-refactor idle-highlight-mode highlight-parentheses helm-projectile grizzl gradle-mode goto-last-change git-gutter gist flycheck fill-column-indicator expand-region exec-path-from-shell ensime emmet-mode elpy cyberpunk-theme counsel clojure-snippets clj-refactor cider-eval-sexp-fu beacon anaconda-mode aggressive-indent ace-window)))
- '(powerline-color1 "#1E1E1E")
- '(powerline-color2 "#111111")
+    (smyx-theme tangotango-theme latex-preview-pane atom-dark-theme ample-theme darcula-theme zenburn-theme yaml-mode use-package ujelly-theme swift-mode spaceline smartparens smart-mode-line-powerline-theme rainbow-mode rainbow-delimiters python-mode pylint project-explorer origami monokai-theme molokai-theme moe-theme material-theme markdown-mode magit lorem-ipsum key-chord js2-refactor idle-highlight-mode highlight-parentheses helm-projectile gruvbox-theme grizzl gradle-mode goto-last-change gotham-theme gist flycheck fill-column-indicator expand-region exec-path-from-shell ensime emmet-mode elpy cyberpunk-theme counsel color-theme-solarized color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clojure-snippets clj-refactor cider-eval-sexp-fu beacon anaconda-mode aggressive-indent ace-window)))
+ '(pos-tip-background-color "#A6E22E")
+ '(pos-tip-foreground-color "#272822")
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
-    ((20 . "#F92672")
-     (40 . "#CF4F1F")
-     (60 . "#C26C0F")
-     (80 . "#E6DB74")
-     (100 . "#AB8C00")
-     (120 . "#A18F00")
-     (140 . "#989200")
-     (160 . "#8E9500")
-     (180 . "#A6E22E")
-     (200 . "#729A1E")
-     (220 . "#609C3C")
-     (240 . "#4E9D5B")
-     (260 . "#3C9F79")
-     (280 . "#A1EFE4")
-     (300 . "#299BA6")
-     (320 . "#2896B5")
-     (340 . "#2790C3")
-     (360 . "#66D9EF"))))
+    ((20 . "#dc322f")
+     (40 . "#cb4b16")
+     (60 . "#b58900")
+     (80 . "#859900")
+     (100 . "#2aa198")
+     (120 . "#268bd2")
+     (140 . "#d33682")
+     (160 . "#6c71c4")
+     (180 . "#dc322f")
+     (200 . "#cb4b16")
+     (220 . "#b58900")
+     (240 . "#859900")
+     (260 . "#2aa198")
+     (280 . "#268bd2")
+     (300 . "#d33682")
+     (320 . "#6c71c4")
+     (340 . "#dc322f")
+     (360 . "#cb4b16"))))
  '(vc-annotate-very-old-color nil)
  '(weechat-color-list
-   (unspecified "#272822" "#49483E" "#A20C41" "#F92672" "#67930F" "#A6E22E" "#968B26" "#E6DB74" "#21889B" "#66D9EF" "#A41F99" "#FD5FF0" "#349B8D" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
+   (unspecified "#272822" "#3E3D31" "#A20C41" "#F92672" "#67930F" "#A6E22E" "#968B26" "#E6DB74" "#21889B" "#66D9EF" "#A41F99" "#FD5FF0" "#349B8D" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
 
 (projectile-global-mode)
 (key-chord-mode 1)
 (smartparens-global-mode)
 (rainbow-mode 1)
+
+
+
 
 ;;; life is short , but not my dick. 
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -211,8 +214,9 @@
   (tool-bar-mode -1)
   (scroll-bar-mode -1))
 
-;(global-hl-line-mode +1)
+(global-hl-line-mode +1)
 (make-variable-buffer-local 'global-hl-line-mode)
+
 
 (require 'paren)
 (setq show-paren-style 'parenthesis)
@@ -222,17 +226,31 @@
 (global-highlight-parentheses-mode t)
 
 ;; personal styling
-(set-frame-font "Monaco 15")
-                                        ;(add-to-list 'load-path "~/.emacs.d/moe-theme.el")
+
+                                        ;
+                                        ;(add-to-list 'load-path "~/.emacs.d/my/moe-theme.el/moe-theme.el")
                                         ;(require 'moe-theme)
-(load-theme 'monokai)
 
 ;;; set background
-(set-background-color "#1b1d1e")
 
+                                        ;(set-background-color "#1b1d1e")
+
+                                        ;(add-to-list 'load-path "~/.emacs.d/default-black-theme.el")
+(load-theme 'monokai)
+(when (window-system)
+  (set-default-font "Monaco 14"))
+;(set-frame-font "Fira Code 14")
+
+(set-face-attribute 'mode-line nil :background nil :foreground "#565656"
+                    :box  nil)
+(set-face-attribute 'mode-line-inactive nil :background nil :foreground  "#565656"
+                    :box  nil)
 
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'super)
+
+                                        ;(setq x-meta-keysym 'super)
+;(setq x-super-keysym 'meta)
 
 ;;; you know dvorak 
 (keyboard-translate ?\C-x ?\C-u)
@@ -250,7 +268,7 @@
   (add-hook 'clojure-mode-hook #'smartparens-mode)
   (add-hook 'clojure-mode-hook #'paredit-mode)       
   (add-hook 'clojure-mode-hook #'eldoc-mode)
-  (add-hook 'clojure-mode-hook #'idle-highlight-mode)
+                                        ; (add-hook 'clojure-mode-hook #'idle-highlight-mode)
   (add-hook 'clojure-mode-hook (lambda () (setq dash-at-point-docset "clojure"))))
 
 (use-package cider
@@ -357,15 +375,20 @@
 (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
 
 ;;; Git Gutterys
-                                        ;(global-git-gutter-mode)
+(global-git-gutter-mode)
                                         ;(git-gutter:linum-setup)
-;; background color ,modified for monokai
-                                        ;(set-face-background 'git-gutter:deleted (face-attribute 'default :background)) 
-                                        ;(set-face-foreground 'git-gutter:deleted (face-attribute 'font-lock-comment-face :foreground))
-                                        ;(set-face-background 'git-gutter:modified (face-attribute 'default :background))
-                                        ;(set-face-foreground 'git-gutter:modified (face-attribute 'font-lock-comment-face :foreground))
-                                        ;(set-face-background 'git-gutter:added (face-attribute 'default :background))
-;(set-face-foreground 'git-gutter:added (face-attribute 'font-lock-comment-face :foreground))
+
+
+(require 'git-gutter)
+
+                                        ;(face-attribute 'font-lock-comment-face  :foreground)
+                                        ;(set-face-background 'git-gutter:modified "white")
+(set-face-foreground 'git-gutter:modified (face-attribute 'default :background))
+
+
+(set-face-foreground 'git-gutter:added (face-attribute 'default :background))
+
+(set-face-foreground 'git-gutter:deleted (face-attribute 'default :background))
 
 ;; line management
 (defun open-line-below ()
@@ -422,7 +445,7 @@
 
 (require 'project-explorer)
 (setq pe/omit-gitignore t)
-(setq pe/width 28)
+(setq pe/width 35)
 
 ;;refresh all namespaces
 (defun nrepl-refresh ()
@@ -540,9 +563,8 @@
 
 ;;I like darkep background
 
-
-(global-linum-mode +1)
-(setq linum-format " %4d ")
+                                        ;(global-linum-mode +1)
+;(setq linum-format " %4d ")
 
 ;;; clear within the eshell to clear the entire buffer.
 (defun eshell/clear ()
@@ -591,7 +613,6 @@
     (if (= (length selection) 0)
         (message "empty string")
       (message selection))))
-
 
 ;;random text we need sometimes
 (lorem-ipsum-use-default-bindings)
@@ -781,6 +802,7 @@ You can use arrow-keys or WASD.
 
                                         
 (add-to-list 'load-path "~/.emacs.d/dash-at-point.el")
+
 (autoload 'dash-at-point "dash-at-point.el"  "Search the word at point with Dash." t nil)
 
 (require 'fill-column-indicator)
@@ -818,7 +840,7 @@ You can use arrow-keys or WASD.
 (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-mode))
 
 (setq truncate-partial-width-windows nil)
-                                        ;(set-fringe-mode '(1 . 1))
+                                        ;
 
 ;;; save when necessarry 
 (defun save-all ()
@@ -830,9 +852,9 @@ You can use arrow-keys or WASD.
 ;;; the thing shows up makes you happy and cozy.
 (beacon-mode 1)
 
-(setq sml/no-confirm-load-theme t)
-(setq sml/theme 'dark)
-(sml/setup)
+                                        ;(setq sml/no-confirm-load-theme t)
+                                        ;(setq sml/theme 'powerline-light)
+;(sml/setup)
 
 ;;let
 (defvar mode-line-cleaner-alist
@@ -880,9 +902,6 @@ want to use in the modeline *in lieu of* the original.")
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-(custom-set-faces
- '(linum ((t (:inherit (shadow default) :background "#1b1d1e"
-                       :foreground "#343434")))))
 
 ;;;  exec shell 
 (defun shell-region (start end)
@@ -899,6 +918,7 @@ want to use in the modeline *in lieu of* the original.")
 
 (set-face-attribute 'fringe nil :background (face-attribute 'default :background)) ;
 (set-face-attribute 'vertical-border nil :foreground (face-attribute 'default :background))
+(set-face-attribute 'linum nil :background  (face-attribute 'default :background) :foreground "#343434") 
 
 ;;;  org mode
 (setq org-log-done 'time)
@@ -906,7 +926,6 @@ want to use in the modeline *in lieu of* the original.")
 
 ;;file to save todo items
 (setq org-agenda-files (quote ("/Users/yusup/Maxi.org")))
-
 
 ;;set priority range from A to C with default A
 (setq org-highest-priority ?A)
@@ -920,9 +939,19 @@ want to use in the modeline *in lieu of* the original.")
 
 ;;open agenda in current window
 (setq org-agenda-window-setup (quote current-window))
-
 ;;capture todo items using C-c c t
 (define-key global-map (kbd "C-c c") 'org-capture)
 (setq org-capture-templates
       '(("t" "todo" entry (file+headline "/Users/yusup/Maxi.org" "Tasks")
          "* TODO [#A] %?")))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+
+
+
+
