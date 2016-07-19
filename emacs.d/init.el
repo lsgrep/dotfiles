@@ -1,9 +1,3 @@
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(load-library "url-handlers")
-;(require 'package)
 (package-initialize)
 (put 'erase-buffer 'disabled nil)
 ;;; quick startup
@@ -14,367 +8,286 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t) ; Org-mode's repository
 
-;;; less crap
-(setq inhibit-startup-message t)
-(setq inhibit-splash-screen t)
-(setq initial-scratch-message nil)
-(setq initial-buffer-choice "~/")
-
-;;; smooth scrolling
-(setq scroll-step            1
-      scroll-conservatively  10000)
-
-;; there are necessary
-(defun ensure-package-installed (&rest packages)
-  (mapcar
-   (lambda (package)
-     ;; (package-installed-p 'evil)
-     (if (package-installed-p package)
-         nil
-       (if t
-           (package-install package)
-         package)))
-   packages))
-
-(or (file-exists-p package-user-dir)
-    (package-refresh-contents))
-
-;;; necessary packages
-(ensure-package-installed
- 'grizzl
- 'swiper
- 'emmet-mode
- 'project-explorer
- 'paredit
- 'recentf
- 'swift-mode
- 'clojure-snippets
- 'smart-mode-line
- 'origami
- 'clojure-mode
- 'clj-refactor
- 'cider
- 'yaml-mode
- 'js2-mode
- 'js2-refactor
- 'web-mode
- 'expand-region
- 'smartparens
- 'rainbow-delimiters
- 'popup
- 'cider-eval-sexp-fu
- 'markdown-mode
- 'idle-highlight-mode
- 'company
- 'spaceline
- 'fill-column-indicator
- 'elpy
- 'beacon
- 'helm
- 'helm-projectile
- 'pylint
- 'rainbow-mode
- 'magit
- 'anaconda-mode
- 'lorem-ipsum
- 'python-mode
- 'key-chord
- 'projectile
- 'gist
- 'highlight-parentheses
- 'monokai-theme
- 'flycheck
- 'counsel
- 'use-package
- 'goto-last-change
- 'ace-window
- 'gradle-mode
- 'exec-path-from-shell
- 'aggressive-indent
- 'ensime)
-
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["#000000" "#8b0000" "#00ff00" "#ffa500" "#7b68ee" "#dc8cc3" "#93e0e3" "#dcdccc"])
- '(compilation-message-face (quote default))
- '(custom-safe-themes
-   (quote
-    ("1e3b2c9e7e84bb886739604eae91a9afbdfb2e269936ec5dd4a9d3b7a943af7f" "9527feeeec43970b1d725bdc04e97eb2b03b15be982ac50089ad223d3c6f2920" "8288b9b453cdd2398339a9fd0cec94105bc5ca79b86695bd7bf0381b1fbe8147" "99953b61ecd4c3e414a177934e888ce9ee12782bbaf2125ec2385d5fd732cbc2" "f3d6a49e3f4491373028eda655231ec371d79d6d2a628f08d5aa38739340540b" "6c62b1cd715d26eb5aa53843ed9a54fc2b0d7c5e0f5118d4efafa13d7715c56e" "5999e12c8070b9090a2a1bbcd02ec28906e150bb2cdce5ace4f965c76cf30476" "316d29f8cd6ca980bf2e3f1c44d3a64c1a20ac5f825a167f76e5c619b4e92ff4" "ff02e8e37c9cfd192d6a0cb29054777f5254c17b1bf42023ba52b65e4307b76a" "a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" "4f5bb895d88b6fe6a983e63429f154b8d939b4a8c581956493783b2515e22d6d" "c697b65591ba1fdda42fae093563867a95046466285459bd4e686dc95a819310" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "708df3cbb25425ccbf077a6e6f014dc3588faba968c90b74097d11177b711ad1" "38ba6a938d67a452aeb1dada9d7cdeca4d9f18114e9fc8ed2b972573138d4664" "badc4f9ae3ee82a5ca711f3fd48c3f49ebe20e6303bba1912d4e2d19dd60ec98" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "71ecffba18621354a1be303687f33b84788e13f40141580fa81e7840752d31bf" default)))
- '(fci-rule-color "#073642")
- '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
- '(highlight-tail-colors
-   (quote
-    (("#3E3D31" . 0)
-     ("#67930F" . 20)
-     ("#349B8D" . 30)
-     ("#21889B" . 50)
-     ("#968B26" . 60)
-     ("#A45E0A" . 70)
-     ("#A41F99" . 85)
-     ("#3E3D31" . 100))))
- '(hl-sexp-background-color "#1c1f26")
- '(magit-diff-use-overlays nil)
- '(main-line-separator-style (quote chamfer))
- '(nrepl-message-colors
-   (quote
-    ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
- '(package-selected-packages
-   (quote
-    (smyx-theme tangotango-theme latex-preview-pane atom-dark-theme ample-theme darcula-theme zenburn-theme yaml-mode use-package ujelly-theme swift-mode spaceline smartparens smart-mode-line-powerline-theme rainbow-mode rainbow-delimiters python-mode pylint project-explorer origami monokai-theme molokai-theme moe-theme material-theme markdown-mode magit lorem-ipsum key-chord js2-refactor idle-highlight-mode highlight-parentheses helm-projectile gruvbox-theme grizzl gradle-mode goto-last-change gotham-theme gist flycheck fill-column-indicator expand-region exec-path-from-shell ensime emmet-mode elpy cyberpunk-theme counsel color-theme-solarized color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clojure-snippets clj-refactor cider-eval-sexp-fu beacon anaconda-mode aggressive-indent ace-window)))
- '(pos-tip-background-color "#A6E22E")
- '(pos-tip-foreground-color "#272822")
- '(vc-annotate-background nil)
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#dc322f")
-     (40 . "#cb4b16")
-     (60 . "#b58900")
-     (80 . "#859900")
-     (100 . "#2aa198")
-     (120 . "#268bd2")
-     (140 . "#d33682")
-     (160 . "#6c71c4")
-     (180 . "#dc322f")
-     (200 . "#cb4b16")
-     (220 . "#b58900")
-     (240 . "#859900")
-     (260 . "#2aa198")
-     (280 . "#268bd2")
-     (300 . "#d33682")
-     (320 . "#6c71c4")
-     (340 . "#dc322f")
-     (360 . "#cb4b16"))))
- '(vc-annotate-very-old-color nil)
- '(weechat-color-list
-   (unspecified "#272822" "#3E3D31" "#A20C41" "#F92672" "#67930F" "#A6E22E" "#968B26" "#E6DB74" "#21889B" "#66D9EF" "#A41F99" "#FD5FF0" "#349B8D" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
-
-(projectile-global-mode)
-(key-chord-mode 1)
-(smartparens-global-mode)
-(rainbow-mode 1)
-
-
-
-
-;;; life is short , but not my dick. 
-(defalias 'yes-or-no-p 'y-or-n-p)
-;;; no bullshit
-(delete-selection-mode t)
-
-(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
-(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
-
-;;;  swiper,ivy is much better than default and helm
-(ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
-(global-set-key "\C-s" 'swiper)
-(global-set-key "\C-r" 'swiper)
-(global-set-key (kbd "C-c C-r") 'ivy-resume)
-(global-set-key [f6] 'ivy-resume)
-(setq ivy-display-style 'fancy)
-;(setq projectile-completion-system 'ivy)
-
-;; better search and replace
-(global-set-key (kbd "C-c %") 'query-replace-regexp)
-;; Key bindings
-;(require 'dash-at-point)
-(global-set-key (kbd "C-c d") 'dash-at-point)
-(global-set-key (kbd "C-c e") 'dash-at-point-with-docset)
-
-(global-set-key (kbd "C-M-d") 'paredit-forward-down)
-
-;;;  show recent files
-(require 'recentf)
-(setq recentf-max-saved-items 200
-      recentf-max-menu-items 15)
-(recentf-mode +1)
-
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x m") 'eshell)
-
-(defun recentf-ido-find-file ()
-  "Find a recent file using ido."
-  (interactive)
-  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
-    (when file
-      (find-file file))))
-
-(global-set-key (kbd "C-c f") 'ivy-recentf)
-
-;;ui tweaks
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(when (display-graphic-p)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1))
-
-(global-hl-line-mode +1)
-(make-variable-buffer-local 'global-hl-line-mode)
-
-
-(require 'paren)
-(setq show-paren-style 'parenthesis)
-(show-paren-mode +1)
-(setq show-paren-style 'parenthesis) 
-(setq show-paren-delay 0)
-(global-highlight-parentheses-mode t)
-
-;; personal styling
-
-                                        ;
-                                        ;(add-to-list 'load-path "~/.emacs.d/my/moe-theme.el/moe-theme.el")
-                                        ;(require 'moe-theme)
-
-;;; set background
-
-                                        ;(set-background-color "#1b1d1e")
-
-                                        ;(add-to-list 'load-path "~/.emacs.d/default-black-theme.el")
-(load-theme 'monokai)
-(when (window-system)
-  (set-default-font "Monaco 14"))
-;(set-frame-font "Fira Code 14")
-
-(set-face-attribute 'mode-line nil :background nil :foreground "#565656"
-                    :box  nil)
-(set-face-attribute 'mode-line-inactive nil :background nil :foreground  "#565656"
-                    :box  nil)
-
-(setq mac-command-modifier 'meta)
-(setq mac-option-modifier 'super)
-
-                                        ;(setq x-meta-keysym 'super)
-                                        ;(setq x-super-keysym 'meta)
-
-;;; you know dvorak 
-(keyboard-translate ?\C-x ?\C-u)
-(keyboard-translate ?\C-u ?\C-x)
-
-(require 'use-package)
-(use-package clojure-mode
-  :ensure t
-  :mode (("\\.clj\\'" . clojure-mode)
-         ("\\.edn\\'" . clojure-mode))
-  :init
-  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'clojure-mode-hook #'yas-minor-mode)         
-  (add-hook 'clojure-mode-hook #'subword-mode)           
-  (add-hook 'clojure-mode-hook #'smartparens-mode)
-  (add-hook 'clojure-mode-hook #'paredit-mode)       
-  (add-hook 'clojure-mode-hook #'eldoc-mode)
-                                        ; (add-hook 'clojure-mode-hook #'idle-highlight-mode)
-  (add-hook 'clojure-mode-hook (lambda () (setq dash-at-point-docset "clojure"))))
-
-(use-package cider
-  :ensure t
-  :defer t
-  :diminish subword-mode
-  :init
-  (add-hook 'cider-mode-hook #'clj-refactor-mode)
-  (cider-repl-toggle-pretty-printing))
-
-(use-package cider-eval-sexp-fu
-  :defer t)
-
-(use-package clj-refactor
-  :defer t
-  :ensure t
-  :diminish clj-refactor-mode
-  :config (cljr-add-keybindings-with-prefix "C-c C-m"))
-
-(use-package smartparens
-  :defer t
-  :ensure t
-  :diminish smartparens-mode
-  :init
-  (setq sp-override-key-bindings
-        '(("C-<right>" . nil)
-          ("C-<left>" . nil)
-          ("C-)" . sp-forward-slurp-sexp)
-          ("M-<backspace>" . nil)
-          ("C-(" . sp-forward-barf-sexp)))
-  :config
-  (use-package smartparens-config)
-  (sp-use-smartparens-bindings)
-  (sp--update-override-key-bindings)
-  :commands (smartparens-mode show-smartparens-mode))
-
-;;; Comfuckingpany
-(global-company-mode)
-
-(setq company-tooltip-align-annotations t)
-(setq company-idle-delay 0.3)
-(setq company-dabbrev-ignore-case nil)
-(setq company-dabbrev-downcase nil)
-(setq company-tooltip-flip-when-above t)
-(setq company-dabbrev-code-other-buffers 'code)
-
-(require 'cider-eval-sexp-fu)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;clojure  end
-;; tramp , remote file manipulation
-(setq tramp-chunksize 500)
-(eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
-(setq tramp-debug-buffer t)
-(setq tramp-verbose 10)
+(global-hl-line-mode -1)
 
 ;;changing default temp dir
 (put 'temporary-file-directory 'standard-value '((file-name-as-directory "/tmp")))
-;; snippets , this is working quite nice now.
-;; Custom blog related stuff
 
-(setq org-src-fontify-natively t)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-(set-input-mode t nil t)
-(require 'magit)
-;; full screen magit-status
-(defun magit-toggle-whitespace ()
+;;;spacemacs offers good themes
+;;;http://themegallery.robdor.com/ 
+
+;;; PT Mono & Theme
+(use-package monokai-theme
+  :ensure t
+  :config (progn
+            (setq monokai-use-variable-pitch nil
+                  monokai-height-minus-1 1.0
+                  monokai-height-plus-1 1.0
+                  monokai-height-plus-2 1.0
+                  monokai-height-plus-3 1.0
+                  monokai-height-plus-4 1.0)
+            (set-default-font "PT Mono 13")
+            (load-theme 'monokai t)))
+
+(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+
+;; Get rid of keys I hit accidentally:
+(global-unset-key "\M-c")    ; don't want the capitalize thing
+
+;;; or Emacs fucking freezes every fucking time.
+
+;; which screw up my directory listings.  Make it put them
+;; somewhere else:
+(setq auto-save-list-file-prefix "~/.emacs-saves/.saves-")
+
+(defun eshell/clear ()
+  "Clear terminal"
   (interactive)
-  (if (member "-w" magit-diff-options)
-      (magit-dont-ignore-whitespace)
-    (magit-ignore-whitespace)))
+  (let ((inhibit-read-only t))
+    (erase-buffer)
+    (eshell-send-input)))
 
-(defun magit-ignore-whitespace ()
+(defun my/turn-off-linum-mode ()
+  (linum-mode -1))
+
+(defun open-with (arg)
+  "Open visited file in default external program.
+
+With a prefix ARG always prompt for command to use."
+  (interactive "P")
+  (when buffer-file-name
+    (shell-command (concat
+                    (cond
+                     ((and (not arg) (eq system-type 'darwin)) "open")
+                     ((and (not arg) (member system-type '(gnu gnu/linux gnu/kfreebsd))) "xdg-open")
+                     (t (read-shell-command "Open current file with: ")))
+                    " "
+                    (shell-quote-argument buffer-file-name)))))
+
+(global-set-key (kbd "C-c o") 'open-with)
+
+(defun copy-file-name-to-clipboard ()
   (interactive)
-  (add-to-list 'magit-diff-options "-w")
-  (magit-refresh))
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (kill-new filename)
+      (message "copied buffer file name '%s' to the clipboard" filename))))
 
-(defun magit-dont-ignore-whitespace ()
+(setq-default indent-tabs-mode nil)
+(setq tabify nil)
+(setq  cursor-in-non-selected-windows nil)
+;;set the background-color of selected region
+
+
+;;I like darkep background
+
+(global-linum-mode +1)
+(setq linum-format " %4d ")
+(set-face-attribute 'linum nil :background (face-attribute 'default :background))
+
+(setq warning-minimum-level :emergency)
+
+(defun temp-buffer ()
   (interactive)
-  (setq magit-diff-options (remove "-w" magit-diff-options))
-  (magit-refresh))
+  (switch-to-buffer "*temp*"))
 
-(define-key magit-status-mode-map (kbd "W") 'magit-toggle-whitespace)
-
-(defadvice magit-status (around magit-fullscreen activate)
-  (window-configuration-to-register :magit-fullscreen)
-  ad-do-it
-  (delete-other-windows))
-
-(defun magit-quit-session ()
-  "Restores the previous window configuration and kills the magit buffer"
+(defun detabify-buffer ()
+  "Calls untabify on the current buffer"
   (interactive)
-  (kill-buffer)
-  (jump-to-register :magit-fullscreen))
+  (untabify (point-min) (point-max)))
 
-(define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
+(defun clean-up-whitespace ()
+  "Calls untabify and delete-trailing-whitespace on the current buffer."
+  (interactive)
+  (detabify-buffer)
+  (delete-trailing-whitespace))
 
-;;; Git Gutterys
-(global-git-gutter-mode)
-                                        ;(git-gutter:linum-setup)
-(require 'git-gutter)
-                                        ;(face-attribute 'font-lock-comment-face  :foreground)
-                                        ;(set-face-background 'git-gutter:modified "white")
-(set-face-foreground 'git-gutter:modified (face-attribute 'default :background))
+(global-set-key (kbd "C-x t") 'temp-buffer)
 
-(set-face-foreground 'git-gutter:added (face-attribute 'default :background))
+;; this whitespace is kinda killing me
+(require 'whitespace)
+(setq whitespace-line-column 80000) ;; limit line length
+;;encoding;
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+;; backwards compatibility as default-buffer-file-coding-system
+;; is deprecated in 23.2.
+(if (boundp 'buffer-file-coding-system)
+    (setq-default buffer-file-coding-system 'utf-8)
+  (setq buffer-file-coding-system 'utf-8))
 
-(set-face-foreground 'git-gutter:deleted (face-attribute 'default :background))
+;; Treat clipboard input as UTF-8 string first; compound text next, etc.
+(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+
+;;annoying whitespace
+(setq whitespace-style (quote (spaces tabs newline space-mark tab-mark newline-mark)))
+(setq whitespace-display-mappings
+      ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
+      '(
+        ;;(space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
+        ;;(newline-mark 10 [182 10]) ; 10 LINE FEED
+        (tab-mark 9 [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
+        ))
+
+(setenv "PATH"
+        (concat (getenv "PATH") ":/usr/local/bin"))
+
+(defun ysp/view-buffer-name ()
+  "Display the filename of the current buffer."
+  (interactive)
+  (message (buffer-file-name)))
+
+(defun ysp/generate-scratch-buffer ()
+  "Create and switch to a temporary scratch buffer with a random
+     name."
+  (interactive)
+  (switch-to-buffer (make-temp-name "scratch-")))
+
+(defun ysp/split-window-below-and-switch ()
+  "Split the window horizontally, then switch to the new pane."
+  (interactive)
+  (split-window-below)
+  (other-window 1))
+
+(defun ysp/split-window-right-and-switch ()
+  "Split the window vertically, then switch to the new pane."
+  (interactive)
+  (split-window-right)
+  (other-window 1))
+
+(defun ysp/de-unicode ()
+  "Tidy up a buffer by replacing all special Unicode characters
+     (smart quotes, etc.) with their more sane cousins"
+  (interactive)
+  (let ((unicode-map '(("[\u2018\|\u2019\|\u201A\|\uFFFD]" . "'")
+                       ("[\u201c\|\u201d\|\u201e]" . "\"")
+                       ("\u2013" . "--")
+                       ("\u2014" . "---")
+                       ("\u2026" . "...")
+                       ("\u00A9" . "(c)")
+                       ("\u00AE" . "(r)")
+                       ("\u2122" . "TM")
+                       ("[\u02DC\|\u00A0]" . " "))))
+    (save-excursion
+      (loop for (key . value) in unicode-map
+            do
+            (goto-char (point-min))
+            (replace-regexp key value)))))
+
+(defun ysp/beautify-json ()
+  "Pretty-print the JSON in the marked region. Currently shells
+     out to `jsonpp'--be sure that's installed!"
+  (interactive)
+  (save-excursion
+    (shell-command-on-region (mark) (point) "jsonpp" (buffer-name) t)))
+
+(defun ysp/comment-or-uncomment-region-or-line ()
+  "Comments or uncomments the region or the current line if there's no active region."
+  (interactive)
+  (let (beg end)
+    (if (region-active-p)
+        (setq beg (region-beginning) end (region-end))
+      (setq beg (line-beginning-position) end (line-end-position)))
+    (comment-or-uncomment-region beg end)))
+
+(defun ysp/unfill-paragraph ()
+  "Takes a multi-line paragraph and makes it into a single line of text."
+  (interactive)
+  (let ((fill-column (point-max)))
+    (fill-paragraph nil)))
+
+(defun ysp/kill-current-buffer ()
+  "Kill the current buffer without prompting."
+  (interactive)
+  (kill-buffer (current-buffer)))
+
+(defun ysp/visit-last-dired-file ()
+  "Open the last file in an open dired buffer."
+  (end-of-buffer)
+  (previous-line)
+  (dired-find-file))
+
+(defun ysp/visit-last-migration ()
+  "Open the last file in 'db/migrate/'. Relies on projectile. Pretty sloppy."
+  (interactive)
+  (dired (expand-file-name "db/migrate" (projectile-project-root)))
+  (hrs/visit-last-dired-file)
+  (kill-buffer "migrate"))
+
+(defun ysp/mac? ()
+  "Returns `t' if this is an Apple machine, nil otherwise."
+  (eq system-type 'darwin))
+
+(defun ysp/add-auto-mode (mode &rest patterns)
+  "Add entries to `auto-mode-alist' to use `MODE' for all given file `PATTERNS'."
+  (dolist (pattern patterns)
+    (add-to-list 'auto-mode-alist (cons pattern mode))))
+
+(defun ysp/find-file-as-sudo ()
+  (interactive)
+  (let ((file-name (buffer-file-name)))
+    (when file-name
+      (find-alternate-file (concat "/sudo::" file-name)))))
+
+(defun ysp/insert-random-string (len)
+  "Insert a random alphanumeric string of length len."
+  (interactive)
+  (let ((mycharset "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstyvwxyz"))
+    (dotimes (i len)
+      (insert (elt mycharset (random (length mycharset)))))))
+
+(defun ysp/generate-password ()
+  "Insert a good alphanumeric password of length 30."
+  (interactive)
+  (hrs/insert-random-string 30))
+
+
+(global-set-key (kbd "C-x 2") 'ysp/split-window-below-and-switch)
+(global-set-key (kbd "C-x 3") 'ysp/split-window-right-and-switch)
+
+;; Show errors in this file:
+;;(setq debug-on-error t)
+;;(setq stack-trace-on-error t)
+
+;;; save when necessarry 
+(defun save-all ()
+  (interactive)
+  (save-some-buffers t))
+
+(defun insert-date (prefix)
+  "Insert the current date. With prefix-argument, use ISO format. With
+   two prefix arguments, write out the day and month name."
+  (interactive "P")
+  (let ((format (cond
+                 ((not prefix) "%Y-%m-%d" ) ;"%d.%m.%Y"
+                 ((equal prefix '(4)) "%Y-%m-%d")
+                 ((equal prefix '(16)) "%A, %d. %B %Y")))
+        (system-time-locale "en_US"))
+    (insert (format-time-string format))))
+
+(global-set-key (kbd "C-c 1") 'insert-date)
+
+(defun settings ()
+  (interactive)
+  (find-file "/work/Lispy/orgy/dots/emacs.d/init.el"))
+
+(defun reload-settings ()
+  (interactive)
+  (load-file "~/.emacs.d/init.el"))
+
+(defun lein-settings ()
+  (interactive)
+  (find-file "~/.lein/profiles.clj"))
+
+(global-set-key (kbd "C-c I") 'settings)
 
 ;; line management
 (defun open-line-below ()
@@ -415,193 +328,34 @@
                   (interactive)
                   (ignore-errors (backward-char 5))))
 
-(global-set-key (kbd "M-G") 'beginning-of-buffer)
-(global-set-key (kbd "M-R") 'end-of-buffer)
-(key-chord-define-global ",," 'previous-buffer)
-
-;(key-chord-define-global "@@" 'cider-restart)
-(key-chord-define-global "$$" 'project-explorer-open)
-(key-chord-define-global "xx" 'execute-extended-command)
-
-
-(defun yui-compress ()
-  (interactive)
-  (call-process-region
-   (point-min) (point-max) "yuicompressor" t t nil (buffer-file-name)))
-
-(require 'project-explorer)
-(setq pe/omit-gitignore t)
-(setq pe/width 35)
-
-;;refresh all namespaces
-(defun nrepl-refresh ()
-  (interactive)
-  (call-interactively 'cider-switch-to-repl-buffer)
-  (goto-char (point-max))
-  (insert "(clojure.tools.namespace.repl/refresh)")
-  (cider-repl-return))
-
-;; reset your system
-(defun nrepl-reset ()
-  (interactive)
-  (call-interactively 'cider-switch-to-repl-buffer)
-  (goto-char (point-max))
-  (insert "(user/reset)")
-  (cider-repl-return))
-
-(defun temp-buffer ()
-  (interactive)
-  (switch-to-buffer "*temp*"))
-
-(defun detabify-buffer ()
-  "Calls untabify on the current buffer"
-  (interactive)
-  (untabify (point-min) (point-max)))
-
-(defun clean-up-whitespace ()
-  "Calls untabify and delete-trailing-whitespace on the current buffer."
-  (interactive)
-  (detabify-buffer)
-  (delete-trailing-whitespace))
-
-(defun nrepl-run-all-tests (ns)
-  (interactive (list (cider-current-ns)))
-  (call-interactively 'cider-switch-to-repl-buffer)
-  (goto-char (point-max))
-  (insert (format "(cljs.user/run-tests '%s)" ns))
-  (cider-repl-return))
-
-(defun mbp-clojure-mode-keybindings ()
-  (local-set-key (kbd "C-c C-s") 'nrepl-refresh)
-  (local-set-key (kbd "<f5>") 'nrepl-reset)
-  (local-set-key (kbd "<f6>") 'nrepl-run-all-tests))
-(add-hook 'clojure-mode-hook 'mbp-clojure-mode-keybindings)
-
-(global-set-key (kbd "C-x t") 'temp-buffer)
-
-;; this whitespace is kinda killing me
-;(setq prelude-whitespace nil)
-;(setq prelude-clean-whitespace-on-save nil)
-(setq prelude-flyspell nil)
-(require 'whitespace)
-(setq whitespace-line-column 80000) ;; limit line length
-
-
-;;encoding;
-(prefer-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-;; backwards compatibility as default-buffer-file-coding-system
-;; is deprecated in 23.2.
-(if (boundp 'buffer-file-coding-system)
-    (setq-default buffer-file-coding-system 'utf-8)
-  (setq default-buffer-file-coding-system 'utf-8))
-
-;; Treat clipboard input as UTF-8 string first; compound text next, etc.
-(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
-
-;;annoying whitespace
-(setq whitespace-style (quote (spaces tabs newline space-mark tab-mark newline-mark)))
-(setq whitespace-display-mappings
-      ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
-      '(
-        ;;(space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
-        ;;(newline-mark 10 [182 10]) ; 10 LINE FEED
-        (tab-mark 9 [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
-        ))
-
-(setenv "PATH"
-        (concat (getenv "PATH") ":/usr/local/bin"))
-
-;; fullscreen
-(toggle-frame-fullscreen)
-
-;;all I want is working cursor
-
-;; Show errors in this file:
-;;(setq debug-on-error t)
-                                        ;(setq stack-trace-on-error t)
-
-;; Automatically uncompress .gz files
-(global-set-key "\M-z" 'redo)
-(global-set-key (kbd "C-x C-g") 'helm-imenu)
-
-;; Get rid of keys I hit accidentally:
-(global-unset-key "\M-c")    ; don't want the capitalize thing
-
-;; which screw up my directory listings.  Make it put them
-;; somewhere else:
-(setq auto-save-list-file-prefix "~/.emacs-saves/.saves-")
-
-(setq-default indent-tabs-mode nil)
-(setq tabify nil)
-(setq  cursor-in-non-selected-windows nil)
-;;set the background-color of selected region
-
-;; make a clear selection color
-(set-face-attribute 'region nil :background "#898989")
-;;window management
-;; highlight the window number in pink color
-
-;;ui performance improvement
-(setq redisplay-dont-pause t)
-
-;;I like darkep background
-
-                                        ;(global-linum-mode +1)
-;(setq linum-format " %4d ")
-
-;;; clear within the eshell to clear the entire buffer.
-(defun eshell/clear ()
-  "04Dec2001 - sailor, to clear the eshell buffer."
-  (interactive)
-  (let ((inhibit-read-only t))
-    (erase-buffer)
-    (eshell-send-input)))
-
-(setq warning-minimum-level :emergency)
-;;; python
-(package-initialize)                    
-(elpy-enable)
-(require 'python)
-(require 'anaconda-mode)
-(add-hook 'python-mode-hook 'anaconda-mode)
-(setq python-shell-interpreter "ipython")
-(setq python-shell-interpreter-args "--pylab")
-
-(defun send-line-or-region ()
-  (interactive)
-  (if (region-active-p)
-      (call-interactively 'elpy-shell-send-region-or-buffer)
-    (python-shell-send-string (thing-at-point 'line))))
-
-(define-key elpy-mode-map (kbd "C-c C-c") 'send-line-or-region)
 (define-key emacs-lisp-mode-map (kbd "C-c C-c") 'pp-eval-last-sexp)
 
-(require 'swift-mode)
-(add-hook 'swift-mode
-          (lambda ()
-            (define-key cider-repl-mode-map (kbd "M-p")
-              'ace-window)))
-(define-key swift-mode-map (kbd "C-c C-c") 'swift-mode-send-region)
+;;; less crap
+(setq inhibit-startup-message t)
+(setq inhibit-splash-screen t)
+(setq initial-scratch-message nil)
+(setq initial-buffer-choice "~/")
 
-;;; better completion for projectile
-(setq projectile-completion-system 'grizzl)
+;;; life is short , but not my dick. 
+(defalias 'yes-or-no-p 'y-or-n-p)
+;;; no bullshit
+(delete-selection-mode t)
+(global-set-key (kbd "C-x m") 'eshell)
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
-;; custom stuff
-(defun get-search-term (beg end)
-  "message region or \"empty string\" if none highlighted"
-  (interactive (if (use-region-p)
-                   (list (region-beginning) (region-end))
-                 (list (point-min) (point-min))))
-  (let ((selection (buffer-substring-no-properties beg end)))
-    (if (= (length selection) 0)
-        (message "empty string")
-      (message selection))))
+;; better search and replace
+(global-set-key (kbd "C-c %") 'query-replace-regexp)
 
-;;random text we need sometimes
-(lorem-ipsum-use-default-bindings)
+;;; smooth scrolling
+(setq scroll-step            1
+      scroll-conservatively  10000)
+
+(when (display-graphic-p)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1))
+
+(setq org-src-fontify-natively t)
+(set-input-mode t nil t)
 
 ;;  we have to move efficiently 
 (global-subword-mode 1)
@@ -610,164 +364,310 @@
 (setq make-backup-files nil) ; stop creating those backup~ files
 (setq auto-save-default nil) ; stop creating those #auto-save# files
 
-(defun insert-date (prefix)
-  "Insert the current date. With prefix-argument, use ISO format. With
-   two prefix arguments, write out the day and month name."
-  (interactive "P")
-  (let ((format (cond
-                 ((not prefix) "%Y-%m-%d" ) ;"%d.%m.%Y"
-                 ((equal prefix '(4)) "%Y-%m-%d")
-                 ((equal prefix '(16)) "%A, %d. %B %Y")))
-        (system-time-locale "en_US"))
-    (insert (format-time-string format))))
 
-(global-set-key (kbd "C-c 1") 'insert-date)
+(setq-default fill-column 100)
+(column-number-mode t)
+(setq-default indicate-empty-lines nil)
 
-(defun settings ()
+(setq truncate-partial-width-windows nil)
+
+(setq-default truncate-lines nil)
+(add-hook 'focus-out-hook 'save-all)
+
+(use-package aggressive-indent
+  :ensure t
+  :config (global-aggressive-indent-mode 1))
+
+
+(setq-default cursor-type 'box)
+(blink-cursor-mode t)
+;;; set the default shell
+(setq explicit-shell-file-name "/usr/local/bin/bash")
+(set-face-attribute 'fringe nil :background (face-attribute 'default :background)) ;
+
+(set-face-attribute 'vertical-border nil :foreground (face-attribute 'default :background))
+
+
+(require 'paren)
+(setq show-paren-style 'parenthesis)
+(show-paren-mode +1)
+(setq show-paren-style 'parenthesis) 
+(setq show-paren-delay 0)
+
+;;; ok . this is ubuntu .
+(setq x-meta-keysym 'super)
+(setq x-super-keysym 'meta)
+
+;;; you know dvorak 
+(keyboard-translate ?\C-x ?\C-u)
+(keyboard-translate ?\C-u ?\C-x)
+
+(use-package try
+  :ensure t)
+
+(use-package which-key
+  :ensure t
+  :config (which-key-mode))
+
+(use-package beacon
+  :ensure t
+  :config (beacon-mode t))
+
+
+(use-package undo-tree
+  :ensure t)
+
+(defun text-mode-hook-setup ()
+  ;; make `company-backends' local is critcal
+  ;; or else, you will have completion in every major mode, that's very annoying!
+  (make-local-variable 'company-backends)
+
+  ;; company-ispell is the plugin to complete words
+  (add-to-list 'company-backends 'company-ispell)
+
+  ;; OPTIONAL, if `company-ispell-dictionary' is nil, `ispell-complete-word-dict' is used
+  ;;  but I prefer hard code the dictionary path. That's more portable.
+  (setq company-ispell-dictionary (file-truename "~/.emacs.d/english-words.txt")))
+
+(defun toggle-company-ispell ()
   (interactive)
-  (find-file "~/.emacs.d/init.el"))
+  (cond
+   ((memq 'company-ispell company-backends)
+    (setq company-backends (delete 'company-ispell company-backends))
+    (message "company-ispell disabled"))
+   (t
+    (add-to-list 'company-backends 'company-ispell)
+    (message "company-ispell enabled!"))))
 
-(defun reload-settings ()
-  (interactive)
-  (load-file "~/.emacs.d/init.el"))
-
-(defun fish-settings ()
-  (interactive)
-  (find-file "/work/Clojure/dotfiles/config.fish"))
-
-(defun lein-settings ()
-  (interactive)
-  (find-file "~/.lein/profiles.clj"))
-
-(global-set-key (kbd "C-c I") 'settings)
-
-;(require 'powerline)
-;(powerline-default-theme)
-(require 'origami)
-
-(require 'markdown-mode)
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\grimoire*\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-(defun yas-popup-isearch-prompt (prompt choices &optional display-fn)
-  (when (featurep 'popup)
-    (popup-menu*
-     (mapcar
-      (lambda (choice)
-        (popup-make-item
-         (or (and display-fn (funcall display-fn choice))
-             choice)
-         :value choice))
-      choices)
-     :prompt prompt
-     ;; start isearch mode immediately
-     :isearch t
-     )))
-
-(setq yas-prompt-functions '(yas-popup-isearch-prompt yas-ido-prompt yas-no-prompt))
-
-;;; expand the region if necesarry
-(require 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
-
-;;; grep project
-(require 'swiper)
-(global-set-key (kbd "C-c j") 'counsel-git-grep)
-;(global-set-key (kbd "C-c t") 'counsel-load-theme)
-
-;;; Hydra window management
-(require 'hydra)
-(require 'windmove)
-
-(defun hydra-move-splitter-left (arg)
-    "Move window splitter left."
-    (interactive "p")
-    (if (let ((windmove-wrap-around))
-          (windmove-find-other-window 'right))
-        (shrink-window-horizontally arg)
-      (enlarge-window-horizontally arg)))
-
-(defun hydra-move-splitter-right (arg)
-  "Move window splitter right."
-  (interactive "p")
-  (if (let ((windmove-wrap-around))
-        (windmove-find-other-window 'right))
-      (enlarge-window-horizontally arg)
-    (shrink-window-horizontally arg)))
-
-(defun hydra-move-splitter-up (arg)
-  "Move window splitter up."
-  (interactive "p")
-  (if (let ((windmove-wrap-around))
-        (windmove-find-other-window 'up))
-      (enlarge-window arg)
-    (shrink-window arg)))
-
-(defun hydra-move-splitter-down (arg)
-  "Move window splitter down."
-  (interactive "p")
-  (if (let ((windmove-wrap-around))
-        (windmove-find-other-window 'up))
-      (shrink-window arg)
-    (enlarge-window arg)))
-
-(global-set-key
-   (kbd "C-M-a")
-   (defhydra hydra-window (:color amaranth)
-     "
-Move Point^^^^   Move Splitter   ^Ace^                       ^Split^
---------------------------------------------------------------------------------
-_w_, _<up>_      Shift + Move    _C-a_: ace-window           _2_: split-window-below
-_a_, _<left>_                    _C-s_: ace-window-swap      _3_: split-window-right
-_s_, _<down>_                    _C-d_: ace-window-delete    ^ ^
-_d_, _<right>_                   ^   ^                       ^ ^
-You can use arrow-keys or WASD.
-"
-     ("2" split-window-below nil)
-     ("3" split-window-right nil)
-     ("a" windmove-left nil)
-     ("s" windmove-down nil)
-     ("w" windmove-up nil)
-     ("d" windmove-right nil)
-     ("A" hydra-move-splitter-left nil)
-     ("S" hydra-move-splitter-down nil)
-     ("W" hydra-move-splitter-up nil)
-     ("D" hydra-move-splitter-right nil)
-     ("<left>" windmove-left nil)
-     ("<down>" windmove-down nil)
-     ("<up>" windmove-up nil)
-     ("<right>" windmove-right nil)
-     ("<S-left>" hydra-move-splitter-left nil)
-     ("<S-down>" hydra-move-splitter-down nil)
-     ("<S-up>" hydra-move-splitter-up nil)
-     ("<S-right>" hydra-move-splitter-right nil)
-     ("C-a" ace-window nil)
-     ("u" hydra--universal-argument nil)
-     ("C-s" (lambda () (interactive) (ace-window 4)) nil)
-     ("C-d" (lambda () (interactive) (ace-window 16)) nil)
-     ("q" nil "quit")))
-
-;;; Setup windowing
-(global-unset-key (kbd "M-p"))
-(add-hook 'eshell-mode-hook
-          (lambda ()
-            (define-key eshell-mode-map (kbd "M-p")
-              'ace-window)))
-(add-hook 'cider-repl-mode-hook
-          (lambda ()
-            (define-key cider-repl-mode-map (kbd "M-p")
-              'ace-window)))
-
-(add-hook 'markdown-mode
-          (lambda ()
-            (define-key cider-repl-mode-map (kbd "M-p")
-              'ace-window)))
+(use-package company
+  :ensure t
+  :config (progn
+            (global-company-mode t)
+            (global-set-key (kbd "M-TAB") #'company-complete))
+  
+  :init (progn
+          (setq company-tooltip-align-annotations t)
+          (setq company-idle-delay 0.025)
+          (setq company-dabbrev-ignore-case t)
+          (setq company-dabbrev-downcase nil)
+          (setq company-tooltip-flip-when-above t)
+          (setq company-dabbrev-code-other-buffers 'code)
+          (add-hook 'text-mode-hook 'text-mode-hook-setup)))
 
 
 
-(global-set-key (kbd "M-p") 'ace-window)
+(use-package projectile
+  :ensure t
+  :config (projectile-global-mode t))
+
+(use-package key-chord
+  :ensure t
+  :init (key-chord-mode 1)
+  :config (progn (key-chord-define-global "$$" 'project-explorer-open)
+                 (key-chord-define-global "xx" 'execute-extended-command)))
+
+(use-package smartparens
+  :ensure t
+  :config (smartparens-global-mode t))
+
+
+(use-package paredit
+  :ensure t
+  :config (add-hook 'emacs-lisp-mode-hook 'paredit-mode))
+
+(use-package rainbow-mode
+  :ensure t
+  :config (rainbow-mode 1))
+
+(use-package rainbow-delimiters
+  :ensure t
+  :config (progn
+            (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)            
+            ))
+
+(use-package counsel
+  :ensure t)
+
+
+
+;;;  swiper,ivy is much better than default and helm
+(use-package swiper
+  :ensure t
+  :config (progn
+            (ivy-mode 1)
+            (setq ivy-use-virtual-buffers t)
+            (global-set-key "\C-s" 'swiper)
+            (global-set-key (kbd "C-c C-r") 'ivy-resume)
+            (global-set-key (kbd "<f6>") 'ivy-resume)
+            (global-set-key (kbd "M-x") 'counsel-M-x)
+            (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+            (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+            (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+            (global-set-key (kbd "<f1> l") 'counsel-load-library)
+            (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+            (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+            (global-set-key (kbd "C-c g") 'counsel-git)
+            (global-set-key (kbd "C-c j") 'counsel-git-grep)
+            (global-set-key (kbd "C-c k") 'counsel-ag)
+            (global-set-key (kbd "C-x l") 'counsel-locate)
+            (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+            (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+            (setq projectile-completion-system 'ivy)))
+
+;; Key bindings
+(use-package recentf
+  :ensure t
+  :init (progn
+          (setq recentf-max-saved-items 1024)
+          (setq recentf-max-menu-items 1024)
+          (recentf-mode 1)
+          (global-set-key (kbd "C-c f") 'ivy-recentf)))
+
+(use-package highlight-parentheses
+  :ensure t
+  :config (global-highlight-parentheses-mode nil))
+
+(use-package clojure-mode
+  :ensure t
+  :mode (("\\.clj\\'" . clojure-mode)
+         ("\\.edn\\'" . clojure-mode))
+  :init (progn 
+          (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+          (add-hook 'clojure-mode-hook #'yas-minor-mode)         
+          (add-hook 'clojure-mode-hook #'subword-mode)           
+          (add-hook 'clojure-mode-hook #'smartparens-mode)
+          (add-hook 'clojure-mode-hook #'paredit-mode)       
+          (add-hook 'clojure-mode-hook #'eldoc-mode)))
+
+(use-package clj-refactor
+  :ensure t
+  :defer t
+  :diminish clj-refactor-mode
+  :config (cljr-add-keybindings-with-prefix "C-c C-m"))
+
+(use-package cider
+  :ensure t
+  :defer t
+  :diminish subword-mode
+  :init
+  (progn
+    (setq cider-show-error-buffer nil)
+                                        ;    (setq cider-repl-print-length 1000)
+    (add-hook 'cider-repl-mode-hook #'company-mode)
+    (add-hook 'cider-mode-hook #'company-mode)
+    (add-hook 'cider-mode-hook #'clj-refactor-mode)))
+
+(use-package helm-cider
+  :ensure t
+  :init (helm-cider-mode t))
+
+(use-package cider-eval-sexp-fu
+  :ensure t
+  :defer t
+  :config (require 'cider-eval-sexp-fu))
+
+(use-package smartparens
+  :ensure t
+  :defer t
+  :diminish smartparens-mode
+  :init
+  (setq sp-override-key-bindings
+        '(("C-<right>" . nil)
+          ("C-<left>" . nil)
+          ("C-)" . sp-forward-slurp-sexp)
+          ("M-<backspace>" . nil)
+          ("C-(" . sp-forward-barf-sexp)))
+  :config
+  (use-package smartparens-config)
+  (sp-use-smartparens-bindings)
+  (sp--update-override-key-bindings)
+  :commands (smartparens-mode show-smartparens-mode))
+
+
+;; snippets , this is working quite nice now.
+;; Custom blog related stuff
+(use-package magit
+  :ensure t
+  :config (progn
+            (global-set-key (kbd "C-x g") 'magit-status)))
+
+
+(use-package project-explorer
+  :ensure t
+  :config (progn (setq pe/omit-gitignore t)
+                 (setq pe/width 32)))
+
+(use-package helm
+  :ensure t
+  :config   (global-set-key (kbd "C-x C-g") 'helm-imenu))
+
+
+;;; python
+(use-package python
+  :ensure t)
+
+(use-package jedi
+  :ensure t)
+
+(use-package elpy
+  :ensure t
+  :config (progn (setq elpy-rpc-backend "jedi")
+                 (setq py-python-command "/usr/bin/python3")
+                 (elpy-enable)
+                 (elpy-use-ipython)
+                 (setq python-indent 4)
+                 (add-hook 'python-mode-hook 'jedi:setup)
+                 (setq jedi:complete-on-dot t)))
+
+;;; better completion for projectile
+(use-package grizzl
+  :ensure t
+  :config 
+  (setq projectile-completion-system 'grizzl))
+
+;;random text we need sometimes
+(use-package lorem-ipsum
+  :ensure t
+  :config (lorem-ipsum-use-default-bindings))
+
+(use-package origami
+  :ensure t)
+
+(use-package markdown-mode
+  :ensure t
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+    (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+    (add-to-list 'auto-mode-alist '("\\grimoire*\\'" . markdown-mode))
+    (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))))
+
+(use-package expand-region
+  :ensure t
+  :config (global-set-key (kbd "C-=") 'er/expand-region))
+
+(use-package hydra   :ensure t)
+
+(use-package ace-window
+  :ensure t
+  :config
+  (progn (global-unset-key (kbd "M-p"))
+
+         (add-hook 'eshell-mode-hook
+                   (lambda ()
+                     (define-key eshell-mode-map (kbd "M-p")
+                       'ace-window)))
+         (add-hook 'cider-repl-mode-hook
+                   (lambda ()
+                     (define-key cider-repl-mode-map (kbd "M-p")
+                       'ace-window)))
+
+         (add-hook 'markdown-mode
+                   (lambda ()
+                     (define-key cider-repl-mode-map (kbd "M-p")
+                       'ace-window)))
+
+         (global-set-key (kbd "M-p") 'ace-window)))
 
 (defun ivy-switch-project ()
   (interactive)
@@ -780,135 +680,186 @@ You can use arrow-keys or WASD.
    :action #'projectile-switch-project-by-name))
 
 (global-set-key (kbd "C-c m") 'ivy-switch-project)
-(global-set-key (kbd  "C-x C-\\") 'goto-last-change)
 
-;; (ad-activate 'projectile-toggle-between-implementation-and-test)
-(require 'ensime)
-(add-hook 'clojure-mode-hook 'fci-mode)
+(use-package goto-last-change
+  :ensure t
+  :config (global-set-key (kbd  "C-x C-\\") 'goto-last-change))
 
-                                        
-(add-to-list 'load-path "~/.emacs.d/dash-at-point.el")
-
-(autoload 'dash-at-point "dash-at-point.el"  "Search the word at point with Dash." t nil)
-
-(require 'fill-column-indicator)
-(setq fci-style 'rule)
-(setq fci-rule-width 1)
-(setq fci-rule-color (face-attribute 'default :background))
-(fci-mode t)
-(setq-default fill-column 100)
-(column-number-mode t)
-
-(setq-default indicate-empty-lines nil)
-;;; annoying as fuck.
-;(global-visual-line-mode -1)
+                                        ;(global-visual-line-mode -1)
 
 ;;; web stuff
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(use-package web-mode
+  :ensure t
+  :config (progn
+            (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+            (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+            (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+            (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+            (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+            (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+            (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+            (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))))
 
-(require 'gradle-mode)
-(add-to-list 'auto-mode-alist '("\\.gradle?\\'" . gradle-mode))
+(use-package yaml-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.yaml?\\'" . yaml-mode)))
 
-;;;
-(require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.yaml?\\'" . yaml-mode))
+(use-package js2-mode
+  :ensure t
+  :config
+  (progn
+    (add-hook 'js2-mode-hook 'yas-minor-mode)
+    (add-hook 'js2-mode-hook 'js2-refactor-mode)
+    (js2r-add-keybindings-with-prefix "C-c C-m")
+    (add-to-list 'auto-mode-alist '("\\.js?\\'" . js2-mode))
+    (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-mode))))
 
-(require 'js2-mode)
-(add-to-list 'auto-mode-alist '("\\.js?\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-mode))
 
-(setq truncate-partial-width-windows nil)
-                                        ;
-
-;;; save when necessarry 
-(defun save-all ()
-  (interactive)
-  (save-some-buffers t))
-(setq-default truncate-lines nil)
-(add-hook 'focus-out-hook 'save-all)
-(global-aggressive-indent-mode 1)
 ;;; the thing shows up makes you happy and cozy.
-(beacon-mode 1)
+(use-package emmet-mode
+  :ensure t
+  :config (progn
+            (add-hook 'web-mode-hook 'emmet-mode) 
+            (add-hook 'sgml-mode-hook 'emmet-mode) 
+            (add-hook 'css-mode-hook  'emmet-mode)))
 
-                                        ;(setq sml/no-confirm-load-theme t)
-                                        ;(setq sml/theme 'powerline-light)
-;(sml/setup)
+(use-package org-bullets
+  :ensure t
+  :init (progn
+          (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+          (add-hook 'org-mode-hook 'my/turn-off-linum-mode)
+          (setq org-log-done t)
+          (setq org-hide-leading-stars t)
+          (setq org-ellipsis "⤵")
+          (setq org-src-fontify-natively t)
+          (setq org-src-tab-acts-natively t)
+          (setq org-src-window-setup 'current-window)
+          (setq org-tag-alist '(("@feature" . ?f)
+                                ("@work" . ?w) ("@home" . ?h) ("laptop" . ?l)))
+          (define-key global-map "\C-cl" 'org-store-link)
+          (define-key global-map "\C-ca" 'org-agenda)
+          (define-key global-map "\C-cc" 'org-capture)
+          (define-key org-mode-map (kbd "C-c <left>") 'org-do-promote)
+          (define-key org-mode-map (kbd "C-c <right>") 'org-do-demote)
+          (define-key org-mode-map (kbd "C-c <C-right>") 'org-demote-subtree)
+          (define-key org-mode-map (kbd "C-c <C-left>") 'org-promte-subtree)
+          (define-key org-mode-map (kbd "C-c <C-left>") 'org-promte-subtree)
+          (define-key org-mode-map (kbd "C-c <up>") 'org-move-subtree-up)
+          (define-key org-mode-map (kbd "C-c <down>") 'org-move-subtree-down)
+          (setq org-default-notes-file "/work/Lispy/org/read.org")
+          (setq org-agenda-files (list "/work/Lispy/org/read.org"
+                                       "/work/Lispy/org/projects/aus.org"
+                                       "/work/Lispy/org/projects/blue.org"
+                                       "/work/Lispy/org/projects/mdc.org"))))
 
-;;let
-(defvar mode-line-cleaner-alist
-  `((auto-complete-mode . " α")
-    (yas/minor-mode . " υ")
-    (paredit-mode . " π")
-    (eldoc-mode . "")
-    (abbrev-mode . "")
-    ;; Major modes
-    (lisp-interaction-mode . " λλ")
-    (clojure-mode . " λ")
-    (hi-lock-mode . "")
-    (python-mode . " Py")
-                                        ; (projectile-mode . " PJ")
-    (emacs-lisp-mode . " EL")
-    (nxhtml-mode . " nx"))
-  "Alist for `clean-mode-line'.
-When you add a new element to the alist, keep in mind that you
-must pass the correct minor/major mode symbol and a string you
-want to use in the modeline *in lieu of* the original.")
+(use-package auctex
+  :ensure t
+  :mode ("\\.tex\\'" . latex-mode)
+  :commands (latex-mode LaTeX-mode plain-tex-mode)
+  :init
+  (progn
+    (add-hook 'LaTeX-mode-hook #'LaTeX-preview-setup)
+    (add-hook 'LaTeX-mode-hook #'flyspell-mode)
+    (add-hook 'LaTeX-mode-hook #'turn-on-reftex)
+    (setq TeX-auto-save t
+	  TeX-parse-self t
+	  TeX-save-query nil
+	  TeX-PDF-mode t)
+    (setq-default TeX-master nil)))
 
-(defun clean-mode-line ()
-  (interactive)
-  (loop for cleaner in mode-line-cleaner-alist
-        do (let* ((mode (car cleaner))
-                  (mode-str (cdr cleaner))
-                  (old-mode-str (cdr (assq mode minor-mode-alist))))
-             (when old-mode-str
-               (setcar old-mode-str mode-str))
-             ;; major mode
-             (when (eq mode major-mode)
-               (setq mode-name mode-str)))))
+(use-package diff-hl
+  :ensure t
+  :config (global-diff-hl-mode t))
 
-(add-hook 'after-change-major-mode-hook 'clean-mode-line)
+(use-package yasnippet
+  :ensure t
+  :config (yas-global-mode t))
 
-(require 'emmet-mode)
-(add-hook 'web-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
-(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
-(add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+(use-package clojure-snippets
+  :ensure t)
 
-(add-hook 'js2-mode-hook 'yas-minor-mode)
-(add-hook 'js2-mode-hook 'js2-refactor-mode)
-(js2r-add-keybindings-with-prefix "C-c C-m")
+(use-package engine-mode
+  :ensure t
+  :config (progn
+            (defengine duckduckgo
+              "https://duckduckgo.com/?q=%s"
+              :keybinding "d")
 
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
+            (defengine github
+              "https://github.com/search?ref=simplesearch&q=%s"
+              :keybinding "G")
 
-;;;  exec shell 
-(defun shell-region (start end)
-  "execute region in an inferior shell"
-  (interactive "r")
-  (shell-command  (buffer-substring-no-properties start end)))
+            (defengine google
+              "http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
+              :keybinding "g")
 
-(setq-default cursor-type 'hbar)
-(set-cursor-color "#FABD2F")
-(blink-cursor-mode t)
+            (defengine stack-overflow
+              "https://stackoverflow.com/search?q=%s"
+              :keybinding "s")
 
-;;; set the default shell
-(setq explicit-shell-file-name "/usr/local/bin/bash")
+            (defengine wikipedia
+              "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
+              :keybinding "w")
 
-(set-face-attribute 'fringe nil :background (face-attribute 'default :background)) ;
-(set-face-attribute 'vertical-border nil :foreground (face-attribute 'default :background))
-(set-face-attribute 'linum nil :background  (face-attribute 'default :background) :foreground "#343434") 
+            (defengine wiktionary
+              "https://www.wikipedia.org/search-redirect.php?family=wiktionary&language=en&go=Go&search=%s"
+              :keybinding "W")
+            
+            (engine-mode t)))
 
+(use-package helm-descbinds
+  :ensure t
+  :defer t
+  :bind (("C-h b" . helm-descbinds)
+         ("C-h w" . helm-descbinds)))
 
+(use-package artbollocks-mode
+  :ensure t
+  :defer t
+  :init     (add-hook 'org-mode-hook #'artbollocks-mode)
+  :config
+  (progn
+    (setq artbollocks-weasel-words-regex
+          (concat "\\b" (regexp-opt
+                         '("one of the"
+                           "should"
+                           "just"
+                           "sort of"
+                           "a lot"
+                           "probably"
+                           "maybe"
+                           "perhaps"
+                           "I think"
+                           "really"
+                           "pretty"
+                           "nice"
+                           "action"
+                           "utilize"
+                           "leverage") t) "\\b"))
+    ;; Don't show the art critic words, or at least until I figure
+    ;; out my own jargon
+    (setq artbollocks-jargon nil)))
 
+;;; let's set a respectful theme.
+(use-package xkcd
+  :ensure t
+  :defer t)
 
+(use-package calfw
+  :ensure t
+  :init 
+  (progn
+    (require 'calfw)))
 
+(use-package smart-mode-line
+  :ensure t
+  :config (progn
+            (setq sml/no-confirm-load-theme t)
+            (sml/setup)))
 
-
-
+(use-package scala-mode
+  :ensure t
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))))
