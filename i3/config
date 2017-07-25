@@ -55,8 +55,8 @@ bindsym $mod+Ctrl-e exec i3-msg exit
 
 # start dmenu (a program launcher)
 #bindsym $mod+e exec dmenu_run
-bindsym $mod+d exec rofi -show run 
-
+#bindsym $mod+d exec rofi -show run 
+bindsym $mod+d exec rofi -show run -lines 8 -eh 2 -width 40 -padding 20 -line-margin 5 -hide-scrollbar
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -113,7 +113,7 @@ bindsym $mod+a focus parent
 
 # setup startup apps
 exec --no-startup-id nm-applet
-
+exec --no-startup-id xsetroot -solid "#333333"
 
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
@@ -126,7 +126,7 @@ bindsym XF86AudioMute exec "amixer -D pulse set Master 1+ toggle"
 
 # focus the child container
 #bindsym $mod+d focus child
-set $workspace1 "term &#xe7a2;" 
+set $workspace1 "term &#xf0c2;" 
 set $workspace2 "code &#xe7b5;" 
 set $workspace3 "firefox &#xf269;" 
 set $workspace4 "fun &#xf0f4;"
@@ -206,15 +206,19 @@ assign [class="(?i)idea"] $workspace2
 assign [class="(?i)beary"] $workspace4
 for_window [class="(?i)Spotify"] move to workspace $workspace4
 for_window [class="(?i)vuze"] move to workspace $workspace4
+for_window [class="(?i)wechat"] move to workspace $workspace4
 
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+exec_always feh --bg-scale ~/Documents/T0cKi.jpg
 
 bar {
         #status_command i3status
-        status_command i3blocks -c ~/.i3/i3blocks.conf
-	    font pango:  UbuntuMono NF Regular 13
+        #status_command i3blocks -c ~/.i3/i3blocks.conf
+        status_command  python3 ~/.config/i3/bar.py
+	    #font pango:  UbuntuMono NF Regular 13
+        font pango: System San Francisco Display, FontAwesome 10
         position bottom
         strip_workspace_numbers yes
         #bindsym button4 nop
