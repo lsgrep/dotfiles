@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from i3pystatus import Status
-from network import CurrentNetworkInterface
+from network import CurrentNetworkConnection
 
 status = Status(logfile='/tmp/i3pystatus.log')
 
@@ -45,7 +45,7 @@ status.register("disk",
     on_leftclick="pcmanfm",
     format=" {avail} GB",)
 
-status.register(CurrentNetworkInterface,
+status.register(CurrentNetworkConnection,
                 on_leftclick="bm-net")
 
 status.run()
