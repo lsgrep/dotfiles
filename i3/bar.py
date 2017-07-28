@@ -45,7 +45,8 @@ status.register("disk",
     on_leftclick="pcmanfm",
     format=" {avail} GB",)
 
-status.register(CurrentNetworkInterface)
+status.register(CurrentNetworkInterface,
+                on_leftclick="bm-net")
 
 status.run()
 
