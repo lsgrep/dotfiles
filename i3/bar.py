@@ -43,7 +43,7 @@ status.register("mem",
 status.register("disk",
     path="/home",
     on_leftclick="pcmanfm",
-    format=" {avail} GB",)
+    format=" {avail} GB",)
 
 status.register(CurrentNetworkConnection,
                 on_leftclick="bm-net")

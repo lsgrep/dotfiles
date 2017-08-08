@@ -58,10 +58,10 @@ class CurrentNetworkConnection(IntervalModule):
             color = self.color
 
         if self.down_time != 0:
-            result = ni + "," + str(self.down_time)
+            result = "conn %s for %d secs" % (ni, self.down_time * 5)
 
         cdict = {
-            "current_network_interface": " " + result,
+            "current_network_interface": " " + result
         }
 
         self.data = cdict
