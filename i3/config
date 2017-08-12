@@ -211,12 +211,12 @@ for_window [class="(?i)wechat"] move to workspace $workspace4
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-exec_always feh --bg-scale ~/Documents/T0cKi.jpg
+exec_always feh --bg-scale ~/Pictures/JSybnUw.jpg
 
 bar {
         #status_command i3status
         #status_command i3blocks -c ~/.i3/i3blocks.conf
-        status_command  python3 ~/.config/i3/bar.py
+        status_command  python3 ~/.config/i3/bar.py -t
 	    #font pango:  UbuntuMono NF Regular 13
         font pango: System San Francisco Display, FontAwesome 10
         position bottom
@@ -234,3 +234,5 @@ bar {
               urgent_workspace   $base01 $base01    $base08
     }
 }
+
+smart_gaps on
