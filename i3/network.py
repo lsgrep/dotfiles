@@ -15,7 +15,7 @@ def run_command(cmd):
 
 def current_network_connection():
     default_ni = 'down'
-    command = "nmcli device status |grep -E -v 'disconnected|docker|bridge' |grep connected |awk '{print $4}'"
+    command = "nmcli device status |grep -E -v 'disconnected|docker|bridge' |grep -E 'connected|conectado' |awk '{print $4}'"
     cmd_ni = run_command(command)
     if not cmd_ni:
         return default_ni
