@@ -47,10 +47,11 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Ctrl+l kill
+bindsym $mod+Ctrl+Shift+l exec lock
 bindsym $mod+Ctrl-e exec i3-msg exit
 
 # start dmenu (a program launcher)
@@ -221,7 +222,7 @@ bar {
         #status_command i3blocks -c ~/.i3/i3blocks.conf
         status_command  python3 ~/.config/i3/bar.py -t
 	    #font pango:  UbuntuMono NF Regular 13
-        font pango: System San Francisco Display, FontAwesome 10
+        font pango: Overpass Regular, FontAwesome 10
         position bottom
         strip_workspace_numbers yes
         #bindsym button4 nop
