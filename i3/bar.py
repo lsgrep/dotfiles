@@ -23,7 +23,7 @@ status.register("pulseaudio",
     format=" {volume}%")
 
 status.register("network",
-        interface="enxa0ab1b3c941c",
+        interface="enp5s0",
     color_up="#8AE234",
     color_down="#EF2929",
     format_up=": {v4cidr} ",

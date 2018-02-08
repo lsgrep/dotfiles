@@ -30,7 +30,7 @@
                   monokai-height-plus-2 1.0
                   monokai-height-plus-3 1.0
                   monokai-height-plus-4 1.0)
-            (set-default-font "PT Mono 13")
+            (set-default-font "PT Mono 11")
             (load-theme 'monokai t)))
 
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
@@ -89,7 +89,9 @@ With a prefix ARG always prompt for command to use."
 
 (global-linum-mode +1)
 (setq linum-format " %4d ")
+
 (set-face-attribute 'linum nil :background (face-attribute 'default :background))
+(set-face-attribute 'linum nil :family (face-attribute 'default :family) :height 80)
 
 (setq warning-minimum-level :emergency)
 
@@ -257,7 +259,7 @@ With a prefix ARG always prompt for command to use."
 ;;(setq debug-on-error t)
 ;;(setq stack-trace-on-error t)
 
-;;; save when necessarry 
+;;; save when necessarry
 (defun save-all ()
   (interactive)
   (save-some-buffers t))
@@ -327,8 +329,8 @@ With a prefix ARG always prompt for command to use."
                 (lambda ()
                   (interactive)
                   (ignore-errors (backward-char 5))))
-
-(define-key emacs-lisp-mode-map (kbd "C-c C-c") 'pp-eval-last-sexp)
+(
+ define-key emacs-lisp-mode-map (kbd "C-c C-c") 'pp-eval-last-sexp)
 
 ;;; less crap
 (setq inhibit-startup-message t)
@@ -336,7 +338,7 @@ With a prefix ARG always prompt for command to use."
 (setq initial-scratch-message nil)
 (setq initial-buffer-choice "~/")
 
-;;; life is short , but not my dick. 
+;;; life is short , but not my dick.
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;;; no bullshit
 (delete-selection-mode t)
@@ -357,7 +359,7 @@ With a prefix ARG always prompt for command to use."
 (setq org-src-fontify-natively t)
 (set-input-mode t nil t)
 
-;;  we have to move efficiently 
+;;  we have to move efficiently
 (global-subword-mode 1)
 
 ;; stop the crap
@@ -391,14 +393,14 @@ With a prefix ARG always prompt for command to use."
 (require 'paren)
 (setq show-paren-style 'parenthesis)
 (show-paren-mode +1)
-(setq show-paren-style 'parenthesis) 
+(setq show-paren-style 'parenthesis)
 (setq show-paren-delay 0)
 
 ;;; ok . this is ubuntu .
 (setq x-meta-keysym 'super)
 (setq x-super-keysym 'meta)
 
-;;; you know dvorak 
+;;; you know dvorak
 (keyboard-translate ?\C-x ?\C-u)
 (keyboard-translate ?\C-u ?\C-x)
 
@@ -444,7 +446,7 @@ With a prefix ARG always prompt for command to use."
   :config (progn
             (global-company-mode t)
             (global-set-key (kbd "M-TAB") #'company-complete))
-  
+
   :init (progn
           (setq company-tooltip-align-annotations t)
           (setq company-idle-delay 0.025)
@@ -482,7 +484,7 @@ With a prefix ARG always prompt for command to use."
 (use-package rainbow-delimiters
   :ensure t
   :config (progn
-            (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)            
+            (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
             ))
 
 (use-package counsel
@@ -521,7 +523,7 @@ With a prefix ARG always prompt for command to use."
           (setq recentf-max-saved-items 1024)
           (setq recentf-max-menu-items 1024)
           (recentf-mode 1)
-          (global-set-key (kbd "C-c f") 'ivy-recentf)))
+          (global-set-key (kbd "C-c f") 'counsel-recentf)))
 
 (use-package highlight-parentheses
   :ensure t
@@ -531,12 +533,12 @@ With a prefix ARG always prompt for command to use."
   :ensure t
   :mode (("\\.clj\\'" . clojure-mode)
          ("\\.edn\\'" . clojure-mode))
-  :init (progn 
+  :init (progn
           (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
-          (add-hook 'clojure-mode-hook #'yas-minor-mode)         
-          (add-hook 'clojure-mode-hook #'subword-mode)           
+          (add-hook 'clojure-mode-hook #'yas-minor-mode)
+          (add-hook 'clojure-mode-hook #'subword-mode)
           (add-hook 'clojure-mode-hook #'smartparens-mode)
-          (add-hook 'clojure-mode-hook #'paredit-mode)       
+          (add-hook 'clojure-mode-hook #'paredit-mode)
           (add-hook 'clojure-mode-hook #'eldoc-mode)))
 
 (use-package clj-refactor
@@ -622,7 +624,7 @@ With a prefix ARG always prompt for command to use."
 ;;; better completion for projectile
 (use-package grizzl
   :ensure t
-  :config 
+  :config
   (setq projectile-completion-system 'grizzl))
 
 ;;random text we need sometimes
@@ -720,8 +722,8 @@ With a prefix ARG always prompt for command to use."
 (use-package emmet-mode
   :ensure t
   :config (progn
-            (add-hook 'web-mode-hook 'emmet-mode) 
-            (add-hook 'sgml-mode-hook 'emmet-mode) 
+            (add-hook 'web-mode-hook 'emmet-mode)
+            (add-hook 'sgml-mode-hook 'emmet-mode)
             (add-hook 'css-mode-hook  'emmet-mode)))
 
 (use-package org-bullets
@@ -805,7 +807,7 @@ With a prefix ARG always prompt for command to use."
             (defengine wiktionary
               "https://www.wikipedia.org/search-redirect.php?family=wiktionary&language=en&go=Go&search=%s"
               :keybinding "W")
-            
+
             (engine-mode t)))
 
 (use-package helm-descbinds
@@ -848,9 +850,15 @@ With a prefix ARG always prompt for command to use."
 
 (use-package calfw
   :ensure t
-  :init 
+  :init
   (progn
     (require 'calfw)))
+
+
+(use-package go-mode
+  :ensure t
+  :init
+  (progn (require 'go-mode-autoloads)))
 
 (use-package smart-mode-line
   :ensure t
@@ -858,8 +866,17 @@ With a prefix ARG always prompt for command to use."
             (setq sml/no-confirm-load-theme t)
             (sml/setup)))
 
-(use-package scala-mode
-  :ensure t
-  :config
-  (progn
-    (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(go-mode scala-mode smart-mode-line calfw xkcd artbollocks-mode helm-descbinds engine-mode clojure-snippets diff-hl auctex org-bullets emmet-mode js2-mode yaml-mode web-mode goto-last-change ace-window expand-region markdown-mode origami lorem-ipsum grizzl elpy jedi helm project-explorer magit cider-eval-sexp-fu helm-cider clj-refactor clojure-mode highlight-parentheses counsel rainbow-delimiters rainbow-mode paredit smartparens key-chord projectile company undo-tree beacon which-key try aggressive-indent monokai-theme use-package)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
