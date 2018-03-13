@@ -30,7 +30,7 @@
                   monokai-height-plus-2 1.0
                   monokai-height-plus-3 1.0
                   monokai-height-plus-4 1.0)
-            (set-default-font "PT Mono 11")
+            (set-default-font "InputMono 11")
             (load-theme 'monokai t)))
 
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
@@ -279,7 +279,7 @@ With a prefix ARG always prompt for command to use."
 
 (defun settings ()
   (interactive)
-  (find-file "/work/Lispy/orgy/dots/emacs.d/init.el"))
+  (find-file "/work/code/dotfiles/emacs.d/init.el"))
 
 (defun reload-settings ()
   (interactive)

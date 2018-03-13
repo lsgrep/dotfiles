@@ -47,7 +47,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec tilix
 
 # kill focused window
 bindsym $mod+Ctrl+l kill
@@ -89,14 +89,14 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-#bindsym $mod+d split h
+bindsym $mod+Shift+d split h
 
 # split in vertical orientation
-#bindsym $mod+k split v
+bindsym $mod+Shift+k split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+u fullscreen toggle
-
+#
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+o layout stacking
 bindsym $mod+comma layout tabbed
@@ -129,9 +129,9 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 
 # focus the child container
 #bindsym $mod+d focus child
-set $workspace1 "term &#xf0c2;" 
-set $workspace2 "code &#xe7b5;" 
-set $workspace3 "firefox &#xf269;" 
+set $workspace1 "term &#xf120;"
+set $workspace2 "code &#xe7b5;"
+set $workspace3 "firefox &#xf269;"
 set $workspace4 "fun &#xf0f4;"
 set $workspace5 "CC &#xf15a;"
 set $workspace6 "6"
@@ -141,7 +141,7 @@ set $workspace9 "9"
 set $workspace10 "10"
 
 # switch to workspace
-bindsym $mod+1 workspace $workspace1 
+bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
@@ -220,9 +220,10 @@ exec compton --vsync opengl --backend glx --paint-on-overlay --config ~/.config/
 bar {
         #status_command i3status
         #status_command i3blocks -c ~/.i3/i3blocks.conf
-        status_command  python3 ~/.config/i3/bar.py -t
+        #status_command  python3 ~/.config/i3/bar.py -t
+        status_command gostatus
 	    #font pango:  UbuntuMono NF Regular 13
-        font pango: Overpass Regular, FontAwesome 10
+        font pango: InconsolataGo Nerd Font Mono Regular 10, FontAwesome 10
         position bottom
         strip_workspace_numbers yes
         #bindsym button4 nop
@@ -231,7 +232,7 @@ bar {
               separator $base03
               background $base01
               statusline $base05
-#                        border  background text
+              #border  background text
               focused_workspace  $base01 $base01    $base07
               active_workspace   $base01 $base02    $base04
               inactive_workspace $base01 $base01    $base03
